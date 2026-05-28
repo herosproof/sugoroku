@@ -1,0 +1,2133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Hero's Proof — 勇者の証</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Comic+Relief&family=Noto+Serif+JP:wght@400;500;700&family=Nunito:wght@400;600;700;800;900&family=Kosugi+Maru&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   ROOT & RESET
+═══════════════════════════════════════ */
+:root {
+  --bg:           #1a1228;
+  --bg2:          #231830;
+  --purple:       #7c3aed;
+  --purple-mid:   #9d5ff0;
+  --purple-light: #a78bfa;
+  --purple-pale:  #ede9fe;
+  --purple-dark:  #4c1d95;
+  --gold:         #f59e0b;
+  --gold-light:   #fde68a;
+  --gold-pale:    #fef3c7;
+  --cream:        #fef9f0;
+  --card-bg:      #faf7f0;
+  --text-dark:    #1c1033;
+  --text-soft:    #4c3d6b;
+  --brown:        #92400e;
+  --red:          #dc2626;
+  --red-pale:     #fee2e2;
+  --green:        #059669;
+  --green-pale:   #d1fae5;
+  --blue:         #1d4ed8;
+  --blue-pale:    #dbeafe;
+  --sky:          #0ea5e9;
+  --sky-pale:     #e0f2fe;
+  /* Crystal colors */
+  --crystal-yellow: #f59e0b;
+  --crystal-green:  #059669;
+  --crystal-red:    #dc2626;
+  --crystal-blue:   #1d4ed8;
+  --shadow: rgba(0,0,0,0.35);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { font-size: 16px; }
+body {
+  font-family: 'Comic Relief', 'Kosugi Maru', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  color: var(--text-dark);
+}
+
+/* ── Starfield ── */
+.starfield {
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 0;
+}
+.starfield span {
+  position: absolute;
+  animation: twinkle var(--d, 3s) ease-in-out infinite var(--delay, 0s);
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--sz, 1rem);
+  color: var(--col, #fde68a);
+  text-shadow: 0 0 6px var(--col, #fde68a);
+  line-height: 1;
+}
+@keyframes twinkle {
+  0%,100%{opacity:0;transform:scale(.3) rotate(0deg)}
+  50%{opacity:.9;transform:scale(1) rotate(20deg)}
+}
+
+/* ── App shell ── */
+.app {
+  position: relative; z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 0 56px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ═══════════════════════════════════════
+   HEADER
+═══════════════════════════════════════ */
+.header {
+  background: linear-gradient(160deg, #2d1a4a 0%, #1a1228 60%, #0f0a1a 100%);
+  padding: 20px 20px 16px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 24px rgba(124,58,237,0.35);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(167,139,250,0.2);
+}
+.header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(124,58,237,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.logo-img {
+  max-height: 72px; max-width: 88%;
+  object-fit: contain; display: block;
+  margin: 0 auto 6px;
+  filter: drop-shadow(0 2px 12px rgba(167,139,250,0.5));
+}
+.logo-placeholder {
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 2px; margin-bottom: 6px;
+}
+.logo-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.3rem, 5vw, 1.8rem);
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 24px rgba(167,139,250,0.7), 0 2px 4px rgba(0,0,0,0.5);
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+.logo-title-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--gold-light);
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 12px rgba(245,158,11,0.4);
+}
+.header-sub {
+  color: rgba(167,139,250,0.75);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+  font-family: 'Comic Relief', sans-serif;
+}
+/* Gold divider */
+.header-divider {
+  width: 100px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 10px auto 0;
+  opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════
+   TABS
+═══════════════════════════════════════ */
+.tabs {
+  display: flex;
+  background: rgba(15,10,26,0.9);
+  border-bottom: 1px solid rgba(167,139,250,0.2);
+  backdrop-filter: blur(8px);
+  position: sticky; top: 0; z-index: 50;
+}
+.tab {
+  flex: 1;
+  padding: 9px 3px 8px;
+  border: none;
+  background: transparent;
+  font-family: 'Comic Relief', 'Kosugi Maru', 'Noto Sans JP', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: rgba(167,139,250,0.55);
+  cursor: pointer;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 2px;
+  transition: color 0.2s, background 0.2s;
+  border-bottom: 2px solid transparent;
+  position: relative; top: 1px;
+  letter-spacing: 0.02em;
+}
+.tab .tab-icon {
+  font-size: 1.1rem; line-height: 1;
+  width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center;
+}
+.tab .tab-icon img { width: 22px; height: 22px; object-fit: contain; }
+.tab .tab-jp { font-size: 0.58rem; opacity: 0.85; font-family: 'Noto Sans JP', sans-serif; }
+.tab.active {
+  color: var(--gold-light);
+  border-bottom-color: var(--gold);
+}
+
+/* ═══════════════════════════════════════
+   TAB CONTENT PANELS
+═══════════════════════════════════════ */
+.tab-content { display: none; padding: 16px 14px; }
+.tab-content.active { display: block; align-self: flex-start; width: 100%; }
+
+.panel {
+  background: rgba(254,249,240,0.92);
+  border-radius: 20px;
+  border: 1px solid rgba(245,158,11,0.25);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.8);
+  padding: 18px 16px;
+  margin-bottom: 14px;
+}
+.panel-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--purple-dark);
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+  opacity: 1;
+}
+.panel-title .jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.72rem;
+  color: var(--text-soft);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ═══════════════════════════════════════
+   GAUGE TAB
+═══════════════════════════════════════ */
+.gauge-hero {
+  text-align: center;
+  padding: 6px 0 14px;
+}
+.gauge-number {
+  font-family: 'Cinzel', serif;
+  font-size: 5.5rem;
+  font-weight: 900;
+  color: var(--purple-dark);
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(124,58,237,0.3), 0 2px 4px rgba(0,0,0,0.15);
+  transition: transform 0.15s;
+}
+.gauge-number.pop { animation: numPop 0.3s cubic-bezier(.34,1.56,.64,1); }
+@keyframes numPop {
+  0%{transform:scale(1)} 50%{transform:scale(1.28)} 100%{transform:scale(1)}
+}
+.gauge-level-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--purple);
+  margin-top: 4px;
+  letter-spacing: 0.05em;
+}
+.gauge-level-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  margin-top: 2px;
+}
+.gauge-track {
+  background: rgba(124,58,237,0.12);
+  border-radius: 50px;
+  height: 30px;
+  position: relative; overflow: hidden;
+  border: 1.5px solid rgba(124,58,237,0.3);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.12);
+  margin-bottom: 8px;
+}
+.gauge-fill {
+  height: 100%; border-radius: 50px;
+  transition: width 0.7s cubic-bezier(.34,1.56,.64,1), background 0.6s;
+  position: relative;
+}
+.gauge-fill::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 6px; right: 6px; height: 38%;
+  background: rgba(255,255,255,0.25);
+  border-radius: 50px;
+}
+.gauge-ticks {
+  position: relative; height: 18px; margin-bottom: 14px;
+}
+.gauge-ticks span {
+  position: absolute; transform: translateX(-50%);
+  font-family: 'Comic Relief', sans-serif;
+  font-size: 0.68rem; font-weight: 700;
+  color: var(--text-soft);
+}
+.gauge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.g-btn {
+  padding: 14px 10px;
+  border-radius: 16px;
+  border: 2px solid transparent;
+  font-family: 'Comic Relief', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 4px;
+  line-height: 1.2;
+  transition: transform 0.1s, box-shadow 0.1s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+.g-btn:active { transform: translateY(3px); box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+.g-btn .lbl {
+  font-family: 'Comic Relief', 'Kosugi Maru', sans-serif;
+  font-size: 0.65rem; font-weight: 700; line-height: 1.3;
+}
+.gb-gold   { background: linear-gradient(135deg,#fef3c7,#fde68a); color: #78350f; border-color: #f59e0b; box-shadow: 0 4px 0 #d97706; }
+.gb-gold:active { box-shadow: 0 1px 0 #d97706; }
+.gb-purple { background: linear-gradient(135deg,#ede9fe,#ddd6fe); color: #4c1d95; border-color: #7c3aed; box-shadow: 0 4px 0 #5b21b6; }
+.gb-purple:active { box-shadow: 0 1px 0 #5b21b6; }
+.gb-victory{ background: linear-gradient(135deg,#fee2e2,#fecaca); color: #7f1d1d; border-color: #dc2626; box-shadow: 0 4px 0 #b91c1c; }
+.gb-victory:active { box-shadow: 0 1px 0 #b91c1c; }
+.gb-fix    { background: rgba(124,58,237,0.08); color: var(--text-soft); border: 1.5px solid rgba(124,58,237,0.2); box-shadow: 0 2px 0 rgba(0,0,0,0.1); }
+.gb-fix:active { box-shadow: none; }
+
+hr.dash {
+  border: none;
+  border-top: 1px solid rgba(124,58,237,0.15);
+  margin: 12px 0;
+}
+.reset-row { text-align: center; margin-top: 8px; }
+.reset-btn {
+  background: transparent;
+  border: 1px solid rgba(124,58,237,0.25);
+  border-radius: 50px;
+  padding: 8px 22px;
+  font-family: 'Comic Relief', sans-serif;
+  font-size: 0.75rem; font-weight: 700;
+  color: var(--text-soft);
+  cursor: pointer;
+}
+.reset-btn:active { background: rgba(124,58,237,0.06); }
+
+/* ═══════════════════════════════════════
+   SHARDS TAB (materials)
+═══════════════════════════════════════ */
+.player-adjust {
+  display: flex; align-items: center;
+  justify-content: center; gap: 12px; margin-bottom: 16px;
+}
+.adj-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 2px solid rgba(124,58,237,0.4);
+  background: rgba(124,58,237,0.12);
+  color: var(--purple-dark);
+  font-size: 1.3rem; font-weight: 900;
+  cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+}
+.adj-btn:active { transform: scale(0.88); }
+.adj-num {
+  font-family: 'Cinzel', serif;
+  font-size: 1.6rem; font-weight: 700;
+  color: var(--purple-dark);
+  min-width: 32px; text-align: center;
+}
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+@media (min-width: 480px) {
+  .players-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.player-card {
+  background: rgba(255,255,255,0.7);
+  border-radius: 16px;
+  border: 1.5px solid rgba(124,58,237,0.2);
+  padding: 14px 10px 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.player-emoji { font-size: 1.4rem; margin-bottom: 2px; }
+.player-name  {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem; font-weight: 700;
+  color: var(--text-soft); margin-bottom: 6px;
+  letter-spacing: 0.05em;
+}
+.mat-count {
+  font-family: 'Cinzel', serif;
+  font-size: 2.8rem; font-weight: 900;
+  color: var(--purple-dark); line-height: 1;
+}
+.mat-label { font-family:'Kosugi Maru',sans-serif; font-size: 0.65rem; color: var(--text-soft); margin: 2px 0 8px; }
+.mat-controls { display: flex; gap: 8px; justify-content: center; }
+.mc-btn {
+  width: 38px; height: 38px; border-radius: 50%; border: none;
+  font-size: 1.3rem; font-weight: 900; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.15);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.mc-btn:active { transform: translateY(3px); box-shadow: none; }
+.mc-plus  { background: #ddd6fe; color: var(--purple-dark); }
+.mc-minus { background: #fde68a; color: #78350f; }
+.mat-count.pop { animation: numPop 0.25s cubic-bezier(.34,1.56,.64,1); }
+
+/* ═══════════════════════════════════════
+   QUEST CARD TAB
+═══════════════════════════════════════ */
+.quest-area {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 16px;
+  min-height: 300px; justify-content: center;
+  padding: 8px 0;
+}
+.card-draw-btn {
+  position: relative; width: 260px;
+  cursor: pointer; user-select: none;
+}
+.card-draw-btn::before, .card-draw-btn::after {
+  content: '';
+  position: absolute; border-radius: 24px;
+  background: #4a1a8a;
+  border: 2px solid rgba(255,255,255,0.12);
+}
+.card-draw-btn::before { inset: 7px 0 -7px 5px; z-index: 0; opacity: 0.5; }
+.card-draw-btn::after  { inset: 12px 0 -12px 10px; z-index: -1; opacity: 0.28; }
+.card-back-face {
+  position: relative; z-index: 1;
+  background: linear-gradient(140deg, #3b1a70 0%, #1a0a38 100%);
+  border-radius: 24px;
+  border: 2px solid rgba(167,139,250,0.3);
+  padding: 28px 20px 24px;
+  text-align: center;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.5), 0 0 20px rgba(124,58,237,0.2);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.card-draw-btn:active .card-back-face {
+  transform: scale(0.97) translateY(4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.card-back-face::before {
+  content: '';
+  position: absolute; inset: 8px;
+  border: 1px dashed rgba(167,139,250,0.2);
+  border-radius: 18px; pointer-events: none;
+}
+.card-back-icon { font-size: 2.8rem; display: block; margin-bottom: 8px; }
+.card-back-en {
+  font-family: 'Cinzel', serif;
+  color: var(--gold-light); font-weight: 700; font-size: 1rem;
+  text-shadow: 0 0 12px rgba(245,158,11,0.4);
+  letter-spacing: 0.04em;
+}
+.card-back-jp {
+  font-family: 'Noto Serif JP', serif;
+  color: rgba(167,139,250,0.75); font-size: 0.78rem; margin-top: 4px;
+}
+.deck-remaining {
+  font-family: 'Comic Relief', sans-serif;
+  font-size: 0.66rem; color: rgba(167,139,250,0.35); font-weight: 600;
+}
+
+/* Quest card (active) */
+.quest-card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  border: 2px solid rgba(167,139,250,0.3);
+  box-shadow: 0 10px 36px rgba(0,0,0,0.5), 0 0 20px rgba(124,58,237,0.15);
+  width: 100%; max-width: 340px; overflow: hidden;
+  animation: cardIn 0.35s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes cardIn {
+  from{opacity:0;transform:scale(0.82) translateY(16px) rotate(-2deg)}
+  to{opacity:1;transform:scale(1) translateY(0) rotate(0deg)}
+}
+.quest-card-top {
+  background: linear-gradient(135deg, #2d1a50 0%, #1a0a38 100%);
+  padding: 10px 16px;
+  display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid rgba(167,139,250,0.2);
+}
+.quest-card-badge {
+  background: rgba(245,158,11,0.2);
+  border: 1px solid rgba(245,158,11,0.4);
+  border-radius: 50px;
+  padding: 3px 10px;
+  color: var(--gold-light);
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.quest-card-category {
+  color: rgba(167,139,250,0.85);
+  font-size: 0.82rem; font-weight: 700; flex: 1;
+  text-align: right;
+  font-family: 'Comic Relief', sans-serif;
+}
+.quest-card-body { padding: 20px 20px 0; }
+.quest-card-en {
+  font-family: 'Comic Relief', sans-serif;
+  font-size: 1.2rem; font-weight: 900;
+  color: var(--text-dark); line-height: 1.35; margin-bottom: 10px;
+}
+.quest-card-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.88rem; font-weight: 500;
+  color: var(--brown); line-height: 1.6;
+  padding: 10px 12px;
+  background: rgba(245,158,11,0.08);
+  border-radius: 12px; margin-bottom: 14px;
+  border-left: 2px solid rgba(245,158,11,0.3);
+}
+.quest-card-effect {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 14px; border-radius: 50px;
+  font-family: 'Comic Relief', sans-serif;
+  font-size: 0.8rem; font-weight: 800; margin-bottom: 16px;
+}
+.effect-plus   { background: var(--green-pale);    color: #065f46; }
+.effect-minus  { background: var(--red-pale);      color: #991b1b; }
+.effect-special{ background: var(--gold-pale);     color: var(--brown); }
+.effect-lucky  { background: var(--purple-pale);   color: var(--purple-dark); }
+.effect-swap   { background: var(--sky-pale);      color: #0c4a6e; }
+.quest-card-footer {
+  border-top: 1px solid rgba(167,139,250,0.15);
+  padding: 14px 20px 16px;
+  display: flex; gap: 8px; align-items: center;
+  background: rgba(255,255,255,0.3);
+}
+.quest-icon-area {
+  flex-shrink: 0; width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+}
+.quest-icon-area img {
+  width: 52px; height: 52px; object-fit: contain;
+}
+.quest-icon-placeholder {
+  font-size: 0.5rem; color: var(--purple-light);
+  font-weight: 700; text-align: center; line-height: 1.3;
+}
+.card-resolve-btns-row {
+  flex: 1; display: flex; flex-direction: row; gap: 8px;
+}
+.resolve-btn {
+  flex: 1; aspect-ratio: 1; min-height: 68px;
+  border-radius: 16px; border: none;
+  font-family: 'Comic Relief', 'Kosugi Maru', 'Noto Sans JP', sans-serif;
+  font-weight: 900; font-size: 0.95rem;
+  cursor: pointer; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 2px; line-height: 1.2;
+  transition: transform 0.1s, box-shadow 0.1s;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+}
+.resolve-btn:active { transform: translateY(3px); box-shadow: none; }
+.resolve-done    { background: #bbf7d0; color: #065f46; box-shadow: 0 4px 0 #6ee7b7; }
+.resolve-done:active { box-shadow: none; }
+.resolve-discard { background: rgba(255,255,255,0.15); color: rgba(100,80,130,0.7); box-shadow: 0 4px 0 rgba(0,0,0,0.2); }
+
+/* Mini gauge (in quest tab) */
+.mini-gauge-wrap {
+  background: rgba(124,58,237,0.08);
+  border-radius: 14px;
+  padding: 10px 14px 12px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(124,58,237,0.2);
+}
+
+/* Deck selector */
+.deck-selector-wrap { margin-bottom: 14px; }
+.deck-choose-label {
+  font-family: 'Comic Relief', sans-serif;
+  font-size: 0.78rem; font-weight: 700;
+  color: var(--text-soft);
+  text-align: center; margin-bottom: 10px;
+}
+.deck-btns { display: flex; gap: 10px; }
+.deck-pick-btn {
+  flex: 1; padding: 14px 8px; border-radius: 16px;
+  border: 2px solid; cursor: pointer;
+  font-family: 'Comic Relief', sans-serif; font-weight: 700; font-size: 1rem;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 4px;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.15);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.deck-pick-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 rgba(0,0,0,0.15); }
+.deck-pick-btn.easy {
+  background: #d1fae5;
+  border-color: #059669;
+  color: #065f46;
+  box-shadow: 0 4px 0 #059669;
+}
+.deck-pick-btn.hard {
+  background: #fee2e2;
+  border-color: #dc2626;
+  color: #7f1d1d;
+  box-shadow: 0 4px 0 #dc2626;
+}
+.deck-pick-btn span { font-size: 0.72rem; font-weight: 700; font-family: 'Kosugi Maru', 'Noto Sans JP', sans-serif; }
+.deck-label-wrap {
+  display: none; text-align: center; margin-bottom: 10px;
+}
+.deck-label-chip {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem; font-weight: 700;
+  padding: 4px 14px; border-radius: 50px;
+}
+.deck-change-btn {
+  font-size: 0.62rem; font-weight: 700;
+  color: rgba(167,139,250,0.35);
+  background: none; border: none; cursor: pointer;
+  text-decoration: underline; margin-left: 8px;
+  font-family: 'Comic Relief', sans-serif;
+}
+
+/* ═══════════════════════════════════════
+   BOSS TAB
+═══════════════════════════════════════ */
+.boss-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.boss-btn {
+  position: relative;
+  border-radius: 18px;
+  border: 2.5px solid;
+  padding: 16px 10px 14px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.12s, box-shadow 0.12s;
+  overflow: hidden;
+}
+.boss-btn:active:not(.defeated) { transform: scale(0.96); }
+.boss-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 30%, rgba(255,255,255,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.boss-btn.castle {
+  background: linear-gradient(135deg,#fef3c7,#fde68a);
+  border-color: #d97706;
+  box-shadow: 0 4px 0 #b45309;
+}
+.boss-btn.forest {
+  background: linear-gradient(135deg,#d1fae5,#a7f3d0);
+  border-color: #059669;
+  box-shadow: 0 4px 0 #047857;
+}
+.boss-btn.mountain {
+  background: linear-gradient(135deg,#fee2e2,#fecaca);
+  border-color: #dc2626;
+  box-shadow: 0 4px 0 #b91c1c;
+}
+.boss-btn.sky {
+  background: linear-gradient(135deg,#dbeafe,#bfdbfe);
+  border-color: #1d4ed8;
+  box-shadow: 0 4px 0 #1e40af;
+}
+.boss-btn.defeated {
+  opacity: 0.4; cursor: default;
+  filter: grayscale(0.5);
+}
+.boss-crystal { font-size: 1.8rem; margin-bottom: 4px; display: block; }
+.boss-name {
+  font-family: 'Comic Relief', sans-serif;
+  font-size: 0.9rem; font-weight: 700;
+  line-height: 1.2; color: var(--text-dark);
+  margin-bottom: 2px;
+}
+.boss-area {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.65rem; color: var(--text-soft);
+  margin-bottom: 6px;
+}
+.boss-status {
+  font-family: 'Comic Relief', sans-serif;
+  font-size: 0.65rem; font-weight: 700;
+  padding: 3px 10px; border-radius: 50px;
+}
+.boss-btn:not(.defeated) .boss-status {
+  background: rgba(0,0,0,0.1);
+  color: var(--text-dark);
+}
+.boss-btn.defeated .boss-status {
+  background: rgba(0,0,0,0.08);
+  color: var(--text-soft);
+}
+
+/* Boss battle overlay */
+.boss-battle-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(10,5,20,0.97);
+  flex-direction: column;
+  align-items: center; justify-content: flex-start;
+  padding: 0;
+  overflow-y: auto;
+}
+.boss-battle-overlay.show { display: flex; animation: fadeIn 0.4s ease; }
+.boss-battle-inner {
+  width: 100%; max-width: 680px;
+  padding: 24px 20px 40px;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 0;
+}
+
+/* Boss header */
+.boss-battle-header {
+  width: 100%;
+  text-align: center;
+  padding: 20px 16px 16px;
+  background: linear-gradient(180deg, rgba(40,10,80,0.95) 0%, transparent 100%);
+  position: relative;
+  margin-bottom: 8px;
+}
+.boss-battle-crystal { font-size: 3rem; display: block; margin-bottom: 4px; }
+.boss-battle-area-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); margin-bottom: 6px;
+}
+.boss-battle-name {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.4rem, 6vw, 2rem);
+  font-weight: 900; color: #fff;
+  text-shadow: 0 0 30px currentColor;
+  line-height: 1.1; margin-bottom: 4px;
+}
+.boss-battle-subtitle {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.78rem; color: rgba(255,255,255,0.45);
+}
+
+/* Scroll-style challenge card */
+.boss-challenge-card {
+  width: 100%; max-width: 380px;
+  background: var(--cream);
+  border-radius: 20px;
+  border: 2px solid rgba(217,119,6,0.4);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6),
+              inset 0 0 0 3px rgba(217,119,6,0.1);
+  padding: 28px 26px 24px;
+  position: relative;
+  animation: scrollUnfurl 0.5s cubic-bezier(.34,1.56,.64,1);
+  margin-bottom: 20px;
+}
+@keyframes scrollUnfurl {
+  from{opacity:0;transform:scaleY(0.3) translateY(-40px)}
+  to{opacity:1;transform:scaleY(1) translateY(0)}
+}
+.boss-challenge-card::before {
+  content: '';
+  position: absolute; inset: 0; border-radius: 20px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+  pointer-events: none; opacity: 0.5;
+}
+.boss-challenge-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--purple); margin-bottom: 14px;
+  text-align: center;
+  border-bottom: 1px solid rgba(124,58,237,0.15);
+  padding-bottom: 10px;
+}
+.boss-challenge-en {
+  font-family: 'Comic Relief', sans-serif;
+  font-size: 1.2rem; font-weight: 900;
+  color: var(--text-dark); line-height: 1.4;
+  margin-bottom: 16px; text-align: center;
+}
+.boss-challenge-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.88rem; font-weight: 500;
+  color: var(--brown); line-height: 1.7;
+  background: rgba(245,158,11,0.08);
+  border-radius: 10px; padding: 10px 14px;
+  border-left: 2px solid rgba(245,158,11,0.35);
+  margin-bottom: 14px;
+}
+.boss-challenge-reward {
+  background: linear-gradient(135deg, rgba(124,58,237,0.08) 0%, rgba(245,158,11,0.08) 100%);
+  border-radius: 12px; padding: 10px 14px;
+  text-align: center;
+  border: 1px solid rgba(245,158,11,0.2);
+}
+.boss-challenge-reward-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 4px;
+}
+.boss-challenge-reward-text {
+  font-family: 'Comic Relief', 'Kosugi Maru', 'Noto Sans JP', sans-serif;
+  font-size: 0.78rem; font-weight: 700;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+/* Boss action buttons */
+.boss-action-row {
+  display: flex; gap: 10px; width: 100%; max-width: 380px;
+}
+.boss-action-btn {
+  flex: 1; padding: 16px 10px;
+  border-radius: 16px; border: none;
+  font-family: 'Cinzel', serif;
+  font-weight: 700; font-size: 0.88rem;
+  cursor: pointer; letter-spacing: 0.04em;
+  transition: transform 0.1s, box-shadow 0.1s;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.3);
+  line-height: 1.3;
+}
+.boss-action-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(0,0,0,0.3); }
+.boss-victory-btn {
+  background: linear-gradient(135deg, #6d28d9, #4c1d95);
+  color: var(--gold-light);
+  box-shadow: 0 4px 0 #2e0a6e, 0 0 20px rgba(124,58,237,0.3);
+}
+.boss-victory-btn:active { box-shadow: 0 1px 0 #2e0a6e; }
+.boss-close-btn {
+  background: rgba(255,255,255,0.06);
+  color: rgba(167,139,250,0.45);
+  flex: 0.55;
+  font-size: 0.75rem;
+}
+
+/* ═══════════════════════════════════════
+   WIN OVERLAY
+═══════════════════════════════════════ */
+.win-overlay {
+  display: none; position: fixed; inset: 0; z-index: 400;
+  background: rgba(15,5,30,0.96);
+  flex-direction: column; align-items: center;
+  justify-content: center; gap: 14px;
+  text-align: center; padding: 24px;
+}
+.win-overlay.show { display: flex; animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+.win-stars {
+  font-size: 3rem;
+  animation: spin 3s linear infinite;
+  display: inline-block;
+}
+@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+.win-title {
+  font-family: 'Cinzel', serif;
+  font-size: 3rem; font-weight: 900;
+  color: var(--gold-light);
+  text-shadow: 0 0 40px rgba(245,158,11,0.6), 3px 4px 0 rgba(0,0,0,0.3);
+  animation: bob 0.7s ease-in-out infinite alternate;
+  letter-spacing: 0.08em;
+}
+@keyframes bob { from{transform:translateY(0)} to{transform:translateY(-10px)} }
+.win-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.3rem; font-weight: 700;
+  color: rgba(255,255,255,0.85);
+}
+.win-sub {
+  font-family: 'Comic Relief', 'Kosugi Maru', 'Noto Sans JP', sans-serif;
+  font-size: 0.95rem; color: rgba(167,139,250,0.7); font-weight: 600;
+}
+.win-close {
+  margin-top: 10px; padding: 14px 32px;
+  border-radius: 50px; border: none;
+  background: var(--gold);
+  color: var(--text-dark);
+  font-family: 'Cinzel', serif;
+  font-weight: 700; font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.3), 0 0 20px rgba(245,158,11,0.3);
+  letter-spacing: 0.06em;
+}
+
+/* ═══════════════════════════════════════
+   RULES TAB
+═══════════════════════════════════════ */
+.tab-content#content-rules {
+  padding: 0; position: relative; z-index: 2;
+  background: #0f0a1a;
+}
+.tab-content#content-rules::before {
+  content: ''; position: absolute; inset: 0;
+  background: #0f0a1a; z-index: 0; pointer-events: none;
+}
+.tab-content#content-rules > * { position: relative; z-index: 1; }
+.rules-wrap { padding: 14px 14px; }
+.rules-section { margin-bottom: 12px; }
+.rules-section-header {
+  background: linear-gradient(135deg, #4c1d95 0%, #2d1a50 100%);
+  color: #fff;
+  border-radius: 14px 14px 0 0;
+  padding: 12px 16px;
+  font-family: 'Comic Relief', sans-serif;
+  font-size: 0.82rem; font-weight: 700;
+  display: flex; align-items: center; gap: 8px;
+  cursor: pointer; user-select: none;
+  border: 1.5px solid rgba(167,139,250,0.3);
+  border-bottom: none;
+}
+.rules-section-header .r-en { color: #fff; font-size: 0.88rem; }
+.rules-section-header .r-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.72rem; color: rgba(255,255,255,0.75); font-weight: 400;
+}
+.rules-section-header .chevron { margin-left: auto; font-size: 0.75rem; transition: transform 0.2s; color: rgba(255,255,255,0.7); }
+.rules-section-header.open .chevron { transform: rotate(180deg); }
+.rules-section-body {
+  background: #fdf8f0;
+  border: 1.5px solid rgba(124,58,237,0.2);
+  border-top: none; border-radius: 0 0 14px 14px;
+  padding: 14px; display: none;
+}
+.rules-section-body.open { display: block; }
+
+.rules-steps { list-style: none; padding: 0; margin: 0; }
+.rules-steps li {
+  display: flex; gap: 10px; padding: 8px 0;
+  border-bottom: 1px dashed rgba(124,58,237,0.15); align-items: flex-start;
+}
+.rules-steps li:last-child { border-bottom: none; }
+.step-num {
+  min-width: 26px; height: 26px;
+  background: linear-gradient(135deg,var(--purple),var(--purple-dark));
+  color: white; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Comic Relief', sans-serif;
+  font-size: 0.75rem; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+.step-text .s-en {
+  font-family: 'Comic Relief', sans-serif;
+  font-size: 0.9rem; font-weight: 700; color: var(--text-dark); line-height: 1.35;
+}
+.step-text .s-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.75rem; color: var(--text-soft); margin-top: 2px; line-height: 1.4;
+}
+.tile-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 0; border-bottom: 1px dashed rgba(124,58,237,0.15);
+}
+.tile-row:last-child { border-bottom: none; }
+.tile-icon-wrap {
+  width: 50px; height: 50px; border-radius: 50%; overflow: hidden;
+  flex-shrink: 0; background: rgba(124,58,237,0.08);
+  border: 1.5px solid rgba(124,58,237,0.2);
+  display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+}
+.tile-icon-wrap img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.tile-icon-placeholder {
+  font-size: 0.44rem; color: var(--text-soft); font-weight: 700;
+  text-align: center; line-height: 1.3; padding: 3px;
+}
+.tile-info { flex: 1; }
+.tile-name-en {
+  font-family: 'Comic Relief', sans-serif;
+  font-size: 0.88rem; font-weight: 700; color: var(--text-dark);
+}
+.tile-name-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.68rem; color: var(--text-soft); font-weight: 400; margin-bottom: 3px;
+}
+.tile-effect-en {
+  font-family: 'Comic Relief', sans-serif;
+  font-size: 0.78rem; color: #333; line-height: 1.4;
+}
+.tile-effect-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.68rem; color: var(--text-soft); margin-top: 2px; line-height: 1.4;
+}
+.tile-badge {
+  display: inline-block; font-family: 'Comic Relief', sans-serif;
+  font-size: 0.6rem; font-weight: 800;
+  padding: 2px 8px; border-radius: 50px; margin-top: 4px;
+}
+.badge-gold   { background: var(--gold-pale);    color: var(--brown); }
+.badge-purple { background: var(--purple-pale);  color: var(--purple-dark); }
+.badge-red    { background: var(--red-pale);      color: #991b1b; }
+.badge-green  { background: var(--green-pale);    color: #065f46; }
+.badge-blue   { background: var(--sky-pale);      color: #0c4a6e; }
+
+.enc-info-row {
+  display: flex; gap: 8px; padding: 8px 0;
+  border-bottom: 1px dashed rgba(124,58,237,0.12); align-items: flex-start;
+}
+.enc-info-row:last-child { border-bottom: none; }
+.enc-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.enc-text .e-en {
+  font-family: 'Comic Relief', sans-serif;
+  font-size: 0.82rem; font-weight: 700; color: var(--text-dark); line-height: 1.35;
+}
+.enc-text .e-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.68rem; color: var(--text-soft); margin-top: 2px; line-height: 1.4;
+}
+.boss-check {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 8px 0; border-bottom: 1px dashed rgba(124,58,237,0.12);
+}
+.boss-check:last-child { border-bottom: none; }
+.boss-check-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+.boss-check-en {
+  font-family: 'Comic Relief', sans-serif;
+  font-size: 0.82rem; font-weight: 700; color: var(--text-dark); line-height: 1.35;
+}
+.boss-check-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.68rem; color: var(--text-soft); margin-top: 2px; line-height: 1.4;
+}
+.score-row {
+  display: flex; gap: 10px; align-items: center;
+  padding: 8px 10px; border-radius: 10px; margin-bottom: 6px;
+  font-family: 'Comic Relief', 'Kosugi Maru', 'Noto Sans JP', sans-serif;
+}
+.score-row:last-child { margin-bottom: 0; }
+.rules-info-box {
+  border-radius: 12px; padding: 10px 12px; margin-top: 10px;
+}
+.rules-info-box .box-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.08em; margin-bottom: 4px;
+}
+.rules-info-box .box-en {
+  font-family: 'Comic Relief', sans-serif;
+  font-size: 0.75rem; font-weight: 600; line-height: 1.5;
+}
+.rules-info-box .box-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.68rem; line-height: 1.5; margin-top: 3px;
+}
+.npc-label {
+  margin: 10px 0 6px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem; font-weight: 700;
+  color: var(--text-soft); letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+
+<!-- Starfield -->
+<div class="starfield" id="stars"></div>
+
+<div class="app">
+
+  <!-- HEADER -->
+  <div class="header">
+    <img src="logo.png" alt="Hero's Proof" class="logo-img"
+         onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='flex';">
+    <div class="logo-placeholder" id="logo-fallback" style="display:none">
+      <div class="logo-title">Hero's Proof</div>
+      <div class="logo-title-jp">勇者の証</div>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-sub">Game Companion App · ゲームサポートアプリ</div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab active" id="tab-gauge" onclick="showTab('gauge')">
+      <span class="tab-icon"><img src="tab-gauge.png" alt="Gauge" onerror="this.outerHTML='⚔️'"></span>
+      Gauge
+      <span class="tab-jp">ゲージ</span>
+    </button>
+    <button class="tab" id="tab-quest" onclick="showTab('quest')">
+      <span class="tab-icon"><img src="tab-quest.png" alt="Quest" onerror="this.outerHTML='📜'"></span>
+      Quest!
+      <span class="tab-jp">クエスト</span>
+    </button>
+    <button class="tab" id="tab-boss" onclick="showTab('boss')">
+      <span class="tab-icon"><img src="tab-boss.png" alt="Boss" onerror="this.outerHTML='💀'"></span>
+      Boss!
+      <span class="tab-jp">ボス！</span>
+    </button>
+    <button class="tab" id="tab-shards" onclick="showTab('shards')">
+      <span class="tab-icon"><img src="tab-shards.png" alt="Shards" onerror="this.outerHTML='💎'"></span>
+      Shards
+      <span class="tab-jp">かけら</span>
+    </button>
+    <button class="tab" id="tab-rules" onclick="showTab('rules')">
+      <span class="tab-icon"><img src="tab-rules.png" alt="Rules" onerror="this.outerHTML='📖'"></span>
+      Rules
+      <span class="tab-jp">ルール</span>
+    </button>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       GAUGE TAB
+  ══════════════════════════════════════ -->
+  <div class="tab-content active" id="content-gauge">
+    <div class="panel">
+      <div class="panel-title">⚔️ World Recovery Gauge <span class="jp">世界回復ゲージ</span></div>
+      <div class="gauge-hero">
+        <div class="gauge-number" id="gauge-num">0</div>
+        <div class="gauge-level-label" id="gauge-label-en">World Recovery Level 0</div>
+        <div class="gauge-level-jp" id="gauge-label-jp">世界回復レベル 0</div>
+      </div>
+      <div class="gauge-track">
+        <div class="gauge-fill" id="gauge-fill" style="width:0%;background:linear-gradient(90deg,#4a1a8a,#7c3aed)"></div>
+      </div>
+      <div class="gauge-ticks">
+        <span style="left:0%;transform:none;">0</span>
+        <span style="left:10%;">10</span>
+        <span style="left:25%;">25</span>
+        <span style="left:50%;">50</span>
+        <span style="left:75%;">75</span>
+        <span style="left:100%;transform:translateX(-100%);">100✨</span>
+      </div>
+      <hr class="dash">
+      <div class="gauge-grid" style="grid-template-columns:repeat(3,1fr);">
+        <button class="g-btn gb-gold" onclick="soundTap();changeGauge(5)">+5
+          <span class="lbl">Encounter Card (1 shard)<br>でであいカード 1かけら</span>
+        </button>
+        <button class="g-btn gb-purple" onclick="soundTap();changeGauge(10)">+10
+          <span class="lbl">Encounter Card (2 shards)<br>であいカード 2かけら</span>
+        </button>
+        <button class="g-btn gb-fix" onclick="soundTap();changeGauge(-5)">−5
+          <span class="lbl">Fix / Undo<br>修正・取り消し</span>
+        </button>
+      </div>
+    </div>
+    <div class="reset-row">
+      <button class="reset-btn" onclick="confirmReset()">↺ Reset Game / ゲームをリセット</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       QUEST CARD TAB
+  ══════════════════════════════════════ -->
+  <div class="tab-content" id="content-quest">
+    <div class="panel">
+      <div class="panel-title">📜 Quest Cards <span class="jp">クエストカード</span></div>
+
+      <!-- Deck selector -->
+      <div id="deck-selector" style="display:none;" class="deck-selector-wrap">
+        <div class="deck-choose-label">Choose a deck / デッキをえらぼう</div>
+        <div class="deck-btns">
+          <button class="deck-pick-btn easy" onclick="selectDeck('easy')">
+            🌱 EASY
+            <span>かんたん</span>
+          </button>
+          <button class="deck-pick-btn hard" onclick="selectDeck('hard')">
+            🔥 HARD
+            <span>むずかしい</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Active deck label -->
+      <div id="deck-label" class="deck-label-wrap">
+        <span id="deck-label-chip" class="deck-label-chip"></span>
+        <button class="deck-change-btn" onclick="soundButtonPress();resetDeckChoice()">Change / かえる</button>
+      </div>
+
+      <!-- Mini gauge -->
+      <div class="mini-gauge-wrap">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+          <span style="font-family:'Cinzel',serif;font-size:0.65rem;font-weight:700;color:var(--purple-dark);letter-spacing:0.1em;text-transform:uppercase;">⚔️ Gauge / ゲージ</span>
+          <span style="font-family:'Cinzel',serif;font-size:1.3rem;font-weight:900;color:var(--purple-dark);line-height:1;" id="mini-gauge-num">0</span>
+        </div>
+        <div style="background:rgba(255,255,255,0.06);border-radius:50px;height:16px;overflow:hidden;border:1px solid rgba(167,139,250,0.15);">
+          <div id="mini-gauge-fill" style="height:100%;width:0%;border-radius:50px;transition:width 0.7s cubic-bezier(.34,1.56,.64,1),background 0.6s;background:linear-gradient(90deg,#4a1a8a,#7c3aed);"></div>
+        </div>
+      </div>
+
+      <div class="quest-area" id="quest-area"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BOSS TAB
+  ══════════════════════════════════════ -->
+  <div class="tab-content" id="content-boss">
+    <div class="panel">
+      <div class="panel-title">💀 Boss Battles <span class="jp">ボスバトル</span></div>
+      <div style="font-family:'Comic Relief','Noto Sans JP',sans-serif;font-size:0.78rem;color:var(--text-soft);margin-bottom:12px;line-height:1.5;">
+        When a player lands on a Boss tile, tap the boss to draw a group challenge!<br>
+        <span style="font-family:'Noto Serif JP',serif;font-size:0.68rem;">プレイヤーがボスタイルに止まったら、ボスをタップしてグループチャレンジを引こう！</span>
+      </div>
+      <div class="boss-grid">
+        <button class="boss-btn castle" id="boss-castle" onclick="startBoss('castle')">
+          <span class="boss-crystal">💛</span>
+          <div class="boss-name">Mimic</div>
+          <div class="boss-area">Castle Area · 城エリア</div>
+          <span class="boss-status" id="boss-castle-status">⚔️ Challenge!</span>
+        </button>
+        <button class="boss-btn forest" id="boss-forest" onclick="startBoss('forest')">
+          <span class="boss-crystal">💚</span>
+          <div class="boss-name">Forest Golem</div>
+          <div class="boss-area">Forest Area · 森エリア</div>
+          <span class="boss-status" id="boss-forest-status">⚔️ Challenge!</span>
+        </button>
+        <button class="boss-btn mountain" id="boss-mountain" onclick="startBoss('mountain')">
+          <span class="boss-crystal">❤️</span>
+          <div class="boss-name">Dragon</div>
+          <div class="boss-area">Mountain Area · 山エリア</div>
+          <span class="boss-status" id="boss-mountain-status">⚔️ Challenge!</span>
+        </button>
+        <button class="boss-btn sky" id="boss-sky" onclick="startBoss('sky')">
+          <span class="boss-crystal">💙</span>
+          <div class="boss-name">General Winter</div>
+          <div class="boss-area">Sky Area · 天空エリア</div>
+          <span class="boss-status" id="boss-sky-status">⚔️ Challenge!</span>
+        </button>
+      </div>
+      <div style="font-family:'Comic Relief','Noto Sans JP',sans-serif;font-size:0.68rem;color:var(--text-soft);text-align:center;margin-top:6px;line-height:1.5;">
+        Defeated bosses can be passed freely. Reward: Gauge +20 + 3 shards each!<br>
+        <span style="font-family:'Noto Serif JP',serif;">倒したボスは通過できる。報酬：ゲージ+20 + 各3かけら！</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SHARDS TAB
+  ══════════════════════════════════════ -->
+  <div class="tab-content" id="content-shards">
+    <div class="panel">
+      <div class="panel-title">👥 Players <span class="jp">プレイヤーの数</span></div>
+      <div class="player-adjust">
+        <button class="adj-btn" onclick="soundButtonPress();changePlayers(-1)">−</button>
+        <span class="adj-num" id="player-count">4</span>
+        <button class="adj-btn" onclick="soundButtonPress();changePlayers(1)">+</button>
+        <span style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:rgba(167,139,250,0.5)">人</span>
+      </div>
+      <hr class="dash">
+      <div class="panel-title">💎 Crystal Shards <span class="jp">クリスタルのかけら</span></div>
+      <div class="players-grid" id="players-grid"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       RULES TAB
+  ══════════════════════════════════════ -->
+  <div class="tab-content" id="content-rules">
+  <div class="rules-wrap">
+
+    <!-- How to Play -->
+    <div class="rules-section">
+      <div class="rules-section-header open" onclick="toggleSection(this)">
+        <span>⚔️</span>
+        <div><div class="r-en">How to Play</div><div class="r-jp">あそびかた</div></div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="rules-section-body open">
+        <ul class="rules-steps">
+          <li>
+            <div class="step-num" style="background:linear-gradient(135deg,var(--gold),#d97706);min-width:2rem;font-size:0.58rem;border-radius:10px;">START</div>
+            <div class="step-text">
+              <div class="s-en">Each player draws <strong>3–5 Encounter Cards</strong> and takes <strong>3 Crystal Shards</strong>.</div>
+              <div class="s-jp">各プレイヤーはであいカードを3〜5枚引き、クリスタルのかけらを3つもらう。</div>
+            </div>
+          </li>
+          <li>
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <div class="s-en">Roll the die and move forward that many spaces.</div>
+              <div class="s-jp">さいころをふって、出た目の数だけ前に進む。</div>
+            </div>
+          </li>
+          <li>
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <div class="s-en">Resolve the tile you landed on (see Tile Guide below).</div>
+              <div class="s-jp">止まったタイルの効果を実行する。</div>
+            </div>
+          </li>
+          <li>
+            <div class="step-num">3</div>
+            <div class="step-text">
+              <div class="s-en">Pass the die clockwise to the next player.</div>
+              <div class="s-jp">時計回りに次のプレイヤーにさいころを渡す。</div>
+            </div>
+          </li>
+        </ul>
+        <div class="rules-info-box" style="background:rgba(124,58,237,0.08);border:1px solid rgba(167,139,250,0.2);">
+          <div class="box-title" style="color:var(--purple-light);">🏁 The game ends when…</div>
+          <div class="box-en" style="color:var(--text-soft);">
+            1️⃣ Everyone reaches GOAL &nbsp;|&nbsp; 2️⃣ Gauge reaches 100 ✨ &nbsp;|&nbsp; 3️⃣ Time's up! ⏰
+          </div>
+          <div class="box-jp" style="color:var(--text-soft);">
+            全員がゴールに着いたとき / ゲージが100になったとき / 時間切れのとき
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tile Guide -->
+    <div class="rules-section">
+      <div class="rules-section-header open" onclick="toggleSection(this)">
+        <span>🗺️</span>
+        <div><div class="r-en">Tile Guide</div><div class="r-jp">タイルガイド</div></div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="rules-section-body open">
+        <!-- Crystal Shard tile -->
+        <div class="tile-row">
+          <div class="tile-icon-wrap">
+            <img src="tile-shard.png" alt="Crystal Shard"
+                 onerror="this.style.display='none';this.parentNode.innerHTML='<div class=\'tile-icon-placeholder\'>tile-shard<br>.png</div>'">
+          </div>
+          <div class="tile-info">
+            <div class="tile-name-en">Crystal Shard Tile</div>
+            <div class="tile-name-jp">クリスタルのかけらタイル</div>
+            <div class="tile-effect-en">Take 1 Crystal Shard.</div>
+            <div class="tile-effect-jp">クリスタルのかけらを1つもらう。</div>
+            <span class="tile-badge badge-gold">+1 shard / かけら+1</span>
+          </div>
+        </div>
+        <!-- Quest tile -->
+        <div class="tile-row">
+          <div class="tile-icon-wrap">
+            <img src="tile-quest.png" alt="Quest Tile"
+                 onerror="this.style.display='none';this.parentNode.innerHTML='<div class=\'tile-icon-placeholder\'>tile-quest<br>.png</div>'">
+          </div>
+          <div class="tile-info">
+            <div class="tile-name-en">Quest Tile</div>
+            <div class="tile-name-jp">クエストタイル</div>
+            <div class="tile-effect-en">Draw a Quest Card and do the challenge!</div>
+            <div class="tile-effect-jp">クエストカードを引いてチャレンジ！</div>
+            <span class="tile-badge badge-purple">Challenge / チャレンジ</span>
+          </div>
+        </div>
+        <!-- Encounter tile -->
+        <div class="tile-row">
+          <div class="tile-icon-wrap">
+            <img src="tile-encounter.png" alt="Encounter Tile"
+                 onerror="this.style.display='none';this.parentNode.innerHTML='<div class=\'tile-icon-placeholder\'>tile-encounter<br>.png</div>'">
+          </div>
+          <div class="tile-info">
+            <div class="tile-name-en">Encounter Tile</div>
+            <div class="tile-name-jp">エンカウンタータイル</div>
+            <div class="tile-effect-en">Play an Encounter Card! Pay its shard cost, do the English challenge, place it face-up.</div>
+            <div class="tile-effect-jp">であいカードをプレイ！かけらを払って、英語チャレンジをして、表向きに置く。</div>
+            <div class="tile-effect-en" style="margin-top:4px;font-size:0.7rem;color:var(--text-soft);">💡 Only skip if you can't afford any card in hand.</div>
+            <div class="tile-effect-jp" style="font-size:0.66rem;color:var(--text-soft);">手持ちのカードを1枚も払えない時だけスキップOK。</div>
+            <span class="tile-badge badge-purple">Encounter Card / であいカード</span>
+          </div>
+        </div>
+        <!-- Boss tile -->
+        <div class="tile-row">
+          <div class="tile-icon-wrap" style="background:rgba(220,38,38,0.1);border-color:rgba(220,38,38,0.3);">
+            <img src="tile-boss.png" alt="Boss Tile"
+                 onerror="this.style.display='none';this.parentNode.innerHTML='<div class=\'tile-icon-placeholder\'>tile-boss<br>.png</div>'">
+          </div>
+          <div class="tile-info">
+            <div class="tile-name-en">Boss Tile (×4)</div>
+            <div class="tile-name-jp">ボスタイル（×4）</div>
+            <div class="tile-effect-en">No one can pass until the boss is defeated! Tap the boss in the Boss tab to draw a group challenge.</div>
+            <div class="tile-effect-jp">ボスを倒すまで誰も通過できない！ボスタブでグループチャレンジを引こう。</div>
+            <span class="tile-badge badge-red">Blocks path / 通過不可</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Encounter Cards -->
+    <div class="rules-section">
+      <div class="rules-section-header" onclick="toggleSection(this)">
+        <span>🃏</span>
+        <div><div class="r-en">Encounter Cards</div><div class="r-jp">であいカード</div></div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="rules-section-body">
+        <div style="font-family:'Comic Relief',sans-serif;font-size:0.78rem;font-weight:700;color:var(--text-dark);margin-bottom:10px;">
+          Each player starts with 3–5 Encounter Cards.<br>
+          <span style="font-family:'Noto Serif JP',serif;font-weight:400;color:var(--text-soft);">各プレイヤーはであいカードを3〜5枚持ってスタート。</span>
+        </div>
+        <div class="enc-info-row">
+          <div class="enc-dot" style="background:var(--purple);"></div>
+          <div class="enc-text">
+            <div class="e-en">Each card shows a character to help, a shard cost (1–2), an English challenge, and a point value.</div>
+            <div class="e-jp">カードには助けるキャラクター・かけらコスト（1〜2）・英語チャレンジ・ポイントが書いてある。</div>
+          </div>
+        </div>
+        <div style="margin:10px 0 6px;font-family:'Cinzel',serif;font-size:0.65rem;font-weight:700;color:var(--text-soft);letter-spacing:0.08em;">On an Encounter Tile / エンカウンタータイルでやること</div>
+        <div class="enc-info-row">
+          <div class="enc-dot" style="background:var(--gold);"></div>
+          <div class="enc-text"><div class="e-en"><b>1.</b> Choose one Encounter Card from your hand.</div><div class="e-jp">手持ちのであいカードを1枚えらぶ。</div></div>
+        </div>
+        <div class="enc-info-row">
+          <div class="enc-dot" style="background:var(--gold);"></div>
+          <div class="enc-text"><div class="e-en"><b>2.</b> Pay the shard cost (return shards to the pile).</div><div class="e-jp">かけらコスト分のかけらを山に戻す。</div></div>
+        </div>
+        <div class="enc-info-row">
+          <div class="enc-dot" style="background:var(--gold);"></div>
+          <div class="enc-text"><div class="e-en"><b>3.</b> Do the English challenge. Trying = success!</div><div class="e-jp">英語チャレンジをやる。やってみることが大事！</div></div>
+        </div>
+        <div class="enc-info-row">
+          <div class="enc-dot" style="background:var(--gold);"></div>
+          <div class="enc-text"><div class="e-en"><b>4.</b> Place the card face-up in front of you.</div><div class="e-jp">カードを自分の前に表向きで置く。</div></div>
+        </div>
+        <div class="enc-info-row">
+          <div class="enc-dot" style="background:var(--green);"></div>
+          <div class="enc-text"><div class="e-en"><b>5.</b> Tap the gauge button! Then draw a new Encounter Card.</div><div class="e-jp">ゲージタブのボタンを押す！そのあと、カードを1枚引いて補充する。</div></div>
+        </div>
+        <div class="rules-info-box" style="background:rgba(124,58,237,0.06);border:1px solid rgba(167,139,250,0.15);">
+          <div class="box-title" style="color:var(--purple-light);">🔄 Swapping Cards / カードの交換</div>
+          <div class="box-en" style="color:var(--text-soft);">Some Quest Cards let you swap with the pile or steal from another player!</div>
+          <div class="box-jp" style="color:var(--text-soft);">一部のクエストカードで山や他の人とカードを交換できる！</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Boss Battles -->
+    <div class="rules-section">
+      <div class="rules-section-header" onclick="toggleSection(this)">
+        <span>💀</span>
+        <div><div class="r-en">Boss Battles</div><div class="r-jp">ボスバトル</div></div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="rules-section-body">
+        <div style="font-family:'Comic Relief',sans-serif;font-size:0.78rem;color:var(--text-dark);margin-bottom:12px;line-height:1.5;">
+          There are 4 bosses — one at the end of each area. <b>No one can pass a boss tile until the boss is defeated!</b><br>
+          <span style="font-family:'Noto Serif JP',serif;font-size:0.7rem;color:var(--text-soft);">ボスは4体。各エリアの最後にいる。ボスを倒すまで誰も通過できない！</span>
+        </div>
+        <div class="boss-check">
+          <div class="boss-check-icon">1️⃣</div>
+          <div><div class="boss-check-en">The first player to land on the boss tile triggers the battle.</div><div class="boss-check-jp">最初にボスタイルに止まったプレイヤーがバトルを始める。</div></div>
+        </div>
+        <div class="boss-check">
+          <div class="boss-check-icon">2️⃣</div>
+          <div><div class="boss-check-en">Tap the boss in the Boss tab to draw a random group challenge.</div><div class="boss-check-jp">ボスタブのボスをタップして、グループチャレンジを引こう。</div></div>
+        </div>
+        <div class="boss-check">
+          <div class="boss-check-icon">3️⃣</div>
+          <div><div class="boss-check-en">Everyone works together to complete the challenge!</div><div class="boss-check-jp">みんなで力を合わせてチャレンジをクリアしよう！</div></div>
+        </div>
+        <div class="boss-check">
+          <div class="boss-check-icon">🏆</div>
+          <div><div class="boss-check-en">Victory! Tap "Victory!" in the app → Gauge +20 + everyone gets 3 Crystal Shards!</div><div class="boss-check-jp">勝利！アプリで「Victory!」をタップ → ゲージ+20 + 全員にかけら3つ！</div></div>
+        </div>
+        <div style="margin-top:12px;">
+          <div style="font-family:'Cinzel',serif;font-size:0.65rem;font-weight:700;color:var(--text-soft);letter-spacing:0.08em;margin-bottom:6px;">BOSS CRYSTALS / ボスクリスタル</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+            <div style="background:rgba(245,158,11,0.08);border-radius:10px;padding:8px 10px;border:1px solid rgba(245,158,11,0.2);">
+              <div style="font-size:1.1rem;">💛</div>
+              <div style="font-family:'Cinzel',serif;font-size:0.7rem;font-weight:700;color:#92400e;">Castle — Mimic</div>
+              <div style="font-family:'Noto Serif JP',serif;font-size:0.62rem;color:var(--text-soft);">城エリア</div>
+            </div>
+            <div style="background:rgba(5,150,105,0.08);border-radius:10px;padding:8px 10px;border:1px solid rgba(5,150,105,0.2);">
+              <div style="font-size:1.1rem;">💚</div>
+              <div style="font-family:'Cinzel',serif;font-size:0.7rem;font-weight:700;color:#065f46;">Forest — Golem</div>
+              <div style="font-family:'Noto Serif JP',serif;font-size:0.62rem;color:var(--text-soft);">森エリア</div>
+            </div>
+            <div style="background:rgba(220,38,38,0.08);border-radius:10px;padding:8px 10px;border:1px solid rgba(220,38,38,0.2);">
+              <div style="font-size:1.1rem;">❤️</div>
+              <div style="font-family:'Cinzel',serif;font-size:0.7rem;font-weight:700;color:#7f1d1d;">Mountain — Dragon</div>
+              <div style="font-family:'Noto Serif JP',serif;font-size:0.62rem;color:var(--text-soft);">山エリア</div>
+            </div>
+            <div style="background:rgba(29,78,216,0.08);border-radius:10px;padding:8px 10px;border:1px solid rgba(29,78,216,0.2);">
+              <div style="font-size:1.1rem;">💙</div>
+              <div style="font-family:'Cinzel',serif;font-size:0.7rem;font-weight:700;color:#1e3a8a;">Sky — Gen. Winter</div>
+              <div style="font-family:'Noto Serif JP',serif;font-size:0.62rem;color:var(--text-soft);">天空エリア</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scoring -->
+    <div class="rules-section">
+      <div class="rules-section-header" onclick="toggleSection(this)">
+        <span>🏆</span>
+        <div><div class="r-en">Scoring</div><div class="r-jp">スコア</div></div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="rules-section-body">
+        <div style="font-family:'Comic Relief',sans-serif;font-size:0.78rem;color:var(--text-dark);margin-bottom:12px;line-height:1.5;">
+          When the game ends, everyone counts their score:<br>
+          <span style="font-family:'Noto Serif JP',serif;font-size:0.7rem;color:var(--text-soft);">ゲームが終わったら、個人スコアを数えよう：</span>
+        </div>
+        <div class="score-row" style="background:rgba(124,58,237,0.08);">
+          <span style="font-size:1.2rem;">🃏</span>
+          <div>
+            <div style="font-family:'Cinzel',serif;font-size:0.78rem;font-weight:700;color:var(--purple-light);">Points on face-up Encounter Cards</div>
+            <div style="font-family:'Noto Serif JP',serif;font-size:0.66rem;color:var(--text-soft);">表向きであいカードのポイント合計</div>
+          </div>
+        </div>
+        <div style="text-align:center;font-family:'Cinzel',serif;font-size:1rem;font-weight:700;color:var(--text-soft);padding:2px 0;">＋</div>
+        <div class="score-row" style="background:rgba(245,158,11,0.08);">
+          <span style="font-size:1.2rem;">💎</span>
+          <div>
+            <div style="font-family:'Cinzel',serif;font-size:0.78rem;font-weight:700;color:#92400e;">Crystal Shards remaining in hand</div>
+            <div style="font-family:'Noto Serif JP',serif;font-size:0.66rem;color:var(--text-soft);">手持ちのクリスタルのかけらの数</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;padding:10px 12px;background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(245,158,11,0.1));border-radius:12px;text-align:center;border:1px solid rgba(245,158,11,0.2);">
+          <div style="font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;color:#92400e;">✨ Highest score = Winner!</div>
+          <div style="font-family:'Noto Serif JP',serif;font-size:0.72rem;color:rgba(167,139,250,0.7);margin-top:2px;">最高スコア = 優勝！</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- rules-wrap -->
+  </div><!-- content-rules -->
+
+  <!-- BOSS BATTLE OVERLAY -->
+  <div class="boss-battle-overlay" id="boss-overlay">
+    <div class="boss-battle-inner">
+      <div class="boss-battle-header">
+        <span class="boss-battle-crystal" id="boss-overlay-crystal">💛</span>
+        <div class="boss-battle-area-label" id="boss-overlay-area">Castle Area · 城エリア</div>
+        <div class="boss-battle-name" id="boss-overlay-name">Mimic</div>
+        <div class="boss-battle-subtitle" id="boss-overlay-sub">Boss Battle! · ボスバトル！</div>
+      </div>
+      <div class="boss-challenge-card">
+        <div class="boss-challenge-eyebrow">⚔️ Group Challenge · グループチャレンジ ⚔️</div>
+        <div class="boss-challenge-en" id="boss-challenge-en">—</div>
+        <div class="boss-challenge-jp" id="boss-challenge-jp">—</div>
+        <div class="boss-challenge-reward">
+          <div class="boss-challenge-reward-title">✨ Victory Reward · 勝利報酬</div>
+          <div class="boss-challenge-reward-text">Gauge +20 &nbsp;·&nbsp; Everyone gets 3 Crystal Shards 💎</div>
+        </div>
+      </div>
+      <div class="boss-action-row">
+        <button class="boss-action-btn boss-victory-btn" id="boss-victory-btn" onclick="defeatBoss()">
+          ✨ Victory! / 勝利！
+        </button>
+        <button class="boss-action-btn boss-close-btn" onclick="closeBossOverlay()">
+          ↩ Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WIN OVERLAY -->
+  <div class="win-overlay" id="win-overlay">
+    <div class="win-stars">✨</div>
+    <div class="win-title">VICTORY!</div>
+    <div class="win-jp">世界が救われた！💜</div>
+    <div class="win-sub">World Recovery Level 5 reached!</div>
+    <button class="win-close" onclick="closeWin()">Continue / つづける</button>
+  </div>
+
+</div><!-- .app -->
+
+<script>
+/* ═══════════════════════════════════════
+   STARFIELD
+═══════════════════════════════════════ */
+(function(){
+  const sf = document.getElementById('stars');
+  const glyphs = ['✦','✧','⋆','✴','★','✸','·','✦','✧'];
+  const colors = ['#fde68a','#fbbf24','#f59e0b','#fef3c7','#fde68a','#fff7d6'];
+  for(let i=0;i<70;i++){
+    const s=document.createElement('span');
+    const sz=(Math.random()*1.2+0.5).toFixed(2);
+    const glyph=glyphs[Math.floor(Math.random()*glyphs.length)];
+    const col=colors[Math.floor(Math.random()*colors.length)];
+    s.textContent=glyph;
+    s.style.cssText=`top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*5}s;--delay:-${Math.random()*7}s;--sz:${sz}rem;--col:${col};`;
+    sf.appendChild(s);
+  }
+})();
+
+/* ═══════════════════════════════════════
+   QUEST DECK DATA  (v5 — 60 cards each)
+═══════════════════════════════════════ */
+const EASY_DECK_RAW = [
+  // ── Read it! — Letters (16) ──
+  { cat:"📖 Read it!", en:'What letter is this?', word:'A', jp:'この文字は何？', answer:'エイ',       effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'What letter is this?', word:'b', jp:'この文字は何？', answer:'ビー',       effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'What letter is this?', word:'C', jp:'この文字は何？', answer:'スィー',     effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'What letter is this?', word:'d', jp:'この文字は何？', answer:'ディー',     effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'What letter is this?', word:'E', jp:'この文字は何？', answer:'イー',       effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'What letter is this?', word:'G', jp:'この文字は何？', answer:'ジー',       effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'What letter is this?', word:'H', jp:'この文字は何？', answer:'エイチ',     effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'What letter is this?', word:'I', jp:'この文字は何？', answer:'アイ',       effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'What letter is this?', word:'m', jp:'この文字は何？', answer:'エム',       effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'What letter is this?', word:'n', jp:'この文字は何？', answer:'エヌ',       effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'What letter is this?', word:'O', jp:'この文字は何？', answer:'オー',       effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'What letter is this?', word:'p', jp:'この文字は何？', answer:'ピー',       effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'What letter is this?', word:'q', jp:'この文字は何？', answer:'キュー',     effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'What letter is this?', word:'S', jp:'この文字は何？', answer:'エス',       effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'What letter is this?', word:'T', jp:'この文字は何？', answer:'ティー',     effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'What letter is this?', word:'w', jp:'この文字は何？', answer:'ダブリュー', effect:"+1", effectVal:1, type:"plus" },
+  // ── Read it! — Words (3) ──
+  { cat:"📖 Read it!", en:'Read this word!', word:'CAT', jp:'この言葉を読もう！', answer:'キャット', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'Read this word!', word:'DOG', jp:'この言葉を読もう！', answer:'ドッグ',   effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'Read this word!', word:'PIG', jp:'この言葉を読もう！', answer:'ピッグ',   effect:"+1", effectVal:1, type:"plus" },
+  // ── English for this? — Emojis (9) ──
+  { cat:"🤔 English?", en:"What's this?", word:'⭐', jp:'英語で何？', answer:'Star! / スター',             effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What's this?", word:'🩷', jp:'英語で何？', answer:'Heart! / ハート',            effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What's this?", word:'🍅', jp:'英語で何？', answer:'Tomato! / トマト',           effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What's this?", word:'🍒', jp:'英語で何？', answer:'Cherry! / チェリー',         effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What's this?", word:'🍌', jp:'英語で何？', answer:'Banana! / バナナ',           effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What's this?", word:'🍔', jp:'英語で何？', answer:'Hamburger! / ハンバーガー',  effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What's this?", word:'🍕', jp:'英語で何？', answer:'Pizza! / ピッツァ',          effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What's this?", word:'🍰', jp:'英語で何？', answer:'Cake! / ケーキ',             effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What's this?", word:'🍦', jp:'英語で何？', answer:'Ice cream! / アイスクリーム',effect:"+1", effectVal:1, type:"plus" },
+  // ── What color is this? (4) ──
+  { cat:"🤔 English?", en:"What color is this?", word:'🔴', jp:'この色は英語で何？', answer:'Red! / レッド',    effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What color is this?", word:'🔵', jp:'この色は英語で何？', answer:'Blue! / ブルー',   effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What color is this?", word:'🟢', jp:'この色は英語で何？', answer:'Green! / グリーン',effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What color is this?", word:'🟡', jp:'この色は英語で何？', answer:'Yellow! / イエロー',effect:"+1", effectVal:1, type:"plus" },
+  // ── What number is this? (3) ──
+  { cat:"🤔 English?", en:"What number is this?", word:'7',  jp:'この数字は英語で何？', answer:'Seven! / セブン',   effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What number is this?", word:'13', jp:'この数字は英語で何？', answer:'Thirteen! / サーティーン', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What number is this?", word:'20', jp:'この数字は英語で何？', answer:'Twenty! / トゥエンティー', effect:"+1", effectVal:1, type:"plus" },
+  // ── Encounter! (3) ──
+  { cat:"🃏 Encounter!", en:"Play an Encounter Card!\n\nChoose one from your hand, pay its cost, and do the challenge!", jp:"であいカードをプレイ！\n\n手持ちから1枚えらんで、かけらを払って、チャレンジしよう！", effect:"Play card!", effectVal:0, type:"special" },
+  { cat:"🃏 Encounter!", en:"Play an Encounter Card!\n\nChoose one from your hand, pay its cost, and do the challenge!", jp:"であいカードをプレイ！\n\n手持ちから1枚えらんで、かけらを払って、チャレンジしよう！", effect:"Play card!", effectVal:0, type:"special" },
+  { cat:"🃏 Encounter!", en:"Play an Encounter Card!\n\nChoose one from your hand, pay its cost, and do the challenge!", jp:"であいカードをプレイ！\n\n手持ちから1枚えらんで、かけらを払って、チャレンジしよう！", effect:"Play card!", effectVal:0, type:"special" },
+  // ── Special! (2) ──
+  { cat:"⭐ Special!", en:"Everyone count to 10 in English together! 🔢", jp:"みんなで英語で１〜10を数えよう！", effect:"+1", effectVal:1, type:"plus" },
+  { cat:"⭐ Special!", en:"Everyone strike a Hero pose! 🦸",              jp:"みんなヒーローポーズ！🦸",         effect:"+1", effectVal:1, type:"plus" },
+  // ── Count the board! (1) ──
+  { cat:"🔢 Count the board!", en:"Count all the ❗ on the board!\n\nHow many?", jp:"ボードの❗をかぞえよう！\n\nいくつある？", effect:"+1", effectVal:1, type:"plus" },
+  // ── One more turn! (1) ──
+  { cat:"🎲 One more turn!", en:"One more turn! 🎲\n\nGo again!", jp:"もう一回！🎲\n\nもう一度サイコロを振ろう！", effect:"Extra turn!", effectVal:0, type:"lucky" },
+  // ── Janken! (4) ──
+  { cat:"✊ Janken!", en:"Janken with anyone!\n\nWinner gets 2 Crystal Shards! 💎",      jp:"誰かとじゃんけん！\n\n勝った人はかけら2つもらう！",         effect:"Special!", effectVal:0, type:"special" },
+  { cat:"✊ Janken!", en:"Janken with anyone!\n\nWinner gets 1 Crystal Shard! 💎",       jp:"誰かとじゃんけん！\n\n勝った人はかけら1つもらう！",         effect:"Special!", effectVal:0, type:"special" },
+  { cat:"✊ Janken!", en:"Everyone janken!\n\nWinner draws 1 Encounter Card! 🃏",        jp:"みんなでじゃんけん！\n\n優勝した人はであいカードを1枚引く！", effect:"Special!", effectVal:0, type:"special" },
+  { cat:"✊ Janken!", en:"Janken with anyone!\n\nLoser gives the winner 1 Crystal Shard!", jp:"誰かとじゃんけん！\n\n負けた人は勝った人にかけら1つわたす！",effect:"Special!", effectVal:0, type:"special" },
+  // ── Lucky! (7) ──
+  { cat:"🍀 Lucky!", en:"Lucky!\n\nTake 3 Crystal Shards! 💎", jp:"ラッキー！\n\nかけらを3つもらおう！",   effect:"+3 shards",  effectVal:0, type:"lucky" },
+  { cat:"🍀 Lucky!", en:"Lucky!\n\nTake 2 Crystal Shards! 💎", jp:"ラッキー！\n\nかけらを2つもらおう！",   effect:"+2 shards",  effectVal:0, type:"lucky" },
+  { cat:"🍀 Lucky!", en:"Lucky!\n\nTake 2 Crystal Shards! 💎", jp:"ラッキー！\n\nかけらを2つもらおう！",   effect:"+2 shards",  effectVal:0, type:"lucky" },
+  { cat:"🍀 Lucky!", en:"Lucky!\n\nTake 1 Crystal Shard! 💎",  jp:"ラッキー！\n\nかけらを1つもらおう！",   effect:"+1 shard",   effectVal:0, type:"lucky" },
+  { cat:"🍀 Lucky!", en:"Lucky!\n\nTake 1 Crystal Shard! 💎",  jp:"ラッキー！\n\nかけらを1つもらおう！",   effect:"+1 shard",   effectVal:0, type:"lucky" },
+  { cat:"🍀 Lucky!", en:"Lucky!\n\nDraw 1 Encounter Card! 🃏", jp:"ラッキー！\n\nであいカードを1枚引こう！",effect:"Draw card!", effectVal:0, type:"lucky" },
+  { cat:"🍀 Lucky!", en:"Lucky!\n\nDraw 1 Encounter Card! 🃏", jp:"ラッキー！\n\nであいカードを1枚引こう！",effect:"Draw card!", effectVal:0, type:"lucky" },
+  // ── Swap! (2) ──
+  { cat:"🔄 Swap!", en:"Swap one Encounter Card\nwith another player! 🤝", jp:"であいカードを誰かと1枚交換！", effect:"Swap!", effectVal:0, type:"swap" },
+  { cat:"🔄 Swap!", en:"Swap one Encounter Card\nwith the pile! 🔄",       jp:"であいカードを山と1枚交換！",   effect:"Swap!", effectVal:0, type:"swap" },
+  // ── Oops! (5) ──
+  { cat:"😱 Oops!", en:"The cracks spread!\n\nGauge −5… 💔",                          jp:"ひびが広がった！\n\nゲージ−5…",          effect:"−5",       effectVal:-5, type:"minus" },
+  { cat:"😱 Oops!", en:"A shadow fell!\n\nGauge −5… 💔",                              jp:"影が落ちてきた！\n\nゲージ−5…",          effect:"−5",       effectVal:-5, type:"minus" },
+  { cat:"😱 Oops!", en:"Oops!\n\nGive 1 Crystal Shard to the player on your left!",  jp:"あらら！\n\n左の人にかけらを1つわたそう！",effect:"Special!", effectVal:0,  type:"special" },
+  { cat:"😱 Oops!", en:"Uh oh!\n\nEveryone loses 1 Crystal Shard…",                   jp:"あらら！\n\nみんなかけらを1つ返そう…",    effect:"Special!", effectVal:0,  type:"special" },
+  { cat:"😱 Oops!", en:"Lose a turn…\n\nSkip your next turn! 😴",                     jp:"一回休み…\n\n次のターンをスキップ！😴",    effect:"Lose turn",effectVal:0,  type:"minus" },
+]; // 16+3+9+4+3+3+2+1+1+4+7+2+5 = 60 ✓
+
+const HARD_DECK_RAW = [
+  // ── Read it! — Words (10) ──
+  { cat:"📖 Read it!", en:'Read this word!', word:'BEAUTIFUL',  jp:'この言葉を読もう！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'Read this word!', word:'DELICIOUS',  jp:'この言葉を読もう！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'Read this word!', word:'ADVENTURE',  jp:'この言葉を読もう！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'Read this word!', word:'FRIENDSHIP', jp:'この言葉を読もう！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'Read this word!', word:'CRYSTAL',    jp:'この言葉を読もう！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'Read this word!', word:'CHALLENGE',  jp:'この言葉を読もう！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'Read this word!', word:'MAGIC',      jp:'この言葉を読もう！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'Read this word!', word:'HERO',       jp:'この言葉を読もう！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'Read this word!', word:'FANTASTIC',  jp:'この言葉を読もう！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"📖 Read it!", en:'Read this word!', word:'WONDERFUL',  jp:'この言葉を読もう！', effect:"+1", effectVal:1, type:"plus" },
+  // ── English for this? — School subjects (6) ──
+  { cat:"🤔 English?", en:"What is 理科 in English?",  jp:"理科は英語で何？",  answer:"Science! / サイエンス",        effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What is 社会 in English?",  jp:"社会は英語で何？",  answer:"Social Studies! / ソーシャル・スタディーズ", effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What is 算数 in English?",  jp:"算数は英語で何？",  answer:"Math! / マス",                 effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What is 音楽 in English?",  jp:"音楽は英語で何？",  answer:"Music! / ミュージック",        effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What is 体育 in English?",  jp:"体育は英語で何？",  answer:"P.E.! / ピーイー",             effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What is 図工 in English?",  jp:"図工は英語で何？",  answer:"Art! / アート",                effect:"+1", effectVal:1, type:"plus" },
+  // ── English for this? — Seasons (3) ──
+  { cat:"🤔 English?", en:"What season is 冬 in English?", jp:"冬は英語で何？", answer:"Winter! / ウィンター", effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What season is 春 in English?", jp:"春は英語で何？", answer:"Spring! / スプリング", effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What season is 夏 in English?", jp:"夏は英語で何？", answer:"Summer! / サマー",     effect:"+1", effectVal:1, type:"plus" },
+  // ── English for this? — Emojis (3) ──
+  { cat:"🤔 English?", en:"What's this?", word:'🍄', jp:'英語で何？', answer:'Mushroom! / マッシュルーム', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What's this?", word:'🥦', jp:'英語で何？', answer:'Broccoli! / ブロッコリー',   effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What's this?", word:'🍮', jp:'英語で何？', answer:'Pudding! / プディング',      effect:"+1", effectVal:1, type:"plus" },
+  // ── What color is this? (4) ──
+  { cat:"🤔 English?", en:"What color is this?", word:'🟠', jp:'この色は英語で何？', answer:'Orange! / オレンジ', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What color is this?", word:'🟣', jp:'この色は英語で何？', answer:'Purple! / パープル', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What color is this?", word:'⚫', jp:'この色は英語で何？', answer:'Black! / ブラック',  effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What color is this?", word:'⚪', jp:'この色は英語で何？', answer:'White! / ホワイト',  effect:"+1", effectVal:1, type:"plus" },
+  // ── What number is this? (4) ──
+  { cat:"🤔 English?", en:"What number is this?", word:'37', jp:'この数字は英語で何？', answer:'Thirty-seven! / サーティーセブン', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What number is this?", word:'58', jp:'この数字は英語で何？', answer:'Fifty-eight! / フィフティーエイト', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What number is this?", word:'68', jp:'この数字は英語で何？', answer:'Sixty-eight! / シックスティーエイト', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"🤔 English?", en:"What number is this?", word:'99', jp:'この数字は英語で何？', answer:'Ninety-nine! / ナインティーナイン', effect:"+1", effectVal:1, type:"plus" },
+  // ── Encounter! (2) ──
+  { cat:"🃏 Encounter!", en:"Play an Encounter Card!\n\nChoose one from your hand, pay its cost, and do the challenge!", jp:"であいカードをプレイ！\n\n手持ちから1枚えらんで、かけらを払って、チャレンジしよう！", effect:"Play card!", effectVal:0, type:"special" },
+  { cat:"🃏 Encounter!", en:"Play an Encounter Card!\n\nChoose one from your hand, pay its cost, and do the challenge!", jp:"であいカードをプレイ！\n\n手持ちから1枚えらんで、かけらを払って、チャレンジしよう！", effect:"Play card!", effectVal:0, type:"special" },
+  // ── Special! — Words starting with… (6) ──
+  { cat:"⭐ Special!", en:'Everyone say one word that starts with "S"!\n\nNo repeats!', jp:'「S」で始まる英語の言葉をひとつずつ！\n\nかぶったらアウト！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"⭐ Special!", en:'Everyone say one word that starts with "P"!\n\nNo repeats!', jp:'「P」で始まる英語の言葉をひとつずつ！\n\nかぶったらアウト！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"⭐ Special!", en:'Everyone say one word that starts with "H"!\n\nNo repeats!', jp:'「H」で始まる英語の言葉をひとつずつ！\n\nかぶったらアウト！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"⭐ Special!", en:'Everyone say one word that starts with "B"!\n\nNo repeats!', jp:'「B」で始まる英語の言葉をひとつずつ！\n\nかぶったらアウト！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"⭐ Special!", en:'Everyone say one word that starts with "C"!\n\nNo repeats!', jp:'「C」で始まる英語の言葉をひとつずつ！\n\nかぶったらアウト！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"⭐ Special!", en:'Everyone say one word that starts with "M"!\n\nNo repeats!', jp:'「M」で始まる英語の言葉をひとつずつ！\n\nかぶったらアウト！', effect:"+1", effectVal:1, type:"plus" },
+  // ── Special! — Other (2) ──
+  { cat:"⭐ Special!", en:"Everyone say a food in English!\n\nNo repeats! 🍽️", jp:"食べ物を英語でひとつずつ！\n\nかぶったらアウト！🍽️", effect:"+1", effectVal:1, type:"plus" },
+  { cat:"⭐ Special!", en:"Everyone strike a Hero pose! 🦸",                   jp:"みんなヒーローポーズ！🦸",                         effect:"+1", effectVal:1, type:"plus" },
+  // ── Count the board! (1) ──
+  { cat:"🔢 Count the board!", en:"Count all the ❗ on the board!\n\nHow many?", jp:"ボードの❗をかぞえよう！\n\nいくつある？", effect:"+1", effectVal:1, type:"plus" },
+  // ── One more turn! (1) ──
+  { cat:"🎲 One more turn!", en:"One more turn! 🎲\n\nGo again!", jp:"もう一回！🎲\n\nもう一度サイコロを振ろう！", effect:"Extra turn!", effectVal:0, type:"lucky" },
+  // ── Janken! (4) ──
+  { cat:"✊ Janken!", en:"Janken with anyone!\n\nWinner gets 2 Crystal Shards! 💎",       jp:"誰かとじゃんけん！\n\n勝った人はかけら2つもらう！",         effect:"Special!", effectVal:0, type:"special" },
+  { cat:"✊ Janken!", en:"Janken with anyone!\n\nWinner gets 1 Crystal Shard! 💎",        jp:"誰かとじゃんけん！\n\n勝った人はかけら1つもらう！",         effect:"Special!", effectVal:0, type:"special" },
+  { cat:"✊ Janken!", en:"Everyone janken!\n\nWinner draws 1 Encounter Card! 🃏",         jp:"みんなでじゃんけん！\n\n優勝した人はであいカードを1枚引く！", effect:"Special!", effectVal:0, type:"special" },
+  { cat:"✊ Janken!", en:"Janken with anyone!\n\nLoser gives the winner 1 Crystal Shard!", jp:"誰かとじゃんけん！\n\n負けた人は勝った人にかけら1つわたす！",effect:"Special!", effectVal:0, type:"special" },
+  // ── Lucky! (7) ──
+  { cat:"🍀 Lucky!", en:"Lucky!\n\nTake 3 Crystal Shards! 💎", jp:"ラッキー！\n\nかけらを3つもらおう！",   effect:"+3 shards",  effectVal:0, type:"lucky" },
+  { cat:"🍀 Lucky!", en:"Lucky!\n\nTake 2 Crystal Shards! 💎", jp:"ラッキー！\n\nかけらを2つもらおう！",   effect:"+2 shards",  effectVal:0, type:"lucky" },
+  { cat:"🍀 Lucky!", en:"Lucky!\n\nTake 2 Crystal Shards! 💎", jp:"ラッキー！\n\nかけらを2つもらおう！",   effect:"+2 shards",  effectVal:0, type:"lucky" },
+  { cat:"🍀 Lucky!", en:"Lucky!\n\nTake 1 Crystal Shard! 💎",  jp:"ラッキー！\n\nかけらを1つもらおう！",   effect:"+1 shard",   effectVal:0, type:"lucky" },
+  { cat:"🍀 Lucky!", en:"Lucky!\n\nTake 1 Crystal Shard! 💎",  jp:"ラッキー！\n\nかけらを1つもらおう！",   effect:"+1 shard",   effectVal:0, type:"lucky" },
+  { cat:"🍀 Lucky!", en:"Lucky!\n\nDraw 1 Encounter Card! 🃏", jp:"ラッキー！\n\nであいカードを1枚引こう！",effect:"Draw card!", effectVal:0, type:"lucky" },
+  { cat:"🍀 Lucky!", en:"Lucky!\n\nDraw 1 Encounter Card! 🃏", jp:"ラッキー！\n\nであいカードを1枚引こう！",effect:"Draw card!", effectVal:0, type:"lucky" },
+  // ── Swap! (2) ──
+  { cat:"🔄 Swap!", en:"Swap one Encounter Card\nwith another player! 🤝", jp:"であいカードを誰かと1枚交換！", effect:"Swap!", effectVal:0, type:"swap" },
+  { cat:"🔄 Swap!", en:"Swap one Encounter Card\nwith the pile! 🔄",       jp:"であいカードを山と1枚交換！",   effect:"Swap!", effectVal:0, type:"swap" },
+  // ── Oops! (5) ──
+  { cat:"😱 Oops!", en:"The cracks spread!\n\nGauge −5… 💔",                         jp:"ひびが広がった！\n\nゲージ−5…",          effect:"−5",        effectVal:-5, type:"minus" },
+  { cat:"😱 Oops!", en:"A shadow fell!\n\nGauge −5… 💔",                             jp:"影が落ちてきた！\n\nゲージ−5…",          effect:"−5",        effectVal:-5, type:"minus" },
+  { cat:"😱 Oops!", en:"Oops!\n\nGive 1 Crystal Shard to the player on your left!", jp:"あらら！\n\n左の人にかけらを1つわたそう！",effect:"Special!",  effectVal:0,  type:"special" },
+  { cat:"😱 Oops!", en:"Uh oh!\n\nEveryone loses 1 Crystal Shard…",                  jp:"あらら！\n\nみんなかけらを1つ返そう…",    effect:"Special!",  effectVal:0,  type:"special" },
+  { cat:"😱 Oops!", en:"Lose a turn…\n\nSkip your next turn! 😴",                    jp:"一回休み…\n\n次のターンをスキップ！😴",   effect:"Lose turn", effectVal:0,  type:"minus" },
+]; // 10+9+3+4+4+2+6+2+1+1+4+7+2+5 = 60 ✓
+
+/* ═══════════════════════════════════════
+   BOSS DATA
+═══════════════════════════════════════ */
+const BOSS_DATA = {
+  castle: {
+    name: "Mimic", area: "Castle Area", areaJp: "城エリア", crystal: "💛",
+    color: "rgba(245,158,11,0.7)",
+    challenges: [
+      { en: "Everyone introduce yourself in English!\n\nSay your name and one thing you like!", jp: "英語で自己紹介！\n\n名前と好きなものを一つ言おう！" },
+      { en: "Spell your name out loud, one letter at a time!\n\nEveryone goes!", jp: "名前を一文字ずつ声に出してスペルしよう！\n\n全員やろう！" },
+      { en: "Everyone say one food you like in English!\n\nNo repeats!", jp: "好きな食べ物を英語で一つずつ言おう！\n\nかぶったらアウト！" },
+    ]
+  },
+  forest: {
+    name: "Forest Golem", area: "Forest Area", areaJp: "森エリア", crystal: "💚",
+    color: "rgba(5,150,105,0.7)",
+    challenges: [
+      { en: "Everyone say one thing you CAN do!\n\nUse 'I can ___!'", jp: "できることを英語で一つずつ言おう！\n\n「I can ___!」を使って！" },
+      { en: "Describe someone in your family!\n\nEveryone shares one sentence!", jp: "家族の誰かを英語で紹介しよう！\n\n全員一文ずつ！" },
+      { en: "Everyone name an animal and where it lives!\n\nNo repeats!", jp: "動物と、その動物が住む場所を英語で言おう！\n\nかぶったらアウト！" },
+    ]
+  },
+  mountain: {
+    name: "Dragon", area: "Mountain Area", areaJp: "山エリア", crystal: "❤️",
+    color: "rgba(220,38,38,0.7)",
+    challenges: [
+      { en: "Everyone say where you want to go and why!\n\nUse 'I want to go to ___ because ___!'", jp: "行きたい場所とその理由を言おう！\n\n「I want to go to ___ because ___!」" },
+      { en: "Everyone say one thing you did recently!\n\nUse the past tense!", jp: "最近したことを英語で言おう！\n\n過去形を使って！" },
+      { en: "Everyone say what you want to be\nwhen you grow up!\n\nUse 'I want to be ___!'", jp: "将来なりたい職業を言おう！\n\n「I want to be ___!」" },
+    ]
+  },
+  sky: {
+    name: "General Winter", area: "Sky Area", areaJp: "天空エリア", crystal: "💙",
+    color: "rgba(29,78,216,0.7)",
+    challenges: [
+      { en: "Everyone share your best memory!\n\nUse 'My best memory is ___!'", jp: "一番の思い出を英語で話そう！\n\n「My best memory is ___!」" },
+      { en: "Everyone say two things about\nyour town or country!", jp: "自分の町や国について英語で2つ言おう！" },
+      { en: "Everyone say something you're good at\nAND something you want to get better at!", jp: "得意なことと、もっとうまくなりたいことを英語で言おう！" },
+    ]
+  }
+};
+
+/* ═══════════════════════════════════════
+   GAUGE LEVELS
+═══════════════════════════════════════ */
+const GAUGE_LEVELS = [
+  { max:9,   en:"World Recovery Level 0",       jp:"世界回復レベル 0",  fill:"linear-gradient(90deg,#2d0060,#4a1a8a)" },
+  { max:24,  en:"World Recovery Level 1 ✨",    jp:"世界回復レベル 1",  fill:"linear-gradient(90deg,#4a1a8a,#7c3aed)" },
+  { max:49,  en:"World Recovery Level 2 ✨",    jp:"世界回復レベル 2",  fill:"linear-gradient(90deg,#6d28d9,#a855f7)" },
+  { max:74,  en:"World Recovery Level 3 ✨",    jp:"世界回復レベル 3",  fill:"linear-gradient(90deg,#9333ea,#c084fc)" },
+  { max:99,  en:"World Recovery Level 4 ✨",    jp:"世界回復レベル 4",  fill:"linear-gradient(90deg,#d97706,#f59e0b)" },
+  { max:100, en:"🌟 World Restored — VICTORY!", jp:"世界が救われた！",   fill:"linear-gradient(90deg,#f59e0b,#fde68a)" },
+];
+
+/* ═══════════════════════════════════════
+   STATE
+═══════════════════════════════════════ */
+let gauge       = 0;
+let playerCount = 4;
+let shards      = [0,0,0,0,0,0];
+let questIndex  = 0;
+let questDeck   = [];
+let activeCard  = null;
+let activeDeck  = null;
+let bossesDefeated = { castle:false, forest:false, mountain:false, sky:false };
+let activeBoss  = null;
+
+const PLAYER_EMOJIS = ['🔴','🔵','🟢','🟡','🟣','🟠'];
+const PLAYER_COLORS = ['rgba(220,38,38,0.15)','rgba(29,78,216,0.15)','rgba(5,150,105,0.15)','rgba(245,158,11,0.15)','rgba(124,58,237,0.15)','rgba(234,88,12,0.15)'];
+
+/* ═══════════════════════════════════════
+   TABS
+═══════════════════════════════════════ */
+function showTab(name) {
+  ['gauge','quest','boss','shards','rules'].forEach(t => {
+    document.getElementById('tab-'+t).classList.toggle('active', t===name);
+    document.getElementById('content-'+t).classList.toggle('active', t===name);
+  });
+}
+
+function toggleSection(header) {
+  header.classList.toggle('open');
+  header.nextElementSibling.classList.toggle('open');
+}
+
+/* ═══════════════════════════════════════
+   GAUGE
+═══════════════════════════════════════ */
+function updateGaugeUI() {
+  const el = document.getElementById('gauge-num');
+  el.textContent = gauge;
+  el.classList.remove('pop');
+  void el.offsetWidth;
+  el.classList.add('pop');
+  const lv = GAUGE_LEVELS.find(l => gauge <= l.max) || GAUGE_LEVELS[5];
+  document.getElementById('gauge-label-en').textContent = lv.en;
+  document.getElementById('gauge-label-jp').textContent = lv.jp;
+  const fill = document.getElementById('gauge-fill');
+  fill.style.width = gauge + '%';
+  fill.style.background = lv.fill;
+}
+function updateMiniGauge() {
+  const bar = document.getElementById('mini-gauge-fill');
+  const num = document.getElementById('mini-gauge-num');
+  if (!bar||!num) return;
+  const lv = GAUGE_LEVELS.find(l => gauge <= l.max) || GAUGE_LEVELS[5];
+  bar.style.width = gauge + '%';
+  bar.style.background = lv.fill;
+  num.textContent = gauge;
+}
+function changeGauge(delta, fromDone=false) {
+  const oldLv = GAUGE_LEVELS.findIndex(l => gauge <= l.max);
+  gauge = Math.max(0, Math.min(100, gauge + delta));
+  const newLv = GAUGE_LEVELS.findIndex(l => gauge <= l.max);
+  updateGaugeUI(); updateMiniGauge();
+  if (newLv > oldLv) { soundLevelUp(); showToast('✨ Level Up! 世界回復レベル アップ！','#7c3aed'); }
+  else if (newLv < oldLv) { soundLevelDown(); showToast('💔 Level Down… ゲージが下がった…','#991b1b'); }
+  else if (fromDone && delta > 0) { soundDone(); showToast(`✅ +${delta}！ ゲージがあがった！`,'#5a2a9a'); }
+  else if (fromDone && delta < 0) { soundLevelDown(); showToast(`😱 ${delta}… ゲージがさがった…`,'#991b1b'); }
+  else { soundTap(); }
+  if (gauge >= 100) { soundWin(); setTimeout(()=>document.getElementById('win-overlay').classList.add('show'),600); }
+}
+
+/* ═══════════════════════════════════════
+   TOAST
+═══════════════════════════════════════ */
+function showToast(msg, color) {
+  const old = document.getElementById('hp-toast');
+  if(old) old.remove();
+  const t = document.createElement('div');
+  t.id = 'hp-toast';
+  t.style.cssText = `position:fixed;top:76px;left:50%;transform:translateX(-50%) translateY(-30px);background:${color};color:white;font-family:'Cinzel','Comic Relief',sans-serif;font-weight:700;font-size:0.9rem;padding:10px 20px;border-radius:50px;box-shadow:0 6px 24px rgba(0,0,0,0.4);z-index:500;white-space:nowrap;animation:toastIn 0.4s cubic-bezier(.34,1.56,.64,1) forwards;pointer-events:none;border:1px solid rgba(255,255,255,0.15);`;
+  t.textContent = msg;
+  if(!document.getElementById('toast-style')){
+    const s=document.createElement('style');
+    s.id='toast-style';
+    s.textContent='@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(-30px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}@keyframes toastOut{from{opacity:1;transform:translateX(-50%) translateY(0)}to{opacity:0;transform:translateX(-50%) translateY(-20px)}}';
+    document.head.appendChild(s);
+  }
+  document.body.appendChild(t);
+  setTimeout(()=>{t.style.animation='toastOut 0.3s ease forwards';setTimeout(()=>t.remove(),350);},2400);
+}
+
+/* ═══════════════════════════════════════
+   PLAYERS / SHARDS
+═══════════════════════════════════════ */
+function changePlayers(delta) {
+  playerCount = Math.max(2, Math.min(6, playerCount+delta));
+  document.getElementById('player-count').textContent = playerCount;
+  renderPlayers();
+}
+function renderPlayers() {
+  const grid = document.getElementById('players-grid');
+  grid.innerHTML = '';
+  for(let i=0;i<playerCount;i++){
+    const card=document.createElement('div');
+    card.className='player-card';
+    card.style.borderColor=`rgba(167,139,250,${i%2?0.15:0.2})`;
+    card.style.background=PLAYER_COLORS[i];
+    card.innerHTML=`
+      <div class="player-emoji">${PLAYER_EMOJIS[i]}</div>
+      <div class="player-name">Player ${i+1}</div>
+      <div class="mat-count" id="shard-${i}">${shards[i]}</div>
+      <div class="mat-label">かけら</div>
+      <div class="mat-controls">
+        <button class="mc-btn mc-minus" onclick="soundButtonPress();changeShard(${i},-1)">−</button>
+        <button class="mc-btn mc-plus"  onclick="soundCoin();changeShard(${i},+1)">＋</button>
+      </div>`;
+    grid.appendChild(card);
+  }
+}
+function changeShard(i, delta) {
+  shards[i] = Math.max(0, shards[i]+delta);
+  const el = document.getElementById('shard-'+i);
+  el.textContent = shards[i];
+  el.classList.remove('pop');
+  void el.offsetWidth;
+  el.classList.add('pop');
+}
+function addShardsToAll(amount) {
+  for(let i=0;i<playerCount;i++) {
+    shards[i]+=amount;
+    const el=document.getElementById('shard-'+i);
+    if(el){
+      el.textContent=shards[i];
+      el.classList.remove('pop');
+      void el.offsetWidth;
+      el.classList.add('pop');
+    }
+  }
+}
+
+/* ═══════════════════════════════════════
+   DECK / QUEST CARDS
+═══════════════════════════════════════ */
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+function showDeckSelector(){
+  document.getElementById('deck-selector').style.display='block';
+  document.getElementById('deck-label').style.display='none';
+  document.getElementById('quest-area').innerHTML='';
+}
+function selectDeck(which){
+  soundTap(); activeDeck=which;
+  const raw=which==='easy'?EASY_DECK_RAW:HARD_DECK_RAW;
+  questDeck=shuffle([...raw]); questIndex=0; activeCard=null;
+  document.getElementById('deck-selector').style.display='none';
+  document.getElementById('deck-label').style.display='block';
+  const chip=document.getElementById('deck-label-chip');
+  if(which==='easy'){
+    chip.textContent='🌱 EASY / かんたん';
+    chip.style.cssText='background:rgba(5,150,105,0.15);color:#6ee7b7;border:1px solid rgba(5,150,105,0.4);padding:4px 14px;border-radius:50px;font-family:Cinzel,serif;font-size:0.65rem;font-weight:700;';
+  } else {
+    chip.textContent='🔥 HARD / むずかしい';
+    chip.style.cssText='background:rgba(220,38,38,0.15);color:#fca5a5;border:1px solid rgba(220,38,38,0.4);padding:4px 14px;border-radius:50px;font-family:Cinzel,serif;font-size:0.65rem;font-weight:700;';
+  }
+  renderCardBack();
+}
+function resetDeckChoice(){
+  activeDeck=null; questDeck=[]; questIndex=0; activeCard=null;
+  showDeckSelector();
+}
+function renderCardBack(){
+  if(!activeDeck){showDeckSelector();return;}
+  const rem=questDeck.length-questIndex;
+  document.getElementById('quest-area').innerHTML=`
+    <div class="card-draw-btn" onclick="soundCardDraw();drawQuestCard()">
+      <div class="card-back-face">
+        <span class="card-back-icon">📜</span>
+        <div class="card-back-en">Draw a Quest Card!</div>
+        <div class="card-back-jp">クエストカードを引こう！</div>
+      </div>
+    </div>
+    <div class="deck-remaining">${rem} cards left / 残り${rem}枚</div>`;
+}
+function drawQuestCard(){
+  if(!activeDeck)return;
+  const raw=activeDeck==='easy'?EASY_DECK_RAW:HARD_DECK_RAW;
+  if(questIndex>=questDeck.length){questDeck=shuffle([...raw]);questIndex=0;}
+  activeCard=questDeck[questIndex++];
+  renderActiveCard();
+}
+
+const CAT_JP={
+  '📖 Read it!':'読んでみよう！','🤔 English?':'英語で何て言う？',
+  '🃏 Encounter!':'であいカード！',
+  '💬 Say it!':'言ってみよう！','🙋 Ask a friend!':'友だちに聞こう！',
+  '🙋 Ask a teacher!':'先生に聞こう！','🙋 Ask someone!':'誰かに聞こう！',
+  '⭐ Special!':'スペシャル！','✊ Janken!':'じゃんけん！',
+  '🍀 Lucky!':'ラッキー！','🔄 Swap!':'こうかん！','😱 Oops!':'あらら！',
+  '🔢 Count the board!':'ボードをかぞえよう！',
+  '🎲 One more turn!':'もう一回！'
+};
+function effectClass(t){
+  if(t==='plus')return'effect-plus';
+  if(t==='minus')return'effect-minus';
+  if(t==='special')return'effect-special';
+  if(t==='lucky')return'effect-lucky';
+  if(t==='swap')return'effect-swap';
+  return 'effect-plus';
+}
+function effectLabel(c){
+  if(c.effectVal>0) return `✨ Gauge / ゲージ +${c.effectVal}`;
+  if(c.effectVal<0) return `✨ Gauge / ゲージ ${c.effectVal}`;
+  return `✨ ${c.effect}`;
+}
+function renderActiveCard(){
+  const c=activeCard;
+  const catJp=CAT_JP[c.cat]||'';
+  let wordBlock='';
+  if(c.word) wordBlock=`<div style="font-size:2.2rem;font-weight:900;letter-spacing:4px;font-family:'Cinzel','Comic Relief',sans-serif;color:var(--purple-dark);text-align:center;background:var(--purple-pale);border-radius:14px;padding:16px 12px;margin:12px 0;">${c.word}</div>`;
+  let answerBlock='';
+  if(c.answer){
+    const sa=c.answer.replace(/'/g,"\\'");
+    answerBlock=`<div id="answer-reveal" style="margin:12px 0;"><button onclick="soundTap();this.parentNode.innerHTML='<div style=\\'font-size:1.5rem;font-weight:900;color:var(--green);text-align:center;background:var(--green-pale);border-radius:12px;padding:14px;\\'>${sa}</div>'" style="width:100%;padding:12px;border-radius:12px;border:1.5px dashed var(--purple-light);background:var(--purple-pale);color:var(--purple-dark);font-family:'Cinzel','Comic Relief',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;letter-spacing:0.06em;">REVEAL / こたえを見る</button></div>`;
+  }
+  let hintBlock='';
+  if(c.hint) hintBlock=`<div style="margin-top:12px;padding:12px 14px;background:rgba(245,158,11,0.08);border-radius:12px;border-left:2px solid rgba(245,158,11,0.3);"><div style="font-family:'Cinzel',serif;font-size:0.62rem;font-weight:700;color:#92400e;margin-bottom:5px;letter-spacing:0.08em;">HINT</div><div style="font-family:'Comic Relief',sans-serif;font-size:0.95rem;font-weight:700;color:var(--brown);">${c.hint}</div></div>`;
+  const enText=c.en.replace(/\n/g,'<br>');
+  const jpText=c.jp?c.jp.replace(/\n/g,'<br>'):'';
+  document.getElementById('quest-area').innerHTML=`
+    <div class="quest-card">
+      <div class="quest-card-top">
+        <div class="quest-card-badge">📜 Quest Card</div>
+        <div class="quest-card-category">${c.cat}<br><span style="font-size:0.7rem;opacity:0.85;">${catJp}</span></div>
+      </div>
+      <div class="quest-card-body">
+        <div class="quest-card-en">${enText}</div>
+        ${wordBlock}
+        ${c.jp?`<div class="quest-card-jp">${jpText}</div>`:''}
+        ${answerBlock}${hintBlock}
+        <div style="height:10px"></div>
+        <div class="quest-card-effect ${effectClass(c.type)}">${effectLabel(c)}</div>
+      </div>
+      <div class="quest-card-footer">
+        <div class="quest-icon-area">
+          <img src="quest-icon.png" alt="Quest"
+               onerror="this.style.display='none';this.parentNode.innerHTML='<div class=\\'quest-icon-placeholder\\'>quest-icon<br>.png</div>'">
+        </div>
+        <div class="card-resolve-btns-row">
+          <button class="resolve-btn resolve-done" onclick="resolveCard(true)">✅<br>Done!<br><span style="font-size:0.7rem;font-weight:500;">できた！</span></button>
+          <button class="resolve-btn resolve-discard" onclick="soundSkip();resolveCard(false)">↩<br>Skip<br><span style="font-size:0.68rem;font-weight:500;opacity:0.7;">スキップ</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="deck-remaining">${questDeck.length-questIndex} cards left / 残り${questDeck.length-questIndex}枚</div>`;
+}
+function resolveCard(success){
+  if(success&&activeCard){
+    if(activeCard.effectVal!==0) changeGauge(activeCard.effectVal,true);
+    else soundDone();
+  }
+  activeCard=null;
+  renderCardBack();
+}
+
+/* ═══════════════════════════════════════
+   BOSS BATTLES
+═══════════════════════════════════════ */
+function startBoss(key){
+  if(bossesDefeated[key]) return;
+  const b=BOSS_DATA[key];
+  activeBoss=key;
+  const challenge=b.challenges[Math.floor(Math.random()*b.challenges.length)];
+  document.getElementById('boss-overlay-crystal').textContent=b.crystal;
+  document.getElementById('boss-overlay-area').textContent=`${b.area} · ${b.areaJp}`;
+  document.getElementById('boss-overlay-name').textContent=b.name;
+  document.getElementById('boss-overlay-name').style.color=b.color;
+  document.getElementById('boss-overlay-name').style.textShadow=`0 0 30px ${b.color}`;
+  document.getElementById('boss-challenge-en').innerHTML=challenge.en.replace(/\n/g,'<br>');
+  document.getElementById('boss-challenge-jp').textContent=challenge.jp;
+  document.getElementById('boss-overlay').classList.add('show');
+  soundBoss();
+}
+function defeatBoss(){
+  if(!activeBoss)return;
+  bossesDefeated[activeBoss]=true;
+  const btn=document.getElementById('boss-'+activeBoss);
+  btn.classList.add('defeated');
+  const statusEl=document.getElementById('boss-'+activeBoss+'-status');
+  if(statusEl) statusEl.textContent='✅ Defeated!';
+  changeGauge(20,true);
+  addShardsToAll(3);
+  showToast('⚔️ Boss Defeated! +20 Gauge + 3 Shards each!','#4c1d95');
+  closeBossOverlay();
+  soundLevelUp();
+}
+function closeBossOverlay(){
+  document.getElementById('boss-overlay').classList.remove('show');
+  activeBoss=null;
+}
+
+/* ═══════════════════════════════════════
+   WIN / RESET
+═══════════════════════════════════════ */
+function closeWin(){ document.getElementById('win-overlay').classList.remove('show'); soundTap(); }
+function confirmReset(){ if(confirm('Reset the game? / ゲームをリセットしますか？')) resetAll(); }
+function resetAll(){
+  gauge=0; shards=[0,0,0,0,0,0]; playerCount=4;
+  questIndex=0; questDeck=[]; activeDeck=null; activeCard=null;
+  bossesDefeated={castle:false,forest:false,mountain:false,sky:false};
+  activeBoss=null;
+  document.getElementById('player-count').textContent='4';
+  // Reset boss buttons
+  ['castle','forest','mountain','sky'].forEach(k=>{
+    document.getElementById('boss-'+k)?.classList.remove('defeated');
+    const s=document.getElementById('boss-'+k+'-status');
+    if(s) s.textContent='⚔️ Challenge!';
+  });
+  updateGaugeUI(); updateMiniGauge(); renderPlayers(); showDeckSelector(); closeWin();
+}
+
+/* ═══════════════════════════════════════
+   SOUND ENGINE
+═══════════════════════════════════════ */
+let audioCtx=null;
+function getAudio(){
+  if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  return audioCtx;
+}
+function playTone(freq,type,duration,volume,delay=0,freqEnd=null){
+  try{
+    const ctx=getAudio(),osc=ctx.createOscillator(),gain=ctx.createGain();
+    osc.connect(gain);gain.connect(ctx.destination);
+    osc.type=type;
+    osc.frequency.setValueAtTime(freq,ctx.currentTime+delay);
+    if(freqEnd) osc.frequency.exponentialRampToValueAtTime(freqEnd,ctx.currentTime+delay+duration);
+    gain.gain.setValueAtTime(0,ctx.currentTime+delay);
+    gain.gain.linearRampToValueAtTime(volume,ctx.currentTime+delay+0.015);
+    gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+delay+duration);
+    osc.start(ctx.currentTime+delay);
+    osc.stop(ctx.currentTime+delay+duration+0.05);
+  }catch(e){}
+}
+function soundTap(){ playTone(500,'sine',0.07,0.12); }
+function soundCardDraw(){ playTone(200,'sawtooth',0.18,0.07,0,700); playTone(800,'sine',0.12,0.12,0.12); }
+function soundDone(){ playTone(523,'sine',0.15,0.2); playTone(784,'sine',0.15,0.2,0.12); playTone(1047,'sine',0.25,0.2,0.24); }
+function soundCoin(){ playTone(2600,'sine',0.06,0.15); playTone(3900,'sine',0.04,0.08,0.03); }
+function soundSkip(){ playTone(280,'triangle',0.12,0.08); playTone(200,'triangle',0.12,0.06,0.1); }
+function soundLevelUp(){ [523,659,784,1047,1319].forEach((f,i)=>playTone(f,'sine',i===4?0.5:0.18,0.22,i*0.13)); playTone(2093,'sine',0.2,0.1,0.55); }
+function soundLevelDown(){ playTone(280,'sawtooth',0.2,0.14,0,120); playTone(180,'triangle',0.3,0.18,0.12); playTone(100,'triangle',0.4,0.15,0.28); }
+function soundWin(){ const m=[523,659,784,659,1047,784,1047,1319,1568]; m.forEach((f,i)=>playTone(f,'sine',i===m.length-1?0.6:0.2,0.22,i*0.12)); }
+function soundBoss(){ playTone(80,'sawtooth',0.3,0.2,0,60); playTone(120,'square',0.25,0.15,0.15,100); playTone(200,'triangle',0.4,0.12,0.3); }
+function soundButtonPress(){ playTone(320,'sine',0.05,0.08); }
+
+/* ═══════════════════════════════════════
+   INIT
+═══════════════════════════════════════ */
+updateGaugeUI();
+updateMiniGauge();
+renderPlayers();
+showDeckSelector();
+</script>
+</body>
+</html>
