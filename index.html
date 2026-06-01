@@ -103,10 +103,10 @@ body {
   pointer-events: none;
 }
 .logo-img {
-  max-height: 72px; max-width: 88%;
+  max-height: 160px; max-width: 92%;
   object-fit: contain; display: block;
-  margin: 0 auto 6px;
-  filter: drop-shadow(0 2px 12px rgba(167,139,250,0.5));
+  margin: 0 auto 8px;
+  filter: drop-shadow(0 2px 16px rgba(167,139,250,0.5));
 }
 .logo-placeholder {
   display: flex; align-items: center; justify-content: center;
@@ -1200,10 +1200,13 @@ hr.dash {
   <!-- HEADER -->
   <a href="https://herosproof.github.io" class="header" style="text-decoration:none;display:block;">
     <img src="logo.png" alt="Hero's Proof" class="logo-img"
+         onload="document.getElementById('header-text').style.display='none';"
          onerror="this.style.display='none';">
-    <div class="logo-title">Hero's Proof</div>
-    <div class="logo-title-jp">勇者の証</div>
-    <div class="header-divider"></div>
+    <div id="header-text">
+      <div class="logo-title">Hero's Proof</div>
+      <div class="logo-title-jp">勇者の証</div>
+      <div class="header-divider"></div>
+    </div>
     <div class="header-sub">Game Companion App · ゲームサポートアプリ</div>
   </a>
 
