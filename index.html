@@ -688,6 +688,116 @@ hr.dash {
   color: var(--text-soft);
 }
 
+/* Boss difficulty selector */
+.boss-diff-wrap {
+  display: flex; gap: 8px; margin-bottom: 14px;
+}
+.boss-diff-btn {
+  flex: 1; padding: 10px 6px;
+  border-radius: 14px; border: 2px solid;
+  font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 0.88rem;
+  cursor: pointer; text-align: center;
+  transition: transform 0.1s, box-shadow 0.1s;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.15);
+  line-height: 1.3;
+}
+.boss-diff-btn:active { transform: translateY(3px); box-shadow: none; }
+.boss-diff-btn .diff-jp {
+  font-family: 'Zen Maru Gothic','Kosugi Maru',sans-serif;
+  font-size: 0.65rem; display: block; font-weight: 500; opacity: 0.85;
+}
+.boss-diff-btn.easy {
+  background: #d0e8b0; border-color: #4a9040; color: #1a3810;
+  box-shadow: 0 3px 0 #3a7030;
+}
+.boss-diff-btn.normal {
+  background: linear-gradient(135deg,#f8f0c0,#f0d060); border-color: #c9a030; color: #5c2810;
+  box-shadow: 0 3px 0 #a07820;
+}
+.boss-diff-btn.hard {
+  background: linear-gradient(135deg,#f8ddd0,#f0b8a0); border-color: #c83030; color: #5c1010;
+  box-shadow: 0 3px 0 #a02020;
+}
+.boss-diff-btn.selected {
+  transform: translateY(2px);
+  outline: 3px solid var(--purple);
+  outline-offset: 2px;
+}
+
+/* Challenge type label */
+.challenge-type-label {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: 'Fredoka', sans-serif; font-size: 0.72rem; font-weight: 700;
+  padding: 3px 12px; border-radius: 20px; margin-bottom: 10px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.challenge-type-label.speaking {
+  background: rgba(74,56,112,0.12); color: var(--purple-dark);
+  border: 1px solid rgba(74,56,112,0.3);
+}
+.challenge-type-label.writing {
+  background: rgba(92,40,16,0.1); color: var(--brown);
+  border: 1px solid rgba(92,40,16,0.25);
+}
+.challenge-type-label.translate {
+  background: rgba(40,88,184,0.1); color: #1a3858;
+  border: 1px solid rgba(40,88,184,0.3);
+}
+
+/* Answer reveal toggle */
+.answer-toggle-btn {
+  width: 100%; margin-top: 10px; padding: 9px 14px;
+  border-radius: 12px;
+  border: 1.5px dashed rgba(74,56,112,0.35);
+  background: rgba(74,56,112,0.06);
+  font-family: 'Fredoka', sans-serif; font-size: 0.9rem; font-weight: 700;
+  color: var(--purple-dark); cursor: pointer;
+  transition: background 0.2s;
+}
+.answer-toggle-btn:active { background: rgba(74,56,112,0.12); }
+.answer-box {
+  display: none; margin-top: 8px;
+  padding: 12px 14px; border-radius: 12px;
+  background: rgba(201,160,48,0.1);
+  border: 1px solid rgba(201,160,48,0.35);
+  font-family: 'Fredoka', sans-serif; font-size: 1rem; font-weight: 600;
+  color: var(--text-dark); line-height: 1.6;
+  animation: revealFade 0.3s ease;
+}
+.answer-box.visible { display: block; }
+.answer-box-jp {
+  font-family: 'Zen Maru Gothic','Kosugi Maru',sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--brown); margin-top: 8px; line-height: 1.7;
+}
+@keyframes revealFade { from{ opacity:0; transform:translateY(-6px) } to{ opacity:1; transform:translateY(0) } }
+
+/* Menu image */
+.boss-menu-img {
+  width: 100%; max-width: 280px;
+  border-radius: 12px;
+  border: 1px solid rgba(201,160,48,0.35);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  display: block; margin: 10px auto 4px;
+  object-fit: contain;
+}
+
+/* Hub link */
+.hub-link-row {
+  text-align: center; padding: 10px 14px 4px;
+}
+.hub-link-btn {
+  font-family: 'Fredoka', sans-serif; font-size: 0.82rem; font-weight: 600;
+  color: rgba(200,160,224,0.6);
+  background: transparent;
+  border: 1px solid rgba(167,139,250,0.2);
+  border-radius: 50px; padding: 6px 18px;
+  cursor: pointer; text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+  display: inline-block;
+}
+.hub-link-btn:hover { color: var(--gold-light); border-color: rgba(245,158,11,0.35); }
+
 /* Boss battle overlay */
 .boss-battle-overlay {
   display: none;
@@ -1084,6 +1194,10 @@ hr.dash {
     <div class="header-sub">Game Companion App · ゲームサポートアプリ</div>
   </div>
 
+  <div class="hub-link-row">
+    <a href="https://herosproof.github.io" class="hub-link-btn">🏠 Hub / ホーム</a>
+  </div>
+
   <!-- TABS -->
   <div class="tabs">
     <button class="tab active" id="tab-gauge" onclick="showTab('gauge')">
@@ -1202,6 +1316,20 @@ hr.dash {
   <div class="tab-content" id="content-boss">
     <div class="panel">
       <div class="panel-title">💀 Boss Battles <span class="jp">ボスバトル</span></div>
+
+      <!-- Difficulty selector -->
+      <div class="boss-diff-wrap">
+        <button class="boss-diff-btn easy selected" id="diff-easy" onclick="setDifficulty('easy')">
+          🌱 Easy<span class="diff-jp">かんたん</span>
+        </button>
+        <button class="boss-diff-btn normal" id="diff-normal" onclick="setDifficulty('normal')">
+          🔥 Normal<span class="diff-jp">ふつう</span>
+        </button>
+        <button class="boss-diff-btn hard" id="diff-hard" onclick="setDifficulty('hard')">
+          ⚡ Hard<span class="diff-jp">むずかしい</span>
+        </button>
+      </div>
+
       <div style="font-family:'Fredoka','Zen Maru Gothic','Kosugi Maru',sans-serif;font-size:0.78rem;color:var(--text-soft);margin-bottom:12px;line-height:1.5;">
         When a player lands on a Boss tile, tap the boss to draw a group challenge!<br>
         <span style="font-family:'Zen Maru Gothic','Kosugi Maru',sans-serif;font-size:0.68rem;">プレイヤーがボスタイルに止まったら、ボスをタップしてグループチャレンジを引こう！</span>
@@ -1534,8 +1662,20 @@ hr.dash {
       </div>
       <div class="boss-challenge-card">
         <div class="boss-challenge-eyebrow">⚔️ Group Challenge · グループチャレンジ ⚔️</div>
+        <div id="boss-challenge-type-label"></div>
         <div class="boss-challenge-en" id="boss-challenge-en">—</div>
+        <img id="boss-menu-img" class="boss-menu-img" src="boss-menu.png"
+             style="display:none;"
+             onerror="this.style.display='none'">
         <div class="boss-challenge-jp" id="boss-challenge-jp">—</div>
+        <button class="answer-toggle-btn" id="boss-answer-toggle" style="display:none;"
+                onclick="toggleBossAnswer()">
+          👁 Show Answer / こたえを見る
+        </button>
+        <div class="answer-box" id="boss-answer-box">
+          <div id="boss-answer-en"></div>
+          <div class="answer-box-jp" id="boss-answer-jp"></div>
+        </div>
         <div class="boss-challenge-reward">
           <div class="boss-challenge-reward-title">✨ Victory Reward · 勝利報酬</div>
           <div class="boss-challenge-reward-text">Gauge +20 &nbsp;·&nbsp; Everyone gets 3 Crystal Shards 💎</div>
@@ -1745,39 +1885,99 @@ const HARD_DECK_RAW = [
 ═══════════════════════════════════════ */
 const BOSS_DATA = {
   castle: {
-    name: "Mimic", area: "Castle Area", areaJp: "城エリア", crystal: "💛",
-    color: "rgba(245,158,11,0.7)",
-    challenges: [
-      { en: "Everyone introduce yourself in English!\n\nSay your name and one thing you like!", jp: "英語で自己紹介！\n\n名前と好きなものを一つ言おう！" },
-      { en: "Spell your name out loud, one letter at a time!\n\nEveryone goes!", jp: "名前を一文字ずつ声に出してスペルしよう！\n\n全員やろう！" },
-      { en: "Everyone say one food you like in English!\n\nNo repeats!", jp: "好きな食べ物を英語で一つずつ言おう！\n\nかぶったらアウト！" },
+    name:"Mimic", area:"Castle Area", areaJp:"城エリア", crystal:"💛",
+    color:"rgba(245,158,11,0.7)",
+    easy:[
+      { type:"speaking", en:"Everyone say the alphabet!\nA, B, C... Z! 🔤", jp:"アルファベットを全員で言おう！\nA、B、C...Z！" },
+      { type:"speaking", en:"Everyone! How do you spell your name?\nSpell it out loud!", jp:"みんな！自分の名前のスペルを言おう！" },
+      { type:"speaking", en:"Everyone! What do you like?\n(color or food)\n→ \"I like ___!\"", jp:"みんな！好きな色か食べ物は？\n→「I like ___!」" },
+    ],
+    normal:[
+      { type:"speaking", en:"Everyone! How do you spell your name?\nSpell it out loud!", jp:"みんな！自分の名前のスペルを言おう！" },
+      { type:"speaking", en:"Everyone! When is your birthday?\n→ \"My birthday is ___!\" 🎂", jp:"みんな！誕生日はいつ？\n→「My birthday is ___!」🎂" },
+      { type:"speaking", en:"Everyone! What do you like?\n(season or anime)\n→ \"I like ___!\"", jp:"みんな！好きな季節かアニメは？\n→「I like ___!」" },
+    ],
+    hard:[
+      { type:"speaking", en:"Everyone! What club do you want to join?\nWhat do you want to be?\n→ \"I want to join the ___!\nI want to be ___!\"", jp:"みんな！どの部活に入りたい？\n将来何になりたい？\n→「I want to join the ___! I want to be ___!」" },
+      { type:"writing", en:"Everyone! What is your treasure?\n✏️ Write it!\n→ \"My treasure is ___!\"", jp:"みんな！あなたの宝物は何ですか？\n✏️書こう！→「My treasure is ___!」" },
+      { type:"translate", flag:"🇬🇧→🇯🇵",
+        en:"Translate to Japanese! 🇬🇧→🇯🇵\n\"My treasure is my magic book. It's from my elementary school teacher. It's so interesting! I read it everyday.\"",
+        jp:"日本語に訳そう！🇬🇧→🇯🇵\n「My treasure is my magic book. It's from my elementary school teacher. It's so interesting! I read it everyday.」",
+        answerEn:"My treasure is my magic book. It's from my elementary school teacher. It's so interesting! I read it everyday.",
+        answerJp:"私の宝物は魔法の本です。小学校の先生からもらいました。とても面白いです！毎日読んでいます。" },
     ]
   },
   forest: {
-    name: "Forest Golem", area: "Forest Area", areaJp: "森エリア", crystal: "💚",
-    color: "rgba(5,150,105,0.7)",
-    challenges: [
-      { en: "Everyone say one thing you CAN do!\n\nUse 'I can ___!'", jp: "できることを英語で一つずつ言おう！\n\n「I can ___!」を使って！" },
-      { en: "Describe someone in your family!\n\nEveryone shares one sentence!", jp: "家族の誰かを英語で紹介しよう！\n\n全員一文ずつ！" },
-      { en: "Everyone name an animal and where it lives!\n\nNo repeats!", jp: "動物と、その動物が住む場所を英語で言おう！\n\nかぶったらアウト！" },
+    name:"Forest Golem", area:"Forest Area", areaJp:"森エリア", crystal:"💚",
+    color:"rgba(74,144,64,0.8)",
+    easy:[
+      { type:"speaking", en:"Everyone count from 1 to 20! 🔢", jp:"みんなで1〜20まで数えよう！🔢" },
+      { type:"speaking", en:"Everyone! When is your birthday?\n→ \"My birthday is ___!\" 🎂", jp:"みんな！誕生日はいつ？\n→「My birthday is ___!」🎂" },
+      { type:"speaking", en:"Everyone! What do you like?\n(animal or sport)\n→ \"I like ___!\"", jp:"みんな！好きな動物かスポーツは？\n→「I like ___!」" },
+    ],
+    normal:[
+      { type:"writing", en:"Everyone WRITE your name! ✏️", jp:"みんな自分の名前を書こう！✏️" },
+      { type:"speaking", en:"Everyone! What is your treasure?\n→ \"My treasure is ___!\" 💝", jp:"みんな！あなたの宝物は？\n→「My treasure is ___!」💝" },
+      { type:"speaking", en:"Everyone! What do you like?\n(sport or game)\n→ \"I like ___!\"", jp:"みんな！好きなスポーツかゲームは？\n→「I like ___!」" },
+    ],
+    hard:[
+      { type:"speaking", en:"Everyone! What is your best memory?\n→ \"My best memory is ___!\" 🌟", jp:"みんな！一番の思い出は？\n→「My best memory is ___!」🌟" },
+      { type:"writing", en:"Everyone! Where do you want to go? (country)\n✏️ Write it!\n→ \"I want to go to ___!\"", jp:"みんな！どの国に行きたい？\n✏️書こう！→「I want to go to ___!」" },
+      { type:"translate", flag:"🇬🇧→🇯🇵",
+        en:"Translate to Japanese! 🇬🇧→🇯🇵\n\"Blue coral are found in the sea. Global warming is a big problem. We can use eco-friendly bags and save energy. Let's save the Blue coral!\"",
+        jp:"日本語に訳そう！🇬🇧→🇯🇵\n「Blue coral are found in the sea. Global warming is a big problem. We can use eco-friendly bags and save energy. Let's save the Blue coral!」",
+        answerEn:"Blue coral are found in the sea. Global warming is a big problem. We can use eco-friendly bags and save energy. Let's save the Blue coral!",
+        answerJp:"アオサンゴは海に生息しています。地球温暖化は大きな問題です。エコバッグを使ったり、エネルギーを節約したりできます。アオサンゴを守ろう！" },
     ]
   },
   mountain: {
-    name: "Dragon", area: "Mountain Area", areaJp: "山エリア", crystal: "❤️",
-    color: "rgba(220,38,38,0.7)",
-    challenges: [
-      { en: "Everyone say where you want to go and why!\n\nUse 'I want to go to ___ because ___!'", jp: "行きたい場所とその理由を言おう！\n\n「I want to go to ___ because ___!」" },
-      { en: "Everyone say one thing you did recently!\n\nUse the past tense!", jp: "最近したことを英語で言おう！\n\n過去形を使って！" },
-      { en: "Everyone say what you want to be\nwhen you grow up!\n\nUse 'I want to be ___!'", jp: "将来なりたい職業を言おう！\n\n「I want to be ___!」" },
+    name:"Dragon", area:"Mountain Area", areaJp:"山エリア", crystal:"❤️",
+    color:"rgba(200,48,48,0.8)",
+    easy:[
+      { type:"writing", en:"Everyone WRITE your name! ✏️", jp:"みんな自分の名前を書こう！✏️" },
+      { type:"speaking", en:"Everyone! What do you want for your birthday?\n→ \"I want ___!\" 🎁", jp:"みんな！誕生日に何が欲しい？\n→「I want ___!」🎁" },
+      { type:"speaking", en:"Everyone! What do you like?\n(school subject or day of the week)\n→ \"I like ___!\"", jp:"みんな！好きな教科か曜日は？\n→「I like ___!」" },
+    ],
+    normal:[
+      { type:"speaking", en:"Everyone! What time do you get up?\n→ \"I get up at ___!\" ⏰", jp:"みんな！何時に起きる？\n→「I get up at ___!」⏰" },
+      { type:"speaking", en:"Everyone! What time do you go to bed?\n→ \"I go to bed at ___!\" 🛌", jp:"みんな！何時に寝る？\n→「I go to bed at ___!」🛌" },
+      { type:"speaking", en:"Everyone! Where do you want to go in Japan?\n→ \"I want to go to ___!\" 🗾", jp:"みんな！日本のどこに行きたい？\n→「I want to go to ___!」🗾" },
+    ],
+    hard:[
+      { type:"speaking", en:"Everyone! Introduce yourself!\nWhat's your name? When is your birthday?\nWhat do you like?", jp:"みんな！自己紹介をして！\n名前と誕生日は？何が好き？" },
+      { type:"writing", en:"Write your dream! ✏️\n\"I want to be ___.\nI want to join the ___.\"", jp:"夢を書こう！✏️\n「I want to be ___. I want to join the ___.」" },
+      { type:"translate", flag:"🇬🇧→🇯🇵",
+        en:"Translate to Japanese! 🇬🇧→🇯🇵\n\"My heroes are my classmates. They are wonderful and very friendly. We always play games on Saturdays. We have so much fun!\"",
+        jp:"日本語に訳そう！🇬🇧→🇯🇵\n「My heroes are my classmates. They are wonderful and very friendly. We always play games on Saturdays. We have so much fun!」",
+        answerEn:"My heroes are my classmates. They are wonderful and very friendly. We always play games on Saturdays. We have so much fun!",
+        answerJp:"私のヒーローはクラスメートたちです。みんなは素晴らしくてとてもフレンドリーです。わたしたちはいつも土曜日にゲームをします。とても楽しいです！" },
     ]
   },
   sky: {
-    name: "General Winter", area: "Sky Area", areaJp: "天空エリア", crystal: "💙",
-    color: "rgba(29,78,216,0.7)",
-    challenges: [
-      { en: "Everyone share your best memory!\n\nUse 'My best memory is ___!'", jp: "一番の思い出を英語で話そう！\n\n「My best memory is ___!」" },
-      { en: "Everyone say two things about\nyour town or country!", jp: "自分の町や国について英語で2つ言おう！" },
-      { en: "Everyone say something you're good at\nAND something you want to get better at!", jp: "得意なことと、もっとうまくなりたいことを英語で言おう！" },
+    name:"General Winter", area:"Sky Area", areaJp:"天空エリア", crystal:"💙",
+    color:"rgba(40,88,184,0.8)",
+    easy:[
+      { type:"speaking", en:"Everyone! What do you like?\n(fruit or vegetable)\n→ \"I like ___!\"", jp:"みんな！好きな果物か野菜は？\n→「I like ___!」" },
+      { type:"speaking", en:"Everyone! What do you like?\n(game or anime)\n→ \"I like ___!\"", jp:"みんな！好きなゲームかアニメは？\n→「I like ___!」" },
+      { type:"speaking", en:"Everyone! When is your birthday?\n→ \"My birthday is ___!\" 🎂", jp:"みんな！誕生日はいつ？\n→「My birthday is ___!」🎂" },
+    ],
+    normal:[
+      { type:"speaking", en:"Everyone! What would you like? 🍽️\n(Look at the menu!)\n→ \"I want ___!\"", jp:"みんな！何にしますか？🍽️\n（メニューを見てね！）\n→「I want ___!」", showMenu:true },
+      { type:"speaking", en:"Everyone! Who is your hero?\n→ \"My hero is ___!\" 🦸", jp:"みんな！あなたのヒーローは誰？\n→「My hero is ___!」🦸" },
+      { type:"speaking", en:"Everyone! What do you like?\n(food or fruit or vegetable)\n→ \"I like ___!\"", jp:"みんな！好きな食べ物か果物か野菜は？\n→「I like ___!」" },
+    ],
+    hard:[
+      { type:"writing", en:"Write your best memory! ✏️\n\"My best memory is ___.\"", jp:"一番の思い出を書こう！✏️\n「My best memory is ___.」" },
+      { type:"translate", flag:"🇯🇵→🇬🇧",
+        en:"Translate to English! 🇯🇵→🇬🇧\n「私はルミ。私は英語を話せます。ダンスと猫がすきです。私の誕生日は9月25日です。私はお誕生日に大きくてかわいい猫がほしいです。」",
+        jp:"英語に訳そう！🇯🇵→🇬🇧\n「私はルミ。私は英語を話せます。ダンスと猫がすきです。私の誕生日は9月25日です。私はお誕生日に大きくてかわいい猫がほしいです。」",
+        answerEn:"I'm Lumi. I can speak English. I like dancing and cats. My birthday is September 25th. I want a big, cute cat for my birthday.",
+        answerJp:"（英語訳）" },
+      { type:"translate", flag:"🇯🇵→🇬🇧",
+        en:"Translate to English! 🇯🇵→🇬🇧\n「わたしはたいてい午前5時30分に起きます。いつも午後４時にアフタヌーンティーをします。ときどき午後11時45分に寝ます。」",
+        jp:"英語に訳そう！🇯🇵→🇬🇧\n「わたしはたいてい午前5時30分に起きます。いつも午後４時にアフタヌーンティーをします。ときどき午後11時45分に寝ます。」",
+        answerEn:"I usually get up at 5:30 AM. I always have afternoon tea at 4 PM. I sometimes go to bed at 11:45 PM.",
+        answerJp:"（英語訳）" },
     ]
   }
 };
@@ -1806,6 +2006,7 @@ let activeCard  = null;
 let activeDeck  = null;
 let bossesDefeated = { castle:false, forest:false, mountain:false, sky:false };
 let activeBoss  = null;
+let bossDifficulty = 'easy';
 
 const PLAYER_EMOJIS = ['🔴','🔵','🟢','🟡','🟣','🟠'];
 const PLAYER_COLORS = ['rgba(220,38,38,0.15)','rgba(29,78,216,0.15)','rgba(5,150,105,0.15)','rgba(245,158,11,0.15)','rgba(124,58,237,0.15)','rgba(234,88,12,0.15)'];
@@ -2064,18 +2265,75 @@ function resolveCard(success){
 /* ═══════════════════════════════════════
    BOSS BATTLES
 ═══════════════════════════════════════ */
+function setDifficulty(diff){
+  bossDifficulty = diff;
+  ['easy','normal','hard'].forEach(d=>{
+    document.getElementById('diff-'+d).classList.toggle('selected', d===diff);
+  });
+  soundTap();
+}
+
+function toggleBossAnswer(){
+  const box = document.getElementById('boss-answer-box');
+  const btn = document.getElementById('boss-answer-toggle');
+  const visible = box.classList.toggle('visible');
+  btn.textContent = visible ? '👁 Hide Answer / かくす' : '👁 Show Answer / こたえを見る';
+}
+
 function startBoss(key){
   if(bossesDefeated[key]) return;
-  const b=BOSS_DATA[key];
-  activeBoss=key;
-  const challenge=b.challenges[Math.floor(Math.random()*b.challenges.length)];
-  document.getElementById('boss-overlay-crystal').textContent=b.crystal;
-  document.getElementById('boss-overlay-area').textContent=`${b.area} · ${b.areaJp}`;
-  document.getElementById('boss-overlay-name').textContent=b.name;
-  document.getElementById('boss-overlay-name').style.color=b.color;
-  document.getElementById('boss-overlay-name').style.textShadow=`0 0 30px ${b.color}`;
-  document.getElementById('boss-challenge-en').innerHTML=challenge.en.replace(/\n/g,'<br>');
-  document.getElementById('boss-challenge-jp').textContent=challenge.jp;
+  const b = BOSS_DATA[key];
+  activeBoss = key;
+  const pool = b[bossDifficulty];
+  const challenge = pool[Math.floor(Math.random()*pool.length)];
+
+  // Header
+  document.getElementById('boss-overlay-crystal').textContent = b.crystal;
+  document.getElementById('boss-overlay-area').textContent = `${b.area} · ${b.areaJp}`;
+  const nameEl = document.getElementById('boss-overlay-name');
+  nameEl.textContent = b.name;
+  nameEl.style.color = b.color;
+  nameEl.style.textShadow = `0 0 30px ${b.color}`;
+
+  // Type label
+  const typeEl = document.getElementById('boss-challenge-type-label');
+  if(challenge.type === 'speaking'){
+    typeEl.innerHTML = '<span class="challenge-type-label speaking">🗣️ Speaking · スピーキング</span>';
+  } else if(challenge.type === 'writing'){
+    typeEl.innerHTML = '<span class="challenge-type-label writing">✏️ Writing · ライティング</span>';
+  } else if(challenge.type === 'translate'){
+    typeEl.innerHTML = `<span class="challenge-type-label translate">🗣️ Translation · ${challenge.flag}</span>`;
+  } else {
+    typeEl.innerHTML = '';
+  }
+
+  // Challenge text
+  document.getElementById('boss-challenge-en').innerHTML = challenge.en.replace(/\n/g,'<br>');
+  document.getElementById('boss-challenge-jp').innerHTML = challenge.jp.replace(/\n/g,'<br>');
+
+  // Menu image
+  const menuImg = document.getElementById('boss-menu-img');
+  if(challenge.showMenu){
+    menuImg.style.display = 'block';
+  } else {
+    menuImg.style.display = 'none';
+  }
+
+  // Answer toggle
+  const answerToggle = document.getElementById('boss-answer-toggle');
+  const answerBox = document.getElementById('boss-answer-box');
+  answerBox.classList.remove('visible');
+  if(challenge.type === 'translate'){
+    answerToggle.style.display = 'block';
+    answerToggle.textContent = '👁 Show Answer / こたえを見る';
+    document.getElementById('boss-answer-en').textContent = challenge.answerEn || '';
+    document.getElementById('boss-answer-jp').textContent = challenge.answerJp || '';
+  } else {
+    answerToggle.style.display = 'none';
+    document.getElementById('boss-answer-en').textContent = '';
+    document.getElementById('boss-answer-jp').textContent = '';
+  }
+
   document.getElementById('boss-overlay').classList.add('show');
   soundBoss();
 }
