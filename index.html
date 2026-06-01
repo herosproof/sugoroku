@@ -4,46 +4,49 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Hero's Proof — 勇者の証</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Comic+Relief&family=Noto+Serif+JP:wght@400;500;700&family=Nunito:wght@400;600;700;800;900&family=Kosugi+Maru&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700;900&family=Kosugi+Maru&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════
    ROOT & RESET
 ═══════════════════════════════════════ */
 :root {
-  --bg:           #433465;
-  --bg2:          #2B224A;
-  --purple:       #9555A2;
-  --purple-mid:   #A45B90;
-  --purple-light: #a78bfa;
-  --purple-pale:  #ede9fe;
-  --purple-dark:  #4c1d95;
-  --gold:         #DDA13B; 
-  --gold-light:   #FAD45A; 
-  --gold-pale:    #fef3c7;
-  --cream:        #fef9f0;
-  --card-bg:      #faf7f0;
-  --text-dark:    #1c1033;
-  --text-soft:    #4c3d6b;
-  --brown:        #5C2B20;
-  --red:          #dc2626;
-  --red-pale:     #fee2e2;
-  --green:        #059669;
-  --green-pale:   #95D399;
-  --blue:         #1d4ed8;
-  --blue-pale:    #dbeafe;
-  --sky:          #0ea5e9;
-  --sky-pale:     #e0f2fe;
+  --bg:           #3a2558;
+  --bg2:          #2a1845;
+  --purple:       #9060c0;
+  --purple-mid:   #7848a8;
+  --purple-light: #c8a0e0;
+  --purple-pale:  #ede0f8;
+  --purple-dark:  #4a3870;
+  --gold:         #c9a030;
+  --gold-light:   #f0d060;
+  --gold-pale:    #f8f0c0;
+  --cream:        #faf4e8;
+  --card-bg:      #f5eedc;
+  --text-dark:    #1e1235;
+  --text-soft:    #3a2558;
+  --brown:        #5c2810;
+  --red:          #c83030;
+  --red-pale:     #f8ddd0;
+  --green:        #4a9040;
+  --green-pale:   #d0e8b0;
+  --blue:         #2858b8;
+  --blue-pale:    #d0e0f8;
+  --sky:          #4890d0;
+  --sky-pale:     #d8eef8;
+  --mauve:        #c07888;
+  --tan:          #c4a882;
+  --beige:        #d9c9a8;
   /* Crystal colors */
-  --crystal-yellow: #f59e0b;
-  --crystal-green:  #059669;
-  --crystal-red:    #dc2626;
-  --crystal-blue:   #1d4ed8;
+  --crystal-yellow: #c9a030;
+  --crystal-green:  #4a9040;
+  --crystal-red:    #c83030;
+  --crystal-blue:   #2858b8;
   --shadow: rgba(0,0,0,0.35);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-html { font-size: 16px; }
+html { font-size: 18px; }
 body {
-  font-family: 'Comic Relief', 'Kosugi Maru', 'Noto Sans JP', sans-serif;
+  font-family: 'Fredoka', 'Kosugi Maru', 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
   background: var(--bg);
   min-height: 100vh;
   overflow-x: hidden;
@@ -85,7 +88,7 @@ body {
    HEADER
 ═══════════════════════════════════════ */
 .header {
-  background: linear-gradient(160deg, #2d1a4a 0%, #1a1228 60%, #0f0a1a 100%);
+  background: linear-gradient(160deg, #2a1845 0%, #1e1235 60%, #150d28 100%);
   padding: 20px 20px 16px;
   text-align: center;
   position: relative;
@@ -96,7 +99,7 @@ body {
 .header::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(124,58,237,0.18) 0%, transparent 70%);
+  background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(144,96,192,0.22) 0%, transparent 70%);
   pointer-events: none;
 }
 .logo-img {
@@ -110,8 +113,8 @@ body {
   flex-direction: column; gap: 2px; margin-bottom: 6px;
 }
 .logo-title {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(1.3rem, 5vw, 1.8rem);
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
   font-weight: 700;
   color: #fff;
   text-shadow: 0 0 24px rgba(167,139,250,0.7), 0 2px 4px rgba(0,0,0,0.5);
@@ -119,8 +122,8 @@ body {
   line-height: 1.2;
 }
 .logo-title-jp {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 0.95rem;
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
+  font-size: 1.1rem;
   font-weight: 500;
   color: var(--gold-light);
   letter-spacing: 0.15em;
@@ -128,11 +131,11 @@ body {
 }
 .header-sub {
   color: rgba(167,139,250,0.75);
-  font-size: 0.68rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   margin-top: 4px;
-  font-family: 'Comic Relief', sans-serif;
+  font-family: 'Fredoka', sans-serif;
 }
 /* Gold divider */
 .header-divider {
@@ -147,7 +150,7 @@ body {
 ═══════════════════════════════════════ */
 .tabs {
   display: flex;
-  background: rgba(15,10,26,0.9);
+  background: rgba(20,12,40,0.97);
   border-bottom: 1px solid rgba(167,139,250,0.2);
   backdrop-filter: blur(8px);
   position: sticky; top: 0; z-index: 50;
@@ -157,10 +160,10 @@ body {
   padding: 9px 3px 8px;
   border: none;
   background: transparent;
-  font-family: 'Comic Relief', 'Kosugi Maru', 'Noto Sans JP', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 800;
-  color: rgba(167,139,250,0.55);
+  font-family: 'Fredoka', 'Kosugi Maru', 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: rgba(200,160,224,0.75);
   cursor: pointer;
   display: flex; flex-direction: column;
   align-items: center; gap: 2px;
@@ -170,12 +173,12 @@ body {
   letter-spacing: 0.02em;
 }
 .tab .tab-icon {
-  font-size: 1.1rem; line-height: 1;
-  width: 22px; height: 22px;
+  font-size: 1.3rem; line-height: 1;
+  width: 26px; height: 26px;
   display: flex; align-items: center; justify-content: center;
 }
-.tab .tab-icon img { width: 22px; height: 22px; object-fit: contain; }
-.tab .tab-jp { font-size: 0.58rem; opacity: 0.85; font-family: 'Noto Sans JP', sans-serif; }
+.tab .tab-icon img { width: 26px; height: 26px; object-fit: contain; }
+.tab .tab-jp { font-size: 0.72rem; opacity: 0.95; font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif; }
 .tab.active {
   color: var(--gold-light);
   border-bottom-color: var(--gold);
@@ -188,7 +191,7 @@ body {
 .tab-content.active { display: block; align-self: flex-start; width: 100%; }
 
 .panel {
-  background: rgba(254,249,240,0.92);
+  background: rgba(245,238,220,0.95);
   border-radius: 20px;
   border: 1px solid rgba(245,158,11,0.25);
   box-shadow: 0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.8);
@@ -196,21 +199,21 @@ body {
   margin-bottom: 14px;
 }
 .panel-title {
-  font-family: 'Cinzel', serif;
-  font-size: 0.72rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.95rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--purple-dark);
+  letter-spacing: 0.08em;
+  color: var(--text-dark);
   margin-bottom: 14px;
   display: flex; align-items: center; gap: 8px;
   opacity: 1;
 }
 .panel-title .jp {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 0.72rem;
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
+  font-size: 0.78rem;
   color: var(--text-soft);
-  font-weight: 400;
+  font-weight: 500;
   text-transform: none;
   letter-spacing: 0;
 }
@@ -223,8 +226,8 @@ body {
   padding: 6px 0 14px;
 }
 .gauge-number {
-  font-family: 'Cinzel', serif;
-  font-size: 5.5rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 6rem;
   font-weight: 900;
   color: var(--purple-dark);
   line-height: 1;
@@ -236,16 +239,16 @@ body {
   0%{transform:scale(1)} 50%{transform:scale(1.28)} 100%{transform:scale(1)}
 }
 .gauge-level-label {
-  font-family: 'Cinzel', serif;
-  font-size: 0.95rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.25rem;
   font-weight: 700;
-  color: var(--purple);
+  color: var(--purple-dark);
   margin-top: 4px;
   letter-spacing: 0.05em;
 }
 .gauge-level-jp {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 0.8rem;
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
+  font-size: 1rem;
   color: var(--text-soft);
   margin-top: 2px;
 }
@@ -275,8 +278,8 @@ body {
 }
 .gauge-ticks span {
   position: absolute; transform: translateX(-50%);
-  font-family: 'Comic Relief', sans-serif;
-  font-size: 0.68rem; font-weight: 700;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.88rem; font-weight: 700;
   color: var(--text-soft);
 }
 .gauge-grid {
@@ -288,9 +291,9 @@ body {
   padding: 14px 10px;
   border-radius: 16px;
   border: 2px solid transparent;
-  font-family: 'Comic Relief', sans-serif;
+  font-family: 'Fredoka', sans-serif;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 2rem;
   cursor: pointer;
   display: flex; flex-direction: column;
   align-items: center; gap: 4px;
@@ -300,32 +303,32 @@ body {
 }
 .g-btn:active { transform: translateY(3px); box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
 .g-btn .lbl {
-  font-family: 'Comic Relief', 'Kosugi Maru', sans-serif;
-  font-size: 0.65rem; font-weight: 700; line-height: 1.3;
+  font-family: 'Fredoka', 'Kosugi Maru', sans-serif;
+  font-size: 0.82rem; font-weight: 600; line-height: 1.4;
 }
-.gb-gold   { background: linear-gradient(135deg,#fef3c7,#fde68a); color: #78350f; border-color: #f59e0b; box-shadow: 0 4px 0 #d97706; }
-.gb-gold:active { box-shadow: 0 1px 0 #d97706; }
-.gb-purple { background: linear-gradient(135deg,#ede9fe,#ddd6fe); color: #4c1d95; border-color: #7c3aed; box-shadow: 0 4px 0 #5b21b6; }
-.gb-purple:active { box-shadow: 0 1px 0 #5b21b6; }
-.gb-victory{ background: linear-gradient(135deg,#fee2e2,#fecaca); color: #7f1d1d; border-color: #dc2626; box-shadow: 0 4px 0 #b91c1c; }
-.gb-victory:active { box-shadow: 0 1px 0 #b91c1c; }
-.gb-fix    { background: rgba(124,58,237,0.08); color: var(--text-soft); border: 1.5px solid rgba(124,58,237,0.2); box-shadow: 0 2px 0 rgba(0,0,0,0.1); }
+.gb-gold   { background: linear-gradient(135deg,#f8f0c0,#f0d060); color: #5c2810; border-color: #c9a030; box-shadow: 0 4px 0 #a07820; }
+.gb-gold:active { box-shadow: 0 1px 0 #a07820; }
+.gb-purple { background: linear-gradient(135deg,#ede0f8,#d8c8f0); color: #2a1845; border-color: #9060c0; box-shadow: 0 4px 0 #6840a0; }
+.gb-purple:active { box-shadow: 0 1px 0 #6840a0; }
+.gb-victory{ background: linear-gradient(135deg,#f8ddd0,#f0c0b0); color: #5c1010; border-color: #c83030; box-shadow: 0 4px 0 #a02020; }
+.gb-victory:active { box-shadow: 0 1px 0 #a02020; }
+.gb-fix    { background: rgba(144,96,192,0.12); color: var(--text-soft); border: 1.5px solid rgba(144,96,192,0.3); box-shadow: 0 2px 0 rgba(0,0,0,0.1); }
 .gb-fix:active { box-shadow: none; }
 
 hr.dash {
   border: none;
-  border-top: 1px solid rgba(124,58,237,0.15);
+  border-top: 1px solid rgba(144,96,192,0.2);
   margin: 12px 0;
 }
 .reset-row { text-align: center; margin-top: 8px; }
 .reset-btn {
   background: transparent;
-  border: 1px solid rgba(124,58,237,0.25);
+  border: 1px solid rgba(144,96,192,0.4);
   border-radius: 50px;
   padding: 8px 22px;
-  font-family: 'Comic Relief', sans-serif;
-  font-size: 0.75rem; font-weight: 700;
-  color: var(--text-soft);
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.85rem; font-weight: 700;
+  color: rgba(220,200,240,0.85);
   cursor: pointer;
 }
 .reset-btn:active { background: rgba(124,58,237,0.06); }
@@ -339,8 +342,8 @@ hr.dash {
 }
 .adj-btn {
   width: 36px; height: 36px; border-radius: 50%;
-  border: 2px solid rgba(124,58,237,0.4);
-  background: rgba(124,58,237,0.12);
+  border: 2px solid rgba(144,96,192,0.5);
+  background: rgba(144,96,192,0.15);
   color: var(--purple-dark);
   font-size: 1.3rem; font-weight: 900;
   cursor: pointer; display: flex;
@@ -348,7 +351,7 @@ hr.dash {
 }
 .adj-btn:active { transform: scale(0.88); }
 .adj-num {
-  font-family: 'Cinzel', serif;
+  font-family: 'Fredoka', sans-serif;
   font-size: 1.6rem; font-weight: 700;
   color: var(--purple-dark);
   min-width: 32px; text-align: center;
@@ -371,17 +374,17 @@ hr.dash {
 }
 .player-emoji { font-size: 1.4rem; margin-bottom: 2px; }
 .player-name  {
-  font-family: 'Cinzel', serif;
-  font-size: 0.72rem; font-weight: 700;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.95rem; font-weight: 700;
   color: var(--text-soft); margin-bottom: 6px;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
 }
 .mat-count {
-  font-family: 'Cinzel', serif;
-  font-size: 2.8rem; font-weight: 900;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 3.2rem; font-weight: 900;
   color: var(--purple-dark); line-height: 1;
 }
-.mat-label { font-family:'Kosugi Maru',sans-serif; font-size: 0.65rem; color: var(--text-soft); margin: 2px 0 8px; }
+.mat-label { font-family:'Kosugi Maru',sans-serif; font-size: 0.75rem; color: var(--text-soft); margin: 2px 0 8px; }
 .mat-controls { display: flex; gap: 8px; justify-content: center; }
 .mc-btn {
   width: 38px; height: 38px; border-radius: 50%; border: none;
@@ -391,8 +394,8 @@ hr.dash {
   transition: transform 0.1s, box-shadow 0.1s;
 }
 .mc-btn:active { transform: translateY(3px); box-shadow: none; }
-.mc-plus  { background: #ddd6fe; color: var(--purple-dark); }
-.mc-minus { background: #fde68a; color: #78350f; }
+.mc-plus  { background: #d0e8b0; color: #2a4818; }
+.mc-minus { background: #f0d060; color: #5c2810; }
 .mat-count.pop { animation: numPop 0.25s cubic-bezier(.34,1.56,.64,1); }
 
 /* ═══════════════════════════════════════
@@ -411,14 +414,14 @@ hr.dash {
 .card-draw-btn::before, .card-draw-btn::after {
   content: '';
   position: absolute; border-radius: 24px;
-  background: #4a1a8a;
+  background: #3a2870;
   border: 2px solid rgba(255,255,255,0.12);
 }
 .card-draw-btn::before { inset: 7px 0 -7px 5px; z-index: 0; opacity: 0.5; }
 .card-draw-btn::after  { inset: 12px 0 -12px 10px; z-index: -1; opacity: 0.28; }
 .card-back-face {
   position: relative; z-index: 1;
-  background: linear-gradient(140deg, #3b1a70 0%, #1a0a38 100%);
+  background: linear-gradient(140deg, #4a3870 0%, #2a1845 100%);
   border-radius: 24px;
   border: 2px solid rgba(167,139,250,0.3);
   padding: 28px 20px 24px;
@@ -436,20 +439,20 @@ hr.dash {
   border: 1px dashed rgba(167,139,250,0.2);
   border-radius: 18px; pointer-events: none;
 }
-.card-back-icon { font-size: 2.8rem; display: block; margin-bottom: 8px; }
+.card-back-icon { font-size: 3.2rem; display: block; margin-bottom: 10px; }
 .card-back-en {
-  font-family: 'Cinzel', serif;
-  color: var(--gold-light); font-weight: 700; font-size: 1rem;
+  font-family: 'Fredoka', sans-serif;
+  color: var(--gold-light); font-weight: 700; font-size: 1.2rem;
   text-shadow: 0 0 12px rgba(245,158,11,0.4);
   letter-spacing: 0.04em;
 }
 .card-back-jp {
-  font-family: 'Noto Serif JP', serif;
-  color: rgba(167,139,250,0.75); font-size: 0.78rem; margin-top: 4px;
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
+  color: rgba(200,160,224,0.9); font-size: 1rem; margin-top: 6px;
 }
 .deck-remaining {
-  font-family: 'Comic Relief', sans-serif;
-  font-size: 0.66rem; color: rgba(167,139,250,0.35); font-weight: 600;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.78rem; color: rgba(200,160,224,0.6); font-weight: 600;
 }
 
 /* Quest card (active) */
@@ -466,7 +469,7 @@ hr.dash {
   to{opacity:1;transform:scale(1) translateY(0) rotate(0deg)}
 }
 .quest-card-top {
-  background: linear-gradient(135deg, #2d1a50 0%, #1a0a38 100%);
+  background: linear-gradient(135deg, #4a3870 0%, #2a1845 100%);
   padding: 10px 16px;
   display: flex; align-items: center; gap: 10px;
   border-bottom: 1px solid rgba(167,139,250,0.2);
@@ -477,7 +480,7 @@ hr.dash {
   border-radius: 50px;
   padding: 3px 10px;
   color: var(--gold-light);
-  font-family: 'Cinzel', serif;
+  font-family: 'Fredoka', sans-serif;
   font-size: 0.62rem; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
   white-space: nowrap;
@@ -486,17 +489,17 @@ hr.dash {
   color: rgba(167,139,250,0.85);
   font-size: 0.82rem; font-weight: 700; flex: 1;
   text-align: right;
-  font-family: 'Comic Relief', sans-serif;
+  font-family: 'Fredoka', sans-serif;
 }
 .quest-card-body { padding: 20px 20px 0; }
 .quest-card-en {
-  font-family: 'Comic Relief', sans-serif;
-  font-size: 1.2rem; font-weight: 900;
-  color: var(--text-dark); line-height: 1.35; margin-bottom: 10px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.5rem; font-weight: 700;
+  color: var(--text-dark); line-height: 1.4; margin-bottom: 12px;
 }
 .quest-card-jp {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 0.88rem; font-weight: 500;
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
+  font-size: 1.05rem; font-weight: 500;
   color: var(--brown); line-height: 1.6;
   padding: 10px 12px;
   background: rgba(245,158,11,0.08);
@@ -506,14 +509,14 @@ hr.dash {
 .quest-card-effect {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 5px 14px; border-radius: 50px;
-  font-family: 'Comic Relief', sans-serif;
-  font-size: 0.8rem; font-weight: 800; margin-bottom: 16px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.88rem; font-weight: 700; margin-bottom: 16px;
 }
-.effect-plus   { background: var(--green-pale);    color: #065f46; }
+.effect-plus   { background: var(--green-pale);    color: #1a3810; }
 .effect-minus  { background: var(--red-pale);      color: #991b1b; }
 .effect-special{ background: var(--gold-pale);     color: var(--brown); }
 .effect-lucky  { background: var(--purple-pale);   color: var(--purple-dark); }
-.effect-swap   { background: var(--sky-pale);      color: #0c4a6e; }
+.effect-swap   { background: var(--sky-pale);      color: #1a3858; }
 .quest-card-footer {
   border-top: 1px solid rgba(167,139,250,0.15);
   padding: 14px 20px 16px;
@@ -537,8 +540,8 @@ hr.dash {
 .resolve-btn {
   flex: 1; aspect-ratio: 1; min-height: 68px;
   border-radius: 16px; border: none;
-  font-family: 'Comic Relief', 'Kosugi Maru', 'Noto Sans JP', sans-serif;
-  font-weight: 900; font-size: 0.95rem;
+  font-family: 'Fredoka', 'Kosugi Maru', 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
+  font-weight: 900; font-size: 1.05rem;
   cursor: pointer; display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   gap: 2px; line-height: 1.2;
@@ -546,7 +549,7 @@ hr.dash {
   box-shadow: 0 4px 0 rgba(0,0,0,0.2);
 }
 .resolve-btn:active { transform: translateY(3px); box-shadow: none; }
-.resolve-done    { background: #bbf7d0; color: #065f46; box-shadow: 0 4px 0 #6ee7b7; }
+.resolve-done    { background: #d0e8b0; color: #1a3810; box-shadow: 0 4px 0 #7ab848; }
 .resolve-done:active { box-shadow: none; }
 .resolve-discard { background: rgba(255,255,255,0.15); color: rgba(100,80,130,0.7); box-shadow: 0 4px 0 rgba(0,0,0,0.2); }
 
@@ -562,8 +565,8 @@ hr.dash {
 /* Deck selector */
 .deck-selector-wrap { margin-bottom: 14px; }
 .deck-choose-label {
-  font-family: 'Comic Relief', sans-serif;
-  font-size: 0.78rem; font-weight: 700;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.88rem; font-weight: 700;
   color: var(--text-soft);
   text-align: center; margin-bottom: 10px;
 }
@@ -571,7 +574,7 @@ hr.dash {
 .deck-pick-btn {
   flex: 1; padding: 14px 8px; border-radius: 16px;
   border: 2px solid; cursor: pointer;
-  font-family: 'Comic Relief', sans-serif; font-weight: 700; font-size: 1rem;
+  font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1rem;
   display: flex; flex-direction: column;
   align-items: center; gap: 4px;
   box-shadow: 0 4px 0 rgba(0,0,0,0.15);
@@ -579,10 +582,10 @@ hr.dash {
 }
 .deck-pick-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 rgba(0,0,0,0.15); }
 .deck-pick-btn.easy {
-  background: #d1fae5;
-  border-color: #059669;
-  color: #065f46;
-  box-shadow: 0 4px 0 #059669;
+  background: #d0e8b0;
+  border-color: #4a9040;
+  color: #1a3810;
+  box-shadow: 0 4px 0 #3a7030;
 }
 .deck-pick-btn.hard {
   background: #fee2e2;
@@ -590,12 +593,12 @@ hr.dash {
   color: #7f1d1d;
   box-shadow: 0 4px 0 #dc2626;
 }
-.deck-pick-btn span { font-size: 0.72rem; font-weight: 700; font-family: 'Kosugi Maru', 'Noto Sans JP', sans-serif; }
+.deck-pick-btn span { font-size: 0.72rem; font-weight: 700; font-family: 'Kosugi Maru', 'Zen Maru Gothic', 'Kosugi Maru', sans-serif; }
 .deck-label-wrap {
   display: none; text-align: center; margin-bottom: 10px;
 }
 .deck-label-chip {
-  font-family: 'Cinzel', serif;
+  font-family: 'Fredoka', sans-serif;
   font-size: 0.68rem; font-weight: 700;
   padding: 4px 14px; border-radius: 50px;
 }
@@ -604,7 +607,7 @@ hr.dash {
   color: rgba(167,139,250,0.35);
   background: none; border: none; cursor: pointer;
   text-decoration: underline; margin-left: 8px;
-  font-family: 'Comic Relief', sans-serif;
+  font-family: 'Fredoka', sans-serif;
 }
 
 /* ═══════════════════════════════════════
@@ -639,9 +642,9 @@ hr.dash {
   box-shadow: 0 4px 0 #b45309;
 }
 .boss-btn.forest {
-  background: linear-gradient(135deg,#d1fae5,#a7f3d0);
-  border-color: #059669;
-  box-shadow: 0 4px 0 #047857;
+  background: linear-gradient(135deg,#d0e8b0,#b0d888);
+  border-color: #4a9040;
+  box-shadow: 0 4px 0 #3a7030;
 }
 .boss-btn.mountain {
   background: linear-gradient(135deg,#fee2e2,#fecaca);
@@ -659,18 +662,20 @@ hr.dash {
 }
 .boss-crystal { font-size: 1.8rem; margin-bottom: 4px; display: block; }
 .boss-name {
-  font-family: 'Comic Relief', sans-serif;
+  font-family: 'Fredoka', sans-serif;
   font-size: 0.9rem; font-weight: 700;
   line-height: 1.2; color: var(--text-dark);
   margin-bottom: 2px;
 }
 .boss-area {
-  font-family: 'Noto Serif JP', serif;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
   font-size: 0.65rem; color: var(--text-soft);
   margin-bottom: 6px;
 }
 .boss-status {
-  font-family: 'Comic Relief', sans-serif;
+  font-family: 'Fredoka', sans-serif;
   font-size: 0.65rem; font-weight: 700;
   padding: 3px 10px; border-radius: 50px;
 }
@@ -712,20 +717,20 @@ hr.dash {
 }
 .boss-battle-crystal { font-size: 3rem; display: block; margin-bottom: 4px; }
 .boss-battle-area-label {
-  font-family: 'Cinzel', serif;
+  font-family: 'Fredoka', sans-serif;
   font-size: 0.68rem; font-weight: 700;
   letter-spacing: 0.2em; text-transform: uppercase;
   color: rgba(255,255,255,0.4); margin-bottom: 6px;
 }
 .boss-battle-name {
-  font-family: 'Cinzel', serif;
+  font-family: 'Fredoka', sans-serif;
   font-size: clamp(1.4rem, 6vw, 2rem);
   font-weight: 900; color: #fff;
   text-shadow: 0 0 30px currentColor;
   line-height: 1.1; margin-bottom: 4px;
 }
 .boss-battle-subtitle {
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
   font-size: 0.78rem; color: rgba(255,255,255,0.45);
 }
 
@@ -753,7 +758,9 @@ hr.dash {
   pointer-events: none; opacity: 0.5;
 }
 .boss-challenge-eyebrow {
-  font-family: 'Cinzel', serif;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  font-family: 'Fredoka', sans-serif;
   font-size: 0.62rem; font-weight: 700;
   letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--purple); margin-bottom: 14px;
@@ -762,14 +769,21 @@ hr.dash {
   padding-bottom: 10px;
 }
 .boss-challenge-en {
-  font-family: 'Comic Relief', sans-serif;
+  font-size: 1.35rem !important;
+  line-height: 1.45 !important;
+  font-family: 'Fredoka', sans-serif;
   font-size: 1.2rem; font-weight: 900;
   color: var(--text-dark); line-height: 1.4;
   margin-bottom: 16px; text-align: center;
 }
 .boss-challenge-jp {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 0.88rem; font-weight: 500;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  color: var(--text-dark) !important;
+  line-height: 1.6 !important;
+  margin-top: 10px !important;
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
+  font-size: 1.05rem; font-weight: 500;
   color: var(--brown); line-height: 1.7;
   background: rgba(245,158,11,0.08);
   border-radius: 10px; padding: 10px 14px;
@@ -783,16 +797,23 @@ hr.dash {
   border: 1px solid rgba(245,158,11,0.2);
 }
 .boss-challenge-reward-title {
-  font-family: 'Cinzel', serif;
-  font-size: 0.6rem; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 4px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.82rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 6px;
 }
 .boss-challenge-reward-text {
-  font-family: 'Comic Relief', 'Kosugi Maru', 'Noto Sans JP', sans-serif;
-  font-size: 0.78rem; font-weight: 700;
-  color: var(--text-soft);
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  color: var(--text-dark);
   line-height: 1.5;
+}
+.boss-challenge-reward-jp {
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.5;
+  margin-top: 4px;
 }
 
 /* Boss action buttons */
@@ -802,9 +823,9 @@ hr.dash {
 .boss-action-btn {
   flex: 1; padding: 16px 10px;
   border-radius: 16px; border: none;
-  font-family: 'Cinzel', serif;
-  font-weight: 700; font-size: 0.88rem;
-  cursor: pointer; letter-spacing: 0.04em;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700; font-size: 1rem;
+  cursor: pointer; letter-spacing: 0.03em;
   transition: transform 0.1s, box-shadow 0.1s;
   box-shadow: 0 4px 0 rgba(0,0,0,0.3);
   line-height: 1.3;
@@ -842,7 +863,7 @@ hr.dash {
 }
 @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
 .win-title {
-  font-family: 'Cinzel', serif;
+  font-family: 'Fredoka', sans-serif;
   font-size: 3rem; font-weight: 900;
   color: var(--gold-light);
   text-shadow: 0 0 40px rgba(245,158,11,0.6), 3px 4px 0 rgba(0,0,0,0.3);
@@ -851,12 +872,12 @@ hr.dash {
 }
 @keyframes bob { from{transform:translateY(0)} to{transform:translateY(-10px)} }
 .win-jp {
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
   font-size: 1.3rem; font-weight: 700;
   color: rgba(255,255,255,0.85);
 }
 .win-sub {
-  font-family: 'Comic Relief', 'Kosugi Maru', 'Noto Sans JP', sans-serif;
+  font-family: 'Fredoka', 'Kosugi Maru', 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
   font-size: 0.95rem; color: rgba(167,139,250,0.7); font-weight: 600;
 }
 .win-close {
@@ -864,7 +885,7 @@ hr.dash {
   border-radius: 50px; border: none;
   background: var(--gold);
   color: var(--text-dark);
-  font-family: 'Cinzel', serif;
+  font-family: 'Fredoka', sans-serif;
   font-weight: 700; font-size: 1rem;
   cursor: pointer;
   box-shadow: 0 4px 0 rgba(0,0,0,0.3), 0 0 20px rgba(245,158,11,0.3);
@@ -890,16 +911,17 @@ hr.dash {
   color: #fff;
   border-radius: 14px 14px 0 0;
   padding: 12px 16px;
-  font-family: 'Comic Relief', sans-serif;
+  font-family: 'Fredoka', sans-serif;
   font-size: 0.82rem; font-weight: 700;
   display: flex; align-items: center; gap: 8px;
   cursor: pointer; user-select: none;
   border: 1.5px solid rgba(167,139,250,0.3);
   border-bottom: none;
 }
-.rules-section-header .r-en { color: #fff; font-size: 0.88rem; }
+.rules-section-header .r-en { color: #fff; font-size: 1rem; font-weight: 700; }
 .rules-section-header .r-jp {
-  font-family: 'Noto Serif JP', serif;
+  font-size: 0.88rem !important;
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
   font-size: 0.72rem; color: rgba(255,255,255,0.75); font-weight: 400;
 }
 .rules-section-header .chevron { margin-left: auto; font-size: 0.75rem; transition: transform 0.2s; color: rgba(255,255,255,0.7); }
@@ -923,16 +945,16 @@ hr.dash {
   background: linear-gradient(135deg,var(--purple),var(--purple-dark));
   color: white; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Comic Relief', sans-serif;
+  font-family: 'Fredoka', sans-serif;
   font-size: 0.75rem; font-weight: 700; flex-shrink: 0; margin-top: 1px;
 }
 .step-text .s-en {
-  font-family: 'Comic Relief', sans-serif;
-  font-size: 0.9rem; font-weight: 700; color: var(--text-dark); line-height: 1.35;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem; font-weight: 700; color: var(--text-dark); line-height: 1.4;
 }
 .step-text .s-jp {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 0.75rem; color: var(--text-soft); margin-top: 2px; line-height: 1.4;
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
+  font-size: 0.9rem; color: var(--text-dark); font-weight: 600; margin-top: 3px; line-height: 1.5;
 }
 .tile-row {
   display: flex; align-items: flex-start; gap: 10px;
@@ -952,31 +974,31 @@ hr.dash {
 }
 .tile-info { flex: 1; }
 .tile-name-en {
-  font-family: 'Comic Relief', sans-serif;
-  font-size: 0.88rem; font-weight: 700; color: var(--text-dark);
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.95rem; font-weight: 700; color: var(--text-dark);
 }
 .tile-name-jp {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 0.68rem; color: var(--text-soft); font-weight: 400; margin-bottom: 3px;
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
+  font-size: 0.82rem; color: var(--text-dark); font-weight: 600; margin-bottom: 4px;
 }
 .tile-effect-en {
-  font-family: 'Comic Relief', sans-serif;
+  font-family: 'Fredoka', sans-serif;
   font-size: 0.78rem; color: #333; line-height: 1.4;
 }
 .tile-effect-jp {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 0.68rem; color: var(--text-soft); margin-top: 2px; line-height: 1.4;
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
+  font-size: 0.82rem; color: var(--text-dark); font-weight: 500; margin-top: 3px; line-height: 1.5;
 }
 .tile-badge {
-  display: inline-block; font-family: 'Comic Relief', sans-serif;
+  display: inline-block; font-family: 'Fredoka', sans-serif;
   font-size: 0.6rem; font-weight: 800;
   padding: 2px 8px; border-radius: 50px; margin-top: 4px;
 }
 .badge-gold   { background: var(--gold-pale);    color: var(--brown); }
 .badge-purple { background: var(--purple-pale);  color: var(--purple-dark); }
 .badge-red    { background: var(--red-pale);      color: #991b1b; }
-.badge-green  { background: var(--green-pale);    color: #065f46; }
-.badge-blue   { background: var(--sky-pale);      color: #0c4a6e; }
+.badge-green  { background: var(--green-pale);    color: #1a3810; }
+.badge-blue   { background: var(--sky-pale);      color: #1a3858; }
 
 .enc-info-row {
   display: flex; gap: 8px; padding: 8px 0;
@@ -985,12 +1007,16 @@ hr.dash {
 .enc-info-row:last-child { border-bottom: none; }
 .enc-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
 .enc-text .e-en {
-  font-family: 'Comic Relief', sans-serif;
+  font-size: 0.95rem !important;
+  font-family: 'Fredoka', sans-serif;
   font-size: 0.82rem; font-weight: 700; color: var(--text-dark); line-height: 1.35;
 }
 .enc-text .e-jp {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 0.68rem; color: var(--text-soft); margin-top: 2px; line-height: 1.4;
+  font-size: 0.88rem !important;
+  color: var(--text-dark) !important;
+  font-weight: 600;
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
+  font-size: 0.82rem; color: var(--text-dark); font-weight: 500; margin-top: 3px; line-height: 1.5;
 }
 .boss-check {
   display: flex; gap: 10px; align-items: flex-start;
@@ -999,38 +1025,42 @@ hr.dash {
 .boss-check:last-child { border-bottom: none; }
 .boss-check-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
 .boss-check-en {
-  font-family: 'Comic Relief', sans-serif;
+  font-size: 0.95rem;
+  font-family: 'Fredoka', sans-serif;
   font-size: 0.82rem; font-weight: 700; color: var(--text-dark); line-height: 1.35;
 }
 .boss-check-jp {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 0.68rem; color: var(--text-soft); margin-top: 2px; line-height: 1.4;
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+  color: var(--text-dark) !important;
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
+  font-size: 0.82rem; color: var(--text-dark); font-weight: 500; margin-top: 3px; line-height: 1.5;
 }
 .score-row {
   display: flex; gap: 10px; align-items: center;
   padding: 8px 10px; border-radius: 10px; margin-bottom: 6px;
-  font-family: 'Comic Relief', 'Kosugi Maru', 'Noto Sans JP', sans-serif;
+  font-family: 'Fredoka', 'Kosugi Maru', 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
 }
 .score-row:last-child { margin-bottom: 0; }
 .rules-info-box {
   border-radius: 12px; padding: 10px 12px; margin-top: 10px;
 }
 .rules-info-box .box-title {
-  font-family: 'Cinzel', serif;
+  font-family: 'Fredoka', sans-serif;
   font-size: 0.72rem; font-weight: 700;
   letter-spacing: 0.08em; margin-bottom: 4px;
 }
 .rules-info-box .box-en {
-  font-family: 'Comic Relief', sans-serif;
+  font-family: 'Fredoka', sans-serif;
   font-size: 0.75rem; font-weight: 600; line-height: 1.5;
 }
 .rules-info-box .box-jp {
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
   font-size: 0.68rem; line-height: 1.5; margin-top: 3px;
 }
 .npc-label {
   margin: 10px 0 6px;
-  font-family: 'Cinzel', serif;
+  font-family: 'Fredoka', sans-serif;
   font-size: 0.65rem; font-weight: 700;
   color: var(--text-soft); letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1047,11 +1077,9 @@ hr.dash {
   <!-- HEADER -->
   <div class="header">
     <img src="logo.png" alt="Hero's Proof" class="logo-img"
-         onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='flex';">
-    <div class="logo-placeholder" id="logo-fallback" style="display:none">
-      <div class="logo-title">Hero's Proof</div>
-      <div class="logo-title-jp">勇者の証</div>
-    </div>
+         onerror="this.style.display='none';">
+    <div class="logo-title">Hero's Proof</div>
+    <div class="logo-title-jp">勇者の証</div>
     <div class="header-divider"></div>
     <div class="header-sub">Game Companion App · ゲームサポートアプリ</div>
   </div>
@@ -1156,8 +1184,8 @@ hr.dash {
       <!-- Mini gauge -->
       <div class="mini-gauge-wrap">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
-          <span style="font-family:'Cinzel',serif;font-size:0.65rem;font-weight:700;color:var(--purple-dark);letter-spacing:0.1em;text-transform:uppercase;">⚔️ Gauge / ゲージ</span>
-          <span style="font-family:'Cinzel',serif;font-size:1.3rem;font-weight:900;color:var(--purple-dark);line-height:1;" id="mini-gauge-num">0</span>
+          <span style="font-family:'Fredoka',sans-serif;font-size:0.65rem;font-weight:700;color:var(--purple-dark);letter-spacing:0.1em;text-transform:uppercase;">⚔️ Gauge / ゲージ</span>
+          <span style="font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:900;color:var(--purple-dark);line-height:1;" id="mini-gauge-num">0</span>
         </div>
         <div style="background:rgba(255,255,255,0.06);border-radius:50px;height:16px;overflow:hidden;border:1px solid rgba(167,139,250,0.15);">
           <div id="mini-gauge-fill" style="height:100%;width:0%;border-radius:50px;transition:width 0.7s cubic-bezier(.34,1.56,.64,1),background 0.6s;background:linear-gradient(90deg,#4a1a8a,#7c3aed);"></div>
@@ -1174,9 +1202,9 @@ hr.dash {
   <div class="tab-content" id="content-boss">
     <div class="panel">
       <div class="panel-title">💀 Boss Battles <span class="jp">ボスバトル</span></div>
-      <div style="font-family:'Comic Relief','Noto Sans JP',sans-serif;font-size:0.78rem;color:var(--text-soft);margin-bottom:12px;line-height:1.5;">
+      <div style="font-family:'Fredoka','Zen Maru Gothic','Kosugi Maru',sans-serif;font-size:0.78rem;color:var(--text-soft);margin-bottom:12px;line-height:1.5;">
         When a player lands on a Boss tile, tap the boss to draw a group challenge!<br>
-        <span style="font-family:'Noto Serif JP',serif;font-size:0.68rem;">プレイヤーがボスタイルに止まったら、ボスをタップしてグループチャレンジを引こう！</span>
+        <span style="font-family:'Zen Maru Gothic','Kosugi Maru',sans-serif;font-size:0.68rem;">プレイヤーがボスタイルに止まったら、ボスをタップしてグループチャレンジを引こう！</span>
       </div>
       <div class="boss-grid">
         <button class="boss-btn castle" id="boss-castle" onclick="startBoss('castle')">
@@ -1204,9 +1232,9 @@ hr.dash {
           <span class="boss-status" id="boss-sky-status">⚔️ Challenge!</span>
         </button>
       </div>
-      <div style="font-family:'Comic Relief','Noto Sans JP',sans-serif;font-size:0.68rem;color:var(--text-soft);text-align:center;margin-top:6px;line-height:1.5;">
-        Defeated bosses can be passed freely. Reward: Gauge +20 + 3 shards each!<br>
-        <span style="font-family:'Noto Serif JP',serif;">倒したボスは通過できる。報酬：ゲージ+20 + 各3かけら！</span>
+      <div style="font-family:'Fredoka','Zen Maru Gothic','Kosugi Maru',sans-serif;font-size:0.68rem;color:var(--text-soft);text-align:center;margin-top:6px;line-height:1.5;">
+        Defeated bosses can be passed freely. Reward: Gauge +20 + 3 shards each!
+        <span style="font-family:'Zen Maru Gothic','Kosugi Maru',sans-serif;">倒したボスは通過できる。報酬：ゲージ+20 + 各3かけら！</span>
       </div>
     </div>
   </div>
@@ -1221,7 +1249,7 @@ hr.dash {
         <button class="adj-btn" onclick="soundButtonPress();changePlayers(-1)">−</button>
         <span class="adj-num" id="player-count">4</span>
         <button class="adj-btn" onclick="soundButtonPress();changePlayers(1)">+</button>
-        <span style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;color:rgba(167,139,250,0.5)">人</span>
+        <span style="font-family:'Zen Maru Gothic','Kosugi Maru',sans-serif;font-size:0.8rem;color:var(--text-soft)">人</span>
       </div>
       <hr class="dash">
       <div class="panel-title">💎 Crystal Shards <span class="jp">クリスタルのかけら</span></div>
@@ -1274,7 +1302,7 @@ hr.dash {
           </li>
         </ul>
         <div class="rules-info-box" style="background:rgba(124,58,237,0.08);border:1px solid rgba(167,139,250,0.2);">
-          <div class="box-title" style="color:var(--purple-light);">🏁 The game ends when…</div>
+          <div class="box-title" style="color:var(--text-dark);font-weight:700;">🏁 The game ends when…</div>
           <div class="box-en" style="color:var(--text-soft);">
             1️⃣ Everyone reaches GOAL &nbsp;|&nbsp; 2️⃣ Gauge reaches 100 ✨ &nbsp;|&nbsp; 3️⃣ Time's up! ⏰
           </div>
@@ -1362,9 +1390,9 @@ hr.dash {
         <span class="chevron">▼</span>
       </div>
       <div class="rules-section-body">
-        <div style="font-family:'Comic Relief',sans-serif;font-size:0.78rem;font-weight:700;color:var(--text-dark);margin-bottom:10px;">
+        <div style="font-family:'Fredoka',sans-serif;font-size:0.78rem;font-weight:700;color:var(--text-dark);margin-bottom:10px;">
           Each player starts with 3–5 Encounter Cards.<br>
-          <span style="font-family:'Noto Serif JP',serif;font-weight:400;color:var(--text-soft);">各プレイヤーはであいカードを3〜5枚持ってスタート。</span>
+          <span style="font-family:'Zen Maru Gothic','Kosugi Maru',sans-serif;font-weight:400;color:var(--text-soft);">各プレイヤーはであいカードを3〜5枚持ってスタート。</span>
         </div>
         <div class="enc-info-row">
           <div class="enc-dot" style="background:var(--purple);"></div>
@@ -1373,7 +1401,7 @@ hr.dash {
             <div class="e-jp">カードには助けるキャラクター・かけらコスト（1〜2）・英語チャレンジ・ポイントが書いてある。</div>
           </div>
         </div>
-        <div style="margin:10px 0 6px;font-family:'Cinzel',serif;font-size:0.65rem;font-weight:700;color:var(--text-soft);letter-spacing:0.08em;">On an Encounter Tile / エンカウンタータイルでやること</div>
+        <div style="margin:10px 0 6px;font-family:'Fredoka',sans-serif;font-size:0.65rem;font-weight:700;color:var(--text-soft);letter-spacing:0.08em;">On an Encounter Tile / エンカウンタータイルでやること</div>
         <div class="enc-info-row">
           <div class="enc-dot" style="background:var(--gold);"></div>
           <div class="enc-text"><div class="e-en"><b>1.</b> Choose one Encounter Card from your hand.</div><div class="e-jp">手持ちのであいカードを1枚えらぶ。</div></div>
@@ -1395,7 +1423,7 @@ hr.dash {
           <div class="enc-text"><div class="e-en"><b>5.</b> Tap the gauge button! Then draw a new Encounter Card.</div><div class="e-jp">ゲージタブのボタンを押す！そのあと、カードを1枚引いて補充する。</div></div>
         </div>
         <div class="rules-info-box" style="background:rgba(124,58,237,0.06);border:1px solid rgba(167,139,250,0.15);">
-          <div class="box-title" style="color:var(--purple-light);">🔄 Swapping Cards / カードの交換</div>
+          <div class="box-title" style="color:var(--text-dark);font-weight:700;">🔄 Swapping Cards / カードの交換</div>
           <div class="box-en" style="color:var(--text-soft);">Some Quest Cards let you swap with the pile or steal from another player!</div>
           <div class="box-jp" style="color:var(--text-soft);">一部のクエストカードで山や他の人とカードを交換できる！</div>
         </div>
@@ -1410,9 +1438,9 @@ hr.dash {
         <span class="chevron">▼</span>
       </div>
       <div class="rules-section-body">
-        <div style="font-family:'Comic Relief',sans-serif;font-size:0.78rem;color:var(--text-dark);margin-bottom:12px;line-height:1.5;">
+        <div style="font-family:'Fredoka',sans-serif;font-size:0.78rem;color:var(--text-dark);margin-bottom:12px;line-height:1.5;">
           There are 4 bosses — one at the end of each area. <b>No one can pass a boss tile until the boss is defeated!</b><br>
-          <span style="font-family:'Noto Serif JP',serif;font-size:0.7rem;color:var(--text-soft);">ボスは4体。各エリアの最後にいる。ボスを倒すまで誰も通過できない！</span>
+          <span style="font-family:'Zen Maru Gothic','Kosugi Maru',sans-serif;font-size:0.95rem;font-weight:700;color:var(--text-dark);">ボスは4体。各エリアの最後にいる。ボスを倒すまで誰も通過できない！</span>
         </div>
         <div class="boss-check">
           <div class="boss-check-icon">1️⃣</div>
@@ -1431,27 +1459,27 @@ hr.dash {
           <div><div class="boss-check-en">Victory! Tap "Victory!" in the app → Gauge +20 + everyone gets 3 Crystal Shards!</div><div class="boss-check-jp">勝利！アプリで「Victory!」をタップ → ゲージ+20 + 全員にかけら3つ！</div></div>
         </div>
         <div style="margin-top:12px;">
-          <div style="font-family:'Cinzel',serif;font-size:0.65rem;font-weight:700;color:var(--text-soft);letter-spacing:0.08em;margin-bottom:6px;">BOSS CRYSTALS / ボスクリスタル</div>
+          <div style="font-family:'Fredoka',sans-serif;font-size:0.65rem;font-weight:700;color:var(--text-soft);letter-spacing:0.08em;margin-bottom:6px;">BOSS CRYSTALS / ボスクリスタル</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
             <div style="background:rgba(245,158,11,0.08);border-radius:10px;padding:8px 10px;border:1px solid rgba(245,158,11,0.2);">
               <div style="font-size:1.1rem;">💛</div>
-              <div style="font-family:'Cinzel',serif;font-size:0.7rem;font-weight:700;color:#92400e;">Castle — Mimic</div>
-              <div style="font-family:'Noto Serif JP',serif;font-size:0.62rem;color:var(--text-soft);">城エリア</div>
+              <div style="font-family:'Fredoka',sans-serif;font-size:0.7rem;font-weight:700;color:#92400e;">Castle — Mimic</div>
+              <div style="font-family:'Zen Maru Gothic','Kosugi Maru',sans-serif;font-size:0.85rem;font-weight:700;color:var(--text-dark);">城エリア</div>
             </div>
             <div style="background:rgba(5,150,105,0.08);border-radius:10px;padding:8px 10px;border:1px solid rgba(5,150,105,0.2);">
               <div style="font-size:1.1rem;">💚</div>
-              <div style="font-family:'Cinzel',serif;font-size:0.7rem;font-weight:700;color:#065f46;">Forest — Golem</div>
-              <div style="font-family:'Noto Serif JP',serif;font-size:0.62rem;color:var(--text-soft);">森エリア</div>
+              <div style="font-family:'Fredoka',sans-serif;font-size:0.7rem;font-weight:700;color:#1a3810;">Forest — Golem</div>
+              <div style="font-family:'Zen Maru Gothic','Kosugi Maru',sans-serif;font-size:0.85rem;font-weight:700;color:var(--text-dark);">森エリア</div>
             </div>
             <div style="background:rgba(220,38,38,0.08);border-radius:10px;padding:8px 10px;border:1px solid rgba(220,38,38,0.2);">
               <div style="font-size:1.1rem;">❤️</div>
-              <div style="font-family:'Cinzel',serif;font-size:0.7rem;font-weight:700;color:#7f1d1d;">Mountain — Dragon</div>
-              <div style="font-family:'Noto Serif JP',serif;font-size:0.62rem;color:var(--text-soft);">山エリア</div>
+              <div style="font-family:'Fredoka',sans-serif;font-size:0.7rem;font-weight:700;color:#7f1d1d;">Mountain — Dragon</div>
+              <div style="font-family:'Zen Maru Gothic','Kosugi Maru',sans-serif;font-size:0.85rem;font-weight:700;color:var(--text-dark);">山エリア</div>
             </div>
             <div style="background:rgba(29,78,216,0.08);border-radius:10px;padding:8px 10px;border:1px solid rgba(29,78,216,0.2);">
               <div style="font-size:1.1rem;">💙</div>
-              <div style="font-family:'Cinzel',serif;font-size:0.7rem;font-weight:700;color:#1e3a8a;">Sky — Gen. Winter</div>
-              <div style="font-family:'Noto Serif JP',serif;font-size:0.62rem;color:var(--text-soft);">天空エリア</div>
+              <div style="font-family:'Fredoka',sans-serif;font-size:0.7rem;font-weight:700;color:#1e3a8a;">Sky — Gen. Winter</div>
+              <div style="font-family:'Zen Maru Gothic','Kosugi Maru',sans-serif;font-size:0.85rem;font-weight:700;color:var(--text-dark);">天空エリア</div>
             </div>
           </div>
         </div>
@@ -1466,28 +1494,28 @@ hr.dash {
         <span class="chevron">▼</span>
       </div>
       <div class="rules-section-body">
-        <div style="font-family:'Comic Relief',sans-serif;font-size:0.78rem;color:var(--text-dark);margin-bottom:12px;line-height:1.5;">
+        <div style="font-family:'Fredoka',sans-serif;font-size:0.78rem;color:var(--text-dark);margin-bottom:12px;line-height:1.5;">
           When the game ends, everyone counts their score:<br>
-          <span style="font-family:'Noto Serif JP',serif;font-size:0.7rem;color:var(--text-soft);">ゲームが終わったら、個人スコアを数えよう：</span>
+          <span style="font-family:'Zen Maru Gothic','Kosugi Maru',sans-serif;font-size:0.7rem;color:var(--text-soft);">ゲームが終わったら、個人スコアを数えよう：</span>
         </div>
         <div class="score-row" style="background:rgba(124,58,237,0.08);">
           <span style="font-size:1.2rem;">🃏</span>
           <div>
-            <div style="font-family:'Cinzel',serif;font-size:0.78rem;font-weight:700;color:var(--purple-light);">Points on face-up Encounter Cards</div>
-            <div style="font-family:'Noto Serif JP',serif;font-size:0.66rem;color:var(--text-soft);">表向きであいカードのポイント合計</div>
+            <div style="font-family:'Fredoka',sans-serif;font-size:0.78rem;font-weight:700;color:var(--purple-dark);">Points on face-up Encounter Cards</div>
+            <div style="font-family:'Zen Maru Gothic','Kosugi Maru',sans-serif;font-size:0.66rem;color:var(--text-soft);">表向きであいカードのポイント合計</div>
           </div>
         </div>
-        <div style="text-align:center;font-family:'Cinzel',serif;font-size:1rem;font-weight:700;color:var(--text-soft);padding:2px 0;">＋</div>
+        <div style="text-align:center;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;color:var(--text-soft);padding:2px 0;">＋</div>
         <div class="score-row" style="background:rgba(245,158,11,0.08);">
           <span style="font-size:1.2rem;">💎</span>
           <div>
-            <div style="font-family:'Cinzel',serif;font-size:0.78rem;font-weight:700;color:#92400e;">Crystal Shards remaining in hand</div>
-            <div style="font-family:'Noto Serif JP',serif;font-size:0.66rem;color:var(--text-soft);">手持ちのクリスタルのかけらの数</div>
+            <div style="font-family:'Fredoka',sans-serif;font-size:0.78rem;font-weight:700;color:#92400e;">Crystal Shards remaining in hand</div>
+            <div style="font-family:'Zen Maru Gothic','Kosugi Maru',sans-serif;font-size:0.66rem;color:var(--text-soft);">手持ちのクリスタルのかけらの数</div>
           </div>
         </div>
         <div style="margin-top:10px;padding:10px 12px;background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(245,158,11,0.1));border-radius:12px;text-align:center;border:1px solid rgba(245,158,11,0.2);">
-          <div style="font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;color:#92400e;">✨ Highest score = Winner!</div>
-          <div style="font-family:'Noto Serif JP',serif;font-size:0.72rem;color:rgba(167,139,250,0.7);margin-top:2px;">最高スコア = 優勝！</div>
+          <div style="font-family:'Fredoka',sans-serif;font-size:0.85rem;font-weight:700;color:#92400e;">✨ Highest score = Winner!</div>
+          <div style="font-family:'Zen Maru Gothic','Kosugi Maru',sans-serif;font-size:0.72rem;color:var(--text-dark);font-weight:700;margin-top:4px;">最高スコア = 優勝！</div>
         </div>
       </div>
     </div>
@@ -1511,6 +1539,7 @@ hr.dash {
         <div class="boss-challenge-reward">
           <div class="boss-challenge-reward-title">✨ Victory Reward · 勝利報酬</div>
           <div class="boss-challenge-reward-text">Gauge +20 &nbsp;·&nbsp; Everyone gets 3 Crystal Shards 💎</div>
+          <div class="boss-challenge-reward-jp">ゲージ +20 &nbsp;·&nbsp; 全員にかけら 3つ 💎</div>
         </div>
       </div>
       <div class="boss-action-row">
@@ -1542,7 +1571,7 @@ hr.dash {
 (function(){
   const sf = document.getElementById('stars');
   const glyphs = ['✦','✧','⋆','✴','★','✸','·','✦','✧'];
-  const colors = ['#fde68a','#fbbf24','#f59e0b','#fef3c7','#fde68a','#fff7d6'];
+  const colors = ['#f0d060','#c9a030','#d9c9a8','#f0d060','#c8a0e0','#f8f0c0'];
   for(let i=0;i<70;i++){
     const s=document.createElement('span');
     const sz=(Math.random()*1.2+0.5).toFixed(2);
@@ -1626,8 +1655,8 @@ const EASY_DECK_RAW = [
   { cat:"🔄 Swap!", en:"Swap one Encounter Card\nwith another player! 🤝", jp:"であいカードを誰かと1枚交換！", effect:"Swap!", effectVal:0, type:"swap" },
   { cat:"🔄 Swap!", en:"Swap one Encounter Card\nwith the pile! 🔄",       jp:"であいカードを山と1枚交換！",   effect:"Swap!", effectVal:0, type:"swap" },
   // ── Oops! (5) ──
-  { cat:"😱 Oops!", en:"The cracks spread!\n\nGauge −5… 💔",                          jp:"ひびが広がった！\n\nゲージ−5…",          effect:"−5",       effectVal:-5, type:"minus" },
-  { cat:"😱 Oops!", en:"A shadow fell!\n\nGauge −5… 💔",                              jp:"影が落ちてきた！\n\nゲージ−5…",          effect:"−5",       effectVal:-5, type:"minus" },
+  { cat:"😱 Oops!", en:"The cracks spread!\n\nGauge −3… 💔",                          jp:"ひびが広がった！\n\nゲージ−3…",          effect:"−3",       effectVal:-3, type:"minus" },
+  { cat:"😱 Oops!", en:"A shadow fell!\n\nGauge −3… 💔",                              jp:"影が落ちてきた！\n\nゲージ−3…",          effect:"−3",       effectVal:-3, type:"minus" },
   { cat:"😱 Oops!", en:"Oops!\n\nGive 1 Crystal Shard to the player on your left!",  jp:"あらら！\n\n左の人にかけらを1つわたそう！",effect:"Special!", effectVal:0,  type:"special" },
   { cat:"😱 Oops!", en:"Uh oh!\n\nEveryone loses 1 Crystal Shard…",                   jp:"あらら！\n\nみんなかけらを1つ返そう…",    effect:"Special!", effectVal:0,  type:"special" },
   { cat:"😱 Oops!", en:"Lose a turn…\n\nSkip your next turn! 😴",                     jp:"一回休み…\n\n次のターンをスキップ！😴",    effect:"Lose turn",effectVal:0,  type:"minus" },
@@ -1704,8 +1733,8 @@ const HARD_DECK_RAW = [
   { cat:"🔄 Swap!", en:"Swap one Encounter Card\nwith another player! 🤝", jp:"であいカードを誰かと1枚交換！", effect:"Swap!", effectVal:0, type:"swap" },
   { cat:"🔄 Swap!", en:"Swap one Encounter Card\nwith the pile! 🔄",       jp:"であいカードを山と1枚交換！",   effect:"Swap!", effectVal:0, type:"swap" },
   // ── Oops! (5) ──
-  { cat:"😱 Oops!", en:"The cracks spread!\n\nGauge −5… 💔",                         jp:"ひびが広がった！\n\nゲージ−5…",          effect:"−5",        effectVal:-5, type:"minus" },
-  { cat:"😱 Oops!", en:"A shadow fell!\n\nGauge −5… 💔",                             jp:"影が落ちてきた！\n\nゲージ−5…",          effect:"−5",        effectVal:-5, type:"minus" },
+  { cat:"😱 Oops!", en:"The cracks spread!\n\nGauge −3… 💔",                         jp:"ひびが広がった！\n\nゲージ−3…",          effect:"−3",        effectVal:-3, type:"minus" },
+  { cat:"😱 Oops!", en:"A shadow fell!\n\nGauge −3… 💔",                             jp:"影が落ちてきた！\n\nゲージ−3…",          effect:"−3",        effectVal:-3, type:"minus" },
   { cat:"😱 Oops!", en:"Oops!\n\nGive 1 Crystal Shard to the player on your left!", jp:"あらら！\n\n左の人にかけらを1つわたそう！",effect:"Special!",  effectVal:0,  type:"special" },
   { cat:"😱 Oops!", en:"Uh oh!\n\nEveryone loses 1 Crystal Shard…",                  jp:"あらら！\n\nみんなかけらを1つ返そう…",    effect:"Special!",  effectVal:0,  type:"special" },
   { cat:"😱 Oops!", en:"Lose a turn…\n\nSkip your next turn! 😴",                    jp:"一回休み…\n\n次のターンをスキップ！😴",   effect:"Lose turn", effectVal:0,  type:"minus" },
@@ -1842,7 +1871,7 @@ function showToast(msg, color) {
   if(old) old.remove();
   const t = document.createElement('div');
   t.id = 'hp-toast';
-  t.style.cssText = `position:fixed;top:76px;left:50%;transform:translateX(-50%) translateY(-30px);background:${color};color:white;font-family:'Cinzel','Comic Relief',sans-serif;font-weight:700;font-size:0.9rem;padding:10px 20px;border-radius:50px;box-shadow:0 6px 24px rgba(0,0,0,0.4);z-index:500;white-space:nowrap;animation:toastIn 0.4s cubic-bezier(.34,1.56,.64,1) forwards;pointer-events:none;border:1px solid rgba(255,255,255,0.15);`;
+  t.style.cssText = `position:fixed;top:76px;left:50%;transform:translateX(-50%) translateY(-30px);background:${color};color:white;font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.9rem;padding:10px 20px;border-radius:50px;box-shadow:0 6px 24px rgba(0,0,0,0.4);z-index:500;white-space:nowrap;animation:toastIn 0.4s cubic-bezier(.34,1.56,.64,1) forwards;pointer-events:none;border:1px solid rgba(255,255,255,0.15);`;
   t.textContent = msg;
   if(!document.getElementById('toast-style')){
     const s=document.createElement('style');
@@ -1927,10 +1956,10 @@ function selectDeck(which){
   const chip=document.getElementById('deck-label-chip');
   if(which==='easy'){
     chip.textContent='🌱 EASY / かんたん';
-    chip.style.cssText='background:rgba(5,150,105,0.15);color:#6ee7b7;border:1px solid rgba(5,150,105,0.4);padding:4px 14px;border-radius:50px;font-family:Cinzel,serif;font-size:0.65rem;font-weight:700;';
+    chip.style.cssText='background:rgba(74,144,64,0.18);color:#2a5818;border:1px solid rgba(74,144,64,0.5);padding:4px 14px;border-radius:50px;font-family:Fredoka,serif;font-size:0.65rem;font-weight:700;';
   } else {
     chip.textContent='🔥 HARD / むずかしい';
-    chip.style.cssText='background:rgba(220,38,38,0.15);color:#fca5a5;border:1px solid rgba(220,38,38,0.4);padding:4px 14px;border-radius:50px;font-family:Cinzel,serif;font-size:0.65rem;font-weight:700;';
+    chip.style.cssText='background:rgba(220,38,38,0.15);color:#fca5a5;border:1px solid rgba(220,38,38,0.4);padding:4px 14px;border-radius:50px;font-family:Fredoka,serif;font-size:0.65rem;font-weight:700;';
   }
   renderCardBack();
 }
@@ -1986,14 +2015,14 @@ function renderActiveCard(){
   const c=activeCard;
   const catJp=CAT_JP[c.cat]||'';
   let wordBlock='';
-  if(c.word) wordBlock=`<div style="font-size:2.2rem;font-weight:900;letter-spacing:4px;font-family:'Cinzel','Comic Relief',sans-serif;color:var(--purple-dark);text-align:center;background:var(--purple-pale);border-radius:14px;padding:16px 12px;margin:12px 0;">${c.word}</div>`;
+  if(c.word) wordBlock=`<div style="font-size:2.8rem;font-weight:900;letter-spacing:4px;font-family:'Fredoka',sans-serif;color:var(--purple-dark);text-align:center;background:var(--purple-pale);border-radius:14px;padding:16px 12px;margin:12px 0;">${c.word}</div>`;
   let answerBlock='';
   if(c.answer){
     const sa=c.answer.replace(/'/g,"\\'");
-    answerBlock=`<div id="answer-reveal" style="margin:12px 0;"><button onclick="soundTap();this.parentNode.innerHTML='<div style=\\'font-size:1.5rem;font-weight:900;color:var(--green);text-align:center;background:var(--green-pale);border-radius:12px;padding:14px;\\'>${sa}</div>'" style="width:100%;padding:12px;border-radius:12px;border:1.5px dashed var(--purple-light);background:var(--purple-pale);color:var(--purple-dark);font-family:'Cinzel','Comic Relief',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;letter-spacing:0.06em;">REVEAL / こたえを見る</button></div>`;
+    answerBlock=`<div id="answer-reveal" style="margin:12px 0;"><button onclick="soundTap();this.parentNode.innerHTML='<div style=\\'font-size:1.5rem;font-weight:900;color:#1a3810;text-align:center;background:var(--green-pale);border-radius:12px;padding:14px;\\'>${sa}</div>'" style="width:100%;padding:12px;border-radius:12px;border:1.5px dashed var(--purple-light);background:var(--purple-pale);color:var(--purple-dark);font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;letter-spacing:0.06em;">REVEAL / こたえを見る</button></div>`;
   }
   let hintBlock='';
-  if(c.hint) hintBlock=`<div style="margin-top:12px;padding:12px 14px;background:rgba(245,158,11,0.08);border-radius:12px;border-left:2px solid rgba(245,158,11,0.3);"><div style="font-family:'Cinzel',serif;font-size:0.62rem;font-weight:700;color:#92400e;margin-bottom:5px;letter-spacing:0.08em;">HINT</div><div style="font-family:'Comic Relief',sans-serif;font-size:0.95rem;font-weight:700;color:var(--brown);">${c.hint}</div></div>`;
+  if(c.hint) hintBlock=`<div style="margin-top:12px;padding:12px 14px;background:rgba(245,158,11,0.08);border-radius:12px;border-left:2px solid rgba(245,158,11,0.3);"><div style="font-family:'Fredoka',sans-serif;font-size:0.62rem;font-weight:700;color:#92400e;margin-bottom:5px;letter-spacing:0.08em;">HINT</div><div style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:700;color:var(--brown);">${c.hint}</div></div>`;
   const enText=c.en.replace(/\n/g,'<br>');
   const jpText=c.jp?c.jp.replace(/\n/g,'<br>'):'';
   document.getElementById('quest-area').innerHTML=`
