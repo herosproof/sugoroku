@@ -187,15 +187,7 @@ body {
   color: var(--gold-light);
   border-bottom-color: var(--gold);
 }
-.tab-home {
-  text-decoration: none;
-  border-right: 1px solid rgba(167,139,250,0.15);
-  color: rgba(200,160,224,0.6);
-}
-.tab-home:hover {
-  color: var(--gold-light);
-  background: rgba(255,255,255,0.04);
-}
+
 
 /* ═══════════════════════════════════════
    TAB CONTENT PANELS
@@ -333,9 +325,9 @@ hr.dash {
   border-top: 1px solid rgba(144,96,192,0.2);
   margin: 12px 0;
 }
-.reset-row { text-align: center; margin-top: 8px; }
+.reset-row { text-align: center; margin-top: 8px; position: relative; z-index: 2; }
 .reset-btn {
-  background: transparent;
+  background: rgba(30,18,53,0.85);
   border: 1px solid rgba(144,96,192,0.4);
   border-radius: 50px;
   padding: 8px 22px;
@@ -343,8 +335,10 @@ hr.dash {
   font-size: 0.85rem; font-weight: 700;
   color: rgba(220,200,240,0.85);
   cursor: pointer;
+  position: relative;
+  z-index: 2;
 }
-.reset-btn:active { background: rgba(124,58,237,0.06); }
+.reset-btn:active { background: rgba(144,96,192,0.2); }
 
 /* ═══════════════════════════════════════
    SHARDS TAB (materials)
@@ -674,11 +668,24 @@ hr.dash {
   filter: grayscale(0.5);
 }
 .boss-crystal { font-size: 1.8rem; margin-bottom: 4px; display: block; }
+.boss-img {
+  width: 72px; height: 72px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 4px;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+}
 .boss-name {
   font-family: 'Fredoka', sans-serif;
   font-size: 0.9rem; font-weight: 700;
   line-height: 1.2; color: var(--text-dark);
-  margin-bottom: 2px;
+  margin-bottom: 1px;
+}
+.boss-name-jp {
+  font-family: 'Zen Maru Gothic','Kosugi Maru',sans-serif;
+  font-size: 0.72rem; font-weight: 700;
+  color: var(--text-soft);
+  margin-bottom: 3px;
 }
 .boss-area {
   font-size: 0.82rem !important;
@@ -1198,7 +1205,7 @@ hr.dash {
 <div class="app">
 
   <!-- HEADER -->
-  <a href="https://herosproof.github.io" class="header" style="text-decoration:none;display:block;">
+  <a href="https://herosproof.github.io" class="header" style="text-decoration:none;display:block;" onclick="return confirm('Go to Home? This will reset the game.\nホームに戻りますか？ゲームがリセットされます。')">
     <img src="logo.png" alt="Hero's Proof" class="logo-img"
          onload="document.getElementById('header-text').style.display='none';"
          onerror="this.style.display='none';">
@@ -1212,11 +1219,6 @@ hr.dash {
 
   <!-- TABS -->
   <div class="tabs">
-    <a href="https://herosproof.github.io" class="tab tab-home">
-      <span class="tab-icon">🏠</span>
-      Home
-      <span class="tab-jp">ホーム</span>
-    </a>
     <button class="tab active" id="tab-gauge" onclick="showTab('gauge')">
       <span class="tab-icon"><img src="tab-gauge.png" alt="Gauge" onerror="this.outerHTML='⚔️'"></span>
       Gauge
@@ -1281,6 +1283,7 @@ hr.dash {
     </div>
     <div class="reset-row">
       <button class="reset-btn" onclick="confirmReset()">↺ Reset Game / ゲームをリセット</button>
+      <button class="reset-btn" onclick="confirmGoHome()" style="margin-top:6px;">🏠 Home / ホーム</button>
     </div>
   </div>
 
@@ -1353,26 +1356,38 @@ hr.dash {
       </div>
       <div class="boss-grid">
         <button class="boss-btn castle" id="boss-castle" onclick="startBoss('castle')">
-          <span class="boss-crystal">💛</span>
+          <img src="boss-castle.png" class="boss-img" alt="Mimic"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+          <span class="boss-crystal" style="display:none;">💛</span>
           <div class="boss-name">Mimic</div>
+          <div class="boss-name-jp">ミミック</div>
           <div class="boss-area">Castle Area · 城エリア</div>
           <span class="boss-status" id="boss-castle-status">⚔️ Challenge!</span>
         </button>
         <button class="boss-btn forest" id="boss-forest" onclick="startBoss('forest')">
-          <span class="boss-crystal">💚</span>
+          <img src="boss-forest.png" class="boss-img" alt="Forest Golem"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+          <span class="boss-crystal" style="display:none;">💚</span>
           <div class="boss-name">Forest Golem</div>
+          <div class="boss-name-jp">フォレストゴーレム</div>
           <div class="boss-area">Forest Area · 森エリア</div>
           <span class="boss-status" id="boss-forest-status">⚔️ Challenge!</span>
         </button>
         <button class="boss-btn mountain" id="boss-mountain" onclick="startBoss('mountain')">
-          <span class="boss-crystal">❤️</span>
+          <img src="boss-mountain.png" class="boss-img" alt="Dragon"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+          <span class="boss-crystal" style="display:none;">❤️</span>
           <div class="boss-name">Dragon</div>
+          <div class="boss-name-jp">ドラゴン</div>
           <div class="boss-area">Mountain Area · 山エリア</div>
           <span class="boss-status" id="boss-mountain-status">⚔️ Challenge!</span>
         </button>
         <button class="boss-btn sky" id="boss-sky" onclick="startBoss('sky')">
-          <span class="boss-crystal">💙</span>
+          <img src="boss-sky.png" class="boss-img" alt="General Winter"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+          <span class="boss-crystal" style="display:none;">💙</span>
           <div class="boss-name">General Winter</div>
+          <div class="boss-name-jp">冬将軍</div>
           <div class="boss-area">Sky Area · 天空エリア</div>
           <span class="boss-status" id="boss-sky-status">⚔️ Challenge!</span>
         </button>
@@ -1687,7 +1702,7 @@ hr.dash {
         <div class="boss-challenge-jp" id="boss-challenge-jp">—</div>
         <button class="answer-toggle-btn" id="boss-answer-toggle" style="display:none;"
                 onclick="toggleBossAnswer()">
-          👁 Show Answer / こたえを見る
+          💡 Show Answer / こたえを見る
         </button>
         <div class="answer-box" id="boss-answer-box">
           <div id="boss-answer-en"></div>
@@ -1860,14 +1875,14 @@ const HARD_DECK_RAW = [
   { cat:"🃏 Encounter!", en:"Play an Encounter Card!\n\nChoose one from your hand, pay its cost, and do the challenge!", jp:"であいカードをプレイ！\n\n手持ちから1枚えらんで、かけらを払って、チャレンジしよう！", effect:"Play card!", effectVal:0, type:"special" },
   { cat:"🃏 Encounter!", en:"Play an Encounter Card!\n\nChoose one from your hand, pay its cost, and do the challenge!", jp:"であいカードをプレイ！\n\n手持ちから1枚えらんで、かけらを払って、チャレンジしよう！", effect:"Play card!", effectVal:0, type:"special" },
   // ── Special! — Words starting with… (6) ──
-  { cat:"⭐ Special!", en:'Everyone say one word that starts with "S"!\n\nNo repeats!', jp:'「S」で始まる英語の言葉をひとつずつ！\n\nかぶったらアウト！', effect:"+1", effectVal:1, type:"plus" },
-  { cat:"⭐ Special!", en:'Everyone say one word that starts with "P"!\n\nNo repeats!', jp:'「P」で始まる英語の言葉をひとつずつ！\n\nかぶったらアウト！', effect:"+1", effectVal:1, type:"plus" },
-  { cat:"⭐ Special!", en:'Everyone say one word that starts with "H"!\n\nNo repeats!', jp:'「H」で始まる英語の言葉をひとつずつ！\n\nかぶったらアウト！', effect:"+1", effectVal:1, type:"plus" },
-  { cat:"⭐ Special!", en:'Everyone say one word that starts with "B"!\n\nNo repeats!', jp:'「B」で始まる英語の言葉をひとつずつ！\n\nかぶったらアウト！', effect:"+1", effectVal:1, type:"plus" },
-  { cat:"⭐ Special!", en:'Everyone say one word that starts with "C"!\n\nNo repeats!', jp:'「C」で始まる英語の言葉をひとつずつ！\n\nかぶったらアウト！', effect:"+1", effectVal:1, type:"plus" },
-  { cat:"⭐ Special!", en:'Everyone say one word that starts with "M"!\n\nNo repeats!', jp:'「M」で始まる英語の言葉をひとつずつ！\n\nかぶったらアウト！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"⭐ Special!", en:'Say one word that starts with "S"!', jp:'「S」で始まる英語の言葉を一つ言おう！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"⭐ Special!", en:'Say one word that starts with "P"!', jp:'「P」で始まる英語の言葉を一つ言おう！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"⭐ Special!", en:'Say one word that starts with "H"!', jp:'「H」で始まる英語の言葉を一つ言おう！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"⭐ Special!", en:'Say one word that starts with "B"!', jp:'「B」で始まる英語の言葉を一つ言おう！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"⭐ Special!", en:'Say one word that starts with "C"!', jp:'「C」で始まる英語の言葉を一つ言おう！', effect:"+1", effectVal:1, type:"plus" },
+  { cat:"⭐ Special!", en:'Say one word that starts with "M"!', jp:'「M」で始まる英語の言葉を一つ言おう！', effect:"+1", effectVal:1, type:"plus" },
   // ── Special! — Other (2) ──
-  { cat:"⭐ Special!", en:"Everyone say a food in English!\n\nNo repeats! 🍽️", jp:"食べ物を英語でひとつずつ！\n\nかぶったらアウト！🍽️", effect:"+1", effectVal:1, type:"plus" },
+  { cat:"⭐ Special!", en:"Say a food in English! 🍽️", jp:"食べ物を英語で一つ言おう！🍽️", effect:"+1", effectVal:1, type:"plus" },
   { cat:"⭐ Special!", en:"Everyone strike a Hero pose! 🦸",                   jp:"みんなヒーローポーズ！🦸",                         effect:"+1", effectVal:1, type:"plus" },
   // ── Count the board! (1) ──
   { cat:"🔢 Count the board!", en:"Count all the ❗ on the board!\n\nHow many?", jp:"ボードの❗をかぞえよう！\n\nいくつある？", effect:"+1", effectVal:1, type:"plus" },
@@ -1942,8 +1957,8 @@ const BOSS_DATA = {
       { type:"writing", en:"Everyone! Where do you want to go? (country)\n✏️ Write it!\n→ \"I want to go to ___!\"", jp:"みんな！どの国に行きたい？\n✏️書こう！→「I want to go to ___!」" },
       { type:"translate", flag:"英語→日本語",
         en:"Translate to Japanese!\n英語→日本語",
-        jp:"英語→日本語に訳そう！\n\"Blue coral are found in the sea. Global warming is a big problem. We can use eco-friendly bags and save energy. Let's save the Blue coral!\"",
-        answerEn:"Blue coral are found in the sea. Global warming is a big problem. We can use eco-friendly bags and save energy. Let's save the Blue coral!",
+        jp:"英語→日本語に訳そう！\n\"Blue coral live in the sea. Global warming is a big problem. We can use eco-friendly bags and save energy. Let's save the Blue coral!\"",
+        answerEn:"Blue coral live in the sea. Global warming is a big problem. We can use eco-friendly bags and save energy. Let's save the Blue coral!",
         answerJp:"アオサンゴは海に生息しています。地球温暖化は大きな問題です。エコバッグを使ったり、エネルギーを節約したりできます。アオサンゴを守ろう！" },
     ]
   },
@@ -2106,332 +2121,4 @@ function showToast(msg, color) {
 ═══════════════════════════════════════ */
 function changePlayers(delta) {
   playerCount = Math.max(2, Math.min(6, playerCount+delta));
-  document.getElementById('player-count').textContent = playerCount;
-  renderPlayers();
-}
-function renderPlayers() {
-  const grid = document.getElementById('players-grid');
-  grid.innerHTML = '';
-  for(let i=0;i<playerCount;i++){
-    const card=document.createElement('div');
-    card.className='player-card';
-    card.style.borderColor=`rgba(167,139,250,${i%2?0.15:0.2})`;
-    card.style.background=PLAYER_COLORS[i];
-    card.innerHTML=`
-      <div class="player-emoji">${PLAYER_EMOJIS[i]}</div>
-      <div class="player-name">Player ${i+1}</div>
-      <div class="mat-count" id="shard-${i}">${shards[i]}</div>
-      <div class="mat-label">かけら</div>
-      <div class="mat-controls">
-        <button class="mc-btn mc-minus" onclick="soundButtonPress();changeShard(${i},-1)">−</button>
-        <button class="mc-btn mc-plus"  onclick="soundCoin();changeShard(${i},+1)">＋</button>
-      </div>`;
-    grid.appendChild(card);
-  }
-}
-function changeShard(i, delta) {
-  shards[i] = Math.max(0, shards[i]+delta);
-  const el = document.getElementById('shard-'+i);
-  el.textContent = shards[i];
-  el.classList.remove('pop');
-  void el.offsetWidth;
-  el.classList.add('pop');
-}
-function addShardsToAll(amount) {
-  for(let i=0;i<playerCount;i++) {
-    shards[i]+=amount;
-    const el=document.getElementById('shard-'+i);
-    if(el){
-      el.textContent=shards[i];
-      el.classList.remove('pop');
-      void el.offsetWidth;
-      el.classList.add('pop');
-    }
-  }
-}
-
-/* ═══════════════════════════════════════
-   DECK / QUEST CARDS
-═══════════════════════════════════════ */
-function shuffle(arr){
-  for(let i=arr.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [arr[i],arr[j]]=[arr[j],arr[i]];
-  }
-  return arr;
-}
-function showDeckSelector(){
-  document.getElementById('deck-selector').style.display='block';
-  document.getElementById('deck-label').style.display='none';
-  document.getElementById('quest-area').innerHTML='';
-}
-function selectDeck(which){
-  soundTap(); activeDeck=which;
-  const raw=which==='easy'?EASY_DECK_RAW:HARD_DECK_RAW;
-  questDeck=shuffle([...raw]); questIndex=0; activeCard=null;
-  document.getElementById('deck-selector').style.display='none';
-  document.getElementById('deck-label').style.display='block';
-  const chip=document.getElementById('deck-label-chip');
-  if(which==='easy'){
-    chip.textContent='🌱 EASY / かんたん';
-    chip.style.cssText='background:rgba(74,144,64,0.18);color:#2a5818;border:1px solid rgba(74,144,64,0.5);padding:4px 14px;border-radius:50px;font-family:Fredoka,serif;font-size:0.65rem;font-weight:700;';
-  } else {
-    chip.textContent='🔥 HARD / むずかしい';
-    chip.style.cssText='background:rgba(220,38,38,0.15);color:#fca5a5;border:1px solid rgba(220,38,38,0.4);padding:4px 14px;border-radius:50px;font-family:Fredoka,serif;font-size:0.65rem;font-weight:700;';
-  }
-  renderCardBack();
-}
-function resetDeckChoice(){
-  activeDeck=null; questDeck=[]; questIndex=0; activeCard=null;
-  showDeckSelector();
-}
-function renderCardBack(){
-  if(!activeDeck){showDeckSelector();return;}
-  const rem=questDeck.length-questIndex;
-  document.getElementById('quest-area').innerHTML=`
-    <div class="card-draw-btn" onclick="soundCardDraw();drawQuestCard()">
-      <div class="card-back-face">
-        <span class="card-back-icon">📜</span>
-        <div class="card-back-en">Draw a Quest Card!</div>
-        <div class="card-back-jp">クエストカードを引こう！</div>
-      </div>
-    </div>
-    <div class="deck-remaining">${rem} cards left / 残り${rem}枚</div>`;
-}
-function drawQuestCard(){
-  if(!activeDeck)return;
-  const raw=activeDeck==='easy'?EASY_DECK_RAW:HARD_DECK_RAW;
-  if(questIndex>=questDeck.length){questDeck=shuffle([...raw]);questIndex=0;}
-  activeCard=questDeck[questIndex++];
-  renderActiveCard();
-}
-
-const CAT_JP={
-  '📖 Read it!':'読んでみよう！','🤔 English?':'英語で何て言う？',
-  '🃏 Encounter!':'であいカード！',
-  '💬 Say it!':'言ってみよう！','🙋 Ask a friend!':'友だちに聞こう！',
-  '🙋 Ask a teacher!':'先生に聞こう！','🙋 Ask someone!':'誰かに聞こう！',
-  '⭐ Special!':'スペシャル！','✊ Janken!':'じゃんけん！',
-  '🍀 Lucky!':'ラッキー！','🔄 Swap!':'こうかん！','😱 Oops!':'あらら！',
-  '🔢 Count the board!':'ボードをかぞえよう！',
-  '🎲 One more turn!':'もう一回！'
-};
-function effectClass(t){
-  if(t==='plus')return'effect-plus';
-  if(t==='minus')return'effect-minus';
-  if(t==='special')return'effect-special';
-  if(t==='lucky')return'effect-lucky';
-  if(t==='swap')return'effect-swap';
-  return 'effect-plus';
-}
-function effectLabel(c){
-  if(c.effectVal>0) return `✨ Gauge / ゲージ +${c.effectVal}`;
-  if(c.effectVal<0) return `✨ Gauge / ゲージ ${c.effectVal}`;
-  return `✨ ${c.effect}`;
-}
-function renderActiveCard(){
-  const c=activeCard;
-  const catJp=CAT_JP[c.cat]||'';
-  let wordBlock='';
-  if(c.word) wordBlock=`<div style="font-size:2.8rem;font-weight:900;letter-spacing:4px;font-family:'Fredoka',sans-serif;color:var(--purple-dark);text-align:center;background:var(--purple-pale);border-radius:14px;padding:16px 12px;margin:12px 0;">${c.word}</div>`;
-  let answerBlock='';
-  if(c.answer){
-    const sa=c.answer.replace(/'/g,"\\'");
-    answerBlock=`<div id="answer-reveal" style="margin:12px 0;"><button onclick="soundTap();this.parentNode.innerHTML='<div style=\\'font-size:1.5rem;font-weight:900;color:#1a3810;text-align:center;background:var(--green-pale);border-radius:12px;padding:14px;\\'>${sa}</div>'" style="width:100%;padding:12px;border-radius:12px;border:1.5px dashed var(--purple-light);background:var(--purple-pale);color:var(--purple-dark);font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.9rem;cursor:pointer;letter-spacing:0.06em;">REVEAL / こたえを見る</button></div>`;
-  }
-  let hintBlock='';
-  if(c.hint) hintBlock=`<div style="margin-top:12px;padding:12px 14px;background:rgba(245,158,11,0.08);border-radius:12px;border-left:2px solid rgba(245,158,11,0.3);"><div style="font-family:'Fredoka',sans-serif;font-size:0.62rem;font-weight:700;color:#92400e;margin-bottom:5px;letter-spacing:0.08em;">HINT</div><div style="font-family:'Fredoka',sans-serif;font-size:0.95rem;font-weight:700;color:var(--brown);">${c.hint}</div></div>`;
-  const enText=c.en.replace(/\n/g,'<br>');
-  const jpText=c.jp?c.jp.replace(/\n/g,'<br>'):'';
-  document.getElementById('quest-area').innerHTML=`
-    <div class="quest-card">
-      <div class="quest-card-top">
-        <div class="quest-card-badge">📜 Quest Card</div>
-        <div class="quest-card-category">${c.cat}<br><span style="font-size:0.7rem;opacity:0.85;">${catJp}</span></div>
-      </div>
-      <div class="quest-card-body">
-        <div class="quest-card-en">${enText}</div>
-        ${wordBlock}
-        ${c.jp?`<div class="quest-card-jp">${jpText}</div>`:''}
-        ${answerBlock}${hintBlock}
-        <div style="height:10px"></div>
-        <div class="quest-card-effect ${effectClass(c.type)}">${effectLabel(c)}</div>
-      </div>
-      <div class="quest-card-footer">
-        <div class="quest-icon-area">
-          <img src="quest-icon.png" alt="Quest"
-               onerror="this.style.display='none';this.parentNode.innerHTML='<div class=\\'quest-icon-placeholder\\'>quest-icon<br>.png</div>'">
-        </div>
-        <div class="card-resolve-btns-row">
-          <button class="resolve-btn resolve-done" onclick="resolveCard(true)">✅<br>Done!<br><span style="font-size:0.7rem;font-weight:500;">できた！</span></button>
-          <button class="resolve-btn resolve-discard" onclick="soundSkip();resolveCard(false)">↩<br>Skip<br><span style="font-size:0.68rem;font-weight:500;opacity:0.7;">スキップ</span></button>
-        </div>
-      </div>
-    </div>
-    <div class="deck-remaining">${questDeck.length-questIndex} cards left / 残り${questDeck.length-questIndex}枚</div>`;
-}
-function resolveCard(success){
-  if(success&&activeCard){
-    if(activeCard.effectVal!==0) changeGauge(activeCard.effectVal,true);
-    else soundDone();
-  }
-  activeCard=null;
-  renderCardBack();
-}
-
-/* ═══════════════════════════════════════
-   BOSS BATTLES
-═══════════════════════════════════════ */
-function setDifficulty(diff){
-  bossDifficulty = diff;
-  ['easy','normal','hard'].forEach(d=>{
-    document.getElementById('diff-'+d).classList.toggle('selected', d===diff);
-  });
-  soundTap();
-}
-
-function toggleBossAnswer(){
-  const box = document.getElementById('boss-answer-box');
-  const btn = document.getElementById('boss-answer-toggle');
-  const visible = box.classList.toggle('visible');
-  btn.textContent = visible ? '👁 Hide Answer / かくす' : '👁 Show Answer / こたえを見る';
-}
-
-function startBoss(key){
-  if(bossesDefeated[key]) return;
-  const b = BOSS_DATA[key];
-  activeBoss = key;
-  const pool = b[bossDifficulty];
-  const challenge = pool[Math.floor(Math.random()*pool.length)];
-
-  // Header
-  document.getElementById('boss-overlay-crystal').textContent = b.crystal;
-  document.getElementById('boss-overlay-area').textContent = `${b.area} · ${b.areaJp}`;
-  const nameEl = document.getElementById('boss-overlay-name');
-  nameEl.textContent = b.name;
-  nameEl.style.color = b.color;
-  nameEl.style.textShadow = `0 0 30px ${b.color}`;
-
-  // Type label
-  const typeEl = document.getElementById('boss-challenge-type-label');
-  if(challenge.type === 'speaking'){
-    typeEl.innerHTML = '<span class="challenge-type-label speaking">🗣️ Speaking · スピーキング</span>';
-  } else if(challenge.type === 'writing'){
-    typeEl.innerHTML = '<span class="challenge-type-label writing">✏️ Writing · ライティング</span>';
-  } else if(challenge.type === 'translate'){
-    typeEl.innerHTML = `<span class="challenge-type-label translate">🗣️ Translation · 翻訳 (${challenge.flag})</span>`;
-  } else {
-    typeEl.innerHTML = '';
-  }
-
-  // Challenge text
-  document.getElementById('boss-challenge-en').innerHTML = challenge.en.replace(/\n/g,'<br>');
-  document.getElementById('boss-challenge-jp').innerHTML = challenge.jp.replace(/\n/g,'<br>');
-
-  // Menu image
-  const menuImg = document.getElementById('boss-menu-img');
-  if(challenge.showMenu){
-    menuImg.style.display = 'block';
-  } else {
-    menuImg.style.display = 'none';
-  }
-
-  // Answer toggle
-  const answerToggle = document.getElementById('boss-answer-toggle');
-  const answerBox = document.getElementById('boss-answer-box');
-  answerBox.classList.remove('visible');
-  if(challenge.type === 'translate'){
-    answerToggle.style.display = 'block';
-    answerToggle.textContent = '👁 Show Answer / こたえを見る';
-    document.getElementById('boss-answer-en').textContent = challenge.answerEn || '';
-    document.getElementById('boss-answer-jp').textContent = challenge.answerJp || '';
-  } else {
-    answerToggle.style.display = 'none';
-    document.getElementById('boss-answer-en').textContent = '';
-    document.getElementById('boss-answer-jp').textContent = '';
-  }
-
-  document.getElementById('boss-overlay').classList.add('show');
-  soundBoss();
-}
-function defeatBoss(){
-  if(!activeBoss)return;
-  bossesDefeated[activeBoss]=true;
-  const btn=document.getElementById('boss-'+activeBoss);
-  btn.classList.add('defeated');
-  const statusEl=document.getElementById('boss-'+activeBoss+'-status');
-  if(statusEl) statusEl.textContent='✅ Defeated!';
-  changeGauge(20,true);
-  addShardsToAll(3);
-  showToast('⚔️ Boss Defeated! +20 Gauge + 3 Shards each!','#4c1d95');
-  closeBossOverlay();
-  soundLevelUp();
-}
-function closeBossOverlay(){
-  document.getElementById('boss-overlay').classList.remove('show');
-  activeBoss=null;
-}
-
-/* ═══════════════════════════════════════
-   WIN / RESET
-═══════════════════════════════════════ */
-function closeWin(){ document.getElementById('win-overlay').classList.remove('show'); soundTap(); }
-function confirmReset(){ if(confirm('Reset the game? / ゲームをリセットしますか？')) resetAll(); }
-function resetAll(){
-  gauge=0; shards=[0,0,0,0,0,0]; playerCount=4;
-  questIndex=0; questDeck=[]; activeDeck=null; activeCard=null;
-  bossesDefeated={castle:false,forest:false,mountain:false,sky:false};
-  activeBoss=null;
-  document.getElementById('player-count').textContent='4';
-  // Reset boss buttons
-  ['castle','forest','mountain','sky'].forEach(k=>{
-    document.getElementById('boss-'+k)?.classList.remove('defeated');
-    const s=document.getElementById('boss-'+k+'-status');
-    if(s) s.textContent='⚔️ Challenge!';
-  });
-  updateGaugeUI(); updateMiniGauge(); renderPlayers(); showDeckSelector(); closeWin();
-}
-
-/* ═══════════════════════════════════════
-   SOUND ENGINE
-═══════════════════════════════════════ */
-let audioCtx=null;
-function getAudio(){
-  if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-  return audioCtx;
-}
-function playTone(freq,type,duration,volume,delay=0,freqEnd=null){
-  try{
-    const ctx=getAudio(),osc=ctx.createOscillator(),gain=ctx.createGain();
-    osc.connect(gain);gain.connect(ctx.destination);
-    osc.type=type;
-    osc.frequency.setValueAtTime(freq,ctx.currentTime+delay);
-    if(freqEnd) osc.frequency.exponentialRampToValueAtTime(freqEnd,ctx.currentTime+delay+duration);
-    gain.gain.setValueAtTime(0,ctx.currentTime+delay);
-    gain.gain.linearRampToValueAtTime(volume,ctx.currentTime+delay+0.015);
-    gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+delay+duration);
-    osc.start(ctx.currentTime+delay);
-    osc.stop(ctx.currentTime+delay+duration+0.05);
-  }catch(e){}
-}
-function soundTap(){ playTone(500,'sine',0.07,0.12); }
-function soundCardDraw(){ playTone(200,'sawtooth',0.18,0.07,0,700); playTone(800,'sine',0.12,0.12,0.12); }
-function soundDone(){ playTone(523,'sine',0.15,0.2); playTone(784,'sine',0.15,0.2,0.12); playTone(1047,'sine',0.25,0.2,0.24); }
-function soundCoin(){ playTone(2600,'sine',0.06,0.15); playTone(3900,'sine',0.04,0.08,0.03); }
-function soundSkip(){ playTone(280,'triangle',0.12,0.08); playTone(200,'triangle',0.12,0.06,0.1); }
-function soundLevelUp(){ [523,659,784,1047,1319].forEach((f,i)=>playTone(f,'sine',i===4?0.5:0.18,0.22,i*0.13)); playTone(2093,'sine',0.2,0.1,0.55); }
-function soundLevelDown(){ playTone(280,'sawtooth',0.2,0.14,0,120); playTone(180,'triangle',0.3,0.18,0.12); playTone(100,'triangle',0.4,0.15,0.28); }
-function soundWin(){ const m=[523,659,784,659,1047,784,1047,1319,1568]; m.forEach((f,i)=>playTone(f,'sine',i===m.length-1?0.6:0.2,0.22,i*0.12)); }
-function soundBoss(){ playTone(80,'sawtooth',0.3,0.2,0,60); playTone(120,'square',0.25,0.15,0.15,100); playTone(200,'triangle',0.4,0.12,0.3); }
-function soundButtonPress(){ playTone(320,'sine',0.05,0.08); }
-
-/* ═══════════════════════════════════════
-   INIT
-═══════════════════════════════════════ */
-updateGaugeUI();
-updateMiniGauge();
-renderPlayers();
-showDeckSelector();
-</script>
-</body>
-</html>
+  document.getElementBy
