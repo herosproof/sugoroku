@@ -179,9 +179,22 @@ body {
 }
 .tab .tab-icon img { width: 26px; height: 26px; object-fit: contain; }
 .tab .tab-jp { font-size: 0.72rem; opacity: 0.95; font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif; }
+.tab:hover {
+  color: var(--gold-light);
+  background: rgba(255,255,255,0.03);
+}
 .tab.active {
   color: var(--gold-light);
   border-bottom-color: var(--gold);
+}
+.tab-home {
+  text-decoration: none;
+  border-right: 1px solid rgba(167,139,250,0.15);
+  color: rgba(200,160,224,0.6);
+}
+.tab-home:hover {
+  color: var(--gold-light);
+  background: rgba(255,255,255,0.04);
 }
 
 /* ═══════════════════════════════════════
@@ -452,7 +465,7 @@ hr.dash {
 }
 .deck-remaining {
   font-family: 'Fredoka', sans-serif;
-  font-size: 0.78rem; color: rgba(200,160,224,0.6); font-weight: 600;
+  font-size: 0.78rem; color: var(--text-soft); font-weight: 600;
 }
 
 /* Quest card (active) */
@@ -603,8 +616,8 @@ hr.dash {
   padding: 4px 14px; border-radius: 50px;
 }
 .deck-change-btn {
-  font-size: 0.62rem; font-weight: 700;
-  color: rgba(167,139,250,0.35);
+  font-size: 0.75rem; font-weight: 700;
+  color: var(--text-soft);
   background: none; border: none; cursor: pointer;
   text-decoration: underline; margin-left: 8px;
   font-family: 'Fredoka', sans-serif;
@@ -1185,21 +1198,22 @@ hr.dash {
 <div class="app">
 
   <!-- HEADER -->
-  <div class="header">
+  <a href="https://herosproof.github.io" class="header" style="text-decoration:none;display:block;">
     <img src="logo.png" alt="Hero's Proof" class="logo-img"
          onerror="this.style.display='none';">
     <div class="logo-title">Hero's Proof</div>
     <div class="logo-title-jp">勇者の証</div>
     <div class="header-divider"></div>
     <div class="header-sub">Game Companion App · ゲームサポートアプリ</div>
-  </div>
-
-  <div class="hub-link-row">
-    <a href="https://herosproof.github.io" class="hub-link-btn">🏠 Hub / ホーム</a>
-  </div>
+  </a>
 
   <!-- TABS -->
   <div class="tabs">
+    <a href="https://herosproof.github.io" class="tab tab-home">
+      <span class="tab-icon">🏠</span>
+      Home
+      <span class="tab-jp">ホーム</span>
+    </a>
     <button class="tab active" id="tab-gauge" onclick="showTab('gauge')">
       <span class="tab-icon"><img src="tab-gauge.png" alt="Gauge" onerror="this.outerHTML='⚔️'"></span>
       Gauge
@@ -1900,9 +1914,9 @@ const BOSS_DATA = {
     hard:[
       { type:"speaking", en:"Everyone! What club do you want to join?\nWhat do you want to be?\n→ \"I want to join the ___!\nI want to be ___!\"", jp:"みんな！どの部活に入りたい？\n将来何になりたい？\n→「I want to join the ___! I want to be ___!」" },
       { type:"writing", en:"Everyone! What is your treasure?\n✏️ Write it!\n→ \"My treasure is ___!\"", jp:"みんな！あなたの宝物は何ですか？\n✏️書こう！→「My treasure is ___!」" },
-      { type:"translate", flag:"🇬🇧→🇯🇵",
-        en:"Translate to Japanese! 🇬🇧→🇯🇵\n\"My treasure is my magic book. It's from my elementary school teacher. It's so interesting! I read it everyday.\"",
-        jp:"日本語に訳そう！🇬🇧→🇯🇵\n「My treasure is my magic book. It's from my elementary school teacher. It's so interesting! I read it everyday.」",
+      { type:"translate", flag:"英語→日本語",
+        en:"Translate to Japanese!\n英語→日本語",
+        jp:"英語→日本語に訳そう！\n\"My treasure is my magic book. It's from my elementary school teacher. It's so interesting! I read it everyday.\"",
         answerEn:"My treasure is my magic book. It's from my elementary school teacher. It's so interesting! I read it everyday.",
         answerJp:"私の宝物は魔法の本です。小学校の先生からもらいました。とても面白いです！毎日読んでいます。" },
     ]
@@ -1923,9 +1937,9 @@ const BOSS_DATA = {
     hard:[
       { type:"speaking", en:"Everyone! What is your best memory?\n→ \"My best memory is ___!\" 🌟", jp:"みんな！一番の思い出は？\n→「My best memory is ___!」🌟" },
       { type:"writing", en:"Everyone! Where do you want to go? (country)\n✏️ Write it!\n→ \"I want to go to ___!\"", jp:"みんな！どの国に行きたい？\n✏️書こう！→「I want to go to ___!」" },
-      { type:"translate", flag:"🇬🇧→🇯🇵",
-        en:"Translate to Japanese! 🇬🇧→🇯🇵\n\"Blue coral are found in the sea. Global warming is a big problem. We can use eco-friendly bags and save energy. Let's save the Blue coral!\"",
-        jp:"日本語に訳そう！🇬🇧→🇯🇵\n「Blue coral are found in the sea. Global warming is a big problem. We can use eco-friendly bags and save energy. Let's save the Blue coral!」",
+      { type:"translate", flag:"英語→日本語",
+        en:"Translate to Japanese!\n英語→日本語",
+        jp:"英語→日本語に訳そう！\n\"Blue coral are found in the sea. Global warming is a big problem. We can use eco-friendly bags and save energy. Let's save the Blue coral!\"",
         answerEn:"Blue coral are found in the sea. Global warming is a big problem. We can use eco-friendly bags and save energy. Let's save the Blue coral!",
         answerJp:"アオサンゴは海に生息しています。地球温暖化は大きな問題です。エコバッグを使ったり、エネルギーを節約したりできます。アオサンゴを守ろう！" },
     ]
@@ -1946,9 +1960,9 @@ const BOSS_DATA = {
     hard:[
       { type:"speaking", en:"Everyone! Introduce yourself!\nWhat's your name? When is your birthday?\nWhat do you like?", jp:"みんな！自己紹介をして！\n名前と誕生日は？何が好き？" },
       { type:"writing", en:"Write your dream! ✏️\n\"I want to be ___.\nI want to join the ___.\"", jp:"夢を書こう！✏️\n「I want to be ___. I want to join the ___.」" },
-      { type:"translate", flag:"🇬🇧→🇯🇵",
-        en:"Translate to Japanese! 🇬🇧→🇯🇵\n\"My heroes are my classmates. They are wonderful and very friendly. We always play games on Saturdays. We have so much fun!\"",
-        jp:"日本語に訳そう！🇬🇧→🇯🇵\n「My heroes are my classmates. They are wonderful and very friendly. We always play games on Saturdays. We have so much fun!」",
+      { type:"translate", flag:"英語→日本語",
+        en:"Translate to Japanese!\n英語→日本語",
+        jp:"英語→日本語に訳そう！\n\"My heroes are my classmates. They are wonderful and very friendly. We always play games on Saturdays. We have so much fun!\"",
         answerEn:"My heroes are my classmates. They are wonderful and very friendly. We always play games on Saturdays. We have so much fun!",
         answerJp:"私のヒーローはクラスメートたちです。みんなは素晴らしくてとてもフレンドリーです。わたしたちはいつも土曜日にゲームをします。とても楽しいです！" },
     ]
@@ -1968,14 +1982,14 @@ const BOSS_DATA = {
     ],
     hard:[
       { type:"writing", en:"Write your best memory! ✏️\n\"My best memory is ___.\"", jp:"一番の思い出を書こう！✏️\n「My best memory is ___.」" },
-      { type:"translate", flag:"🇯🇵→🇬🇧",
-        en:"Translate to English! 🇯🇵→🇬🇧\n「私はルミ。私は英語を話せます。ダンスと猫がすきです。私の誕生日は9月25日です。私はお誕生日に大きくてかわいい猫がほしいです。」",
-        jp:"英語に訳そう！🇯🇵→🇬🇧\n「私はルミ。私は英語を話せます。ダンスと猫がすきです。私の誕生日は9月25日です。私はお誕生日に大きくてかわいい猫がほしいです。」",
+      { type:"translate", flag:"日本語→英語",
+        en:"Translate to English!\n日本語→英語",
+        jp:"日本語→英語に訳そう！\n「私はルミ。私は英語を話せます。ダンスと猫がすきです。私の誕生日は9月25日です。私はお誕生日に大きくてかわいい猫がほしいです。」",
         answerEn:"I'm Lumi. I can speak English. I like dancing and cats. My birthday is September 25th. I want a big, cute cat for my birthday.",
         answerJp:"（英語訳）" },
-      { type:"translate", flag:"🇯🇵→🇬🇧",
-        en:"Translate to English! 🇯🇵→🇬🇧\n「わたしはたいてい午前5時30分に起きます。いつも午後４時にアフタヌーンティーをします。ときどき午後11時45分に寝ます。」",
-        jp:"英語に訳そう！🇯🇵→🇬🇧\n「わたしはたいてい午前5時30分に起きます。いつも午後４時にアフタヌーンティーをします。ときどき午後11時45分に寝ます。」",
+      { type:"translate", flag:"日本語→英語",
+        en:"Translate to English!\n日本語→英語",
+        jp:"日本語→英語に訳そう！\n「わたしはたいてい午前5時30分に起きます。いつも午後４時にアフタヌーンティーをします。ときどき午後11時45分に寝ます。」",
         answerEn:"I usually get up at 5:30 AM. I always have afternoon tea at 4 PM. I sometimes go to bed at 11:45 PM.",
         answerJp:"（英語訳）" },
     ]
@@ -2302,7 +2316,7 @@ function startBoss(key){
   } else if(challenge.type === 'writing'){
     typeEl.innerHTML = '<span class="challenge-type-label writing">✏️ Writing · ライティング</span>';
   } else if(challenge.type === 'translate'){
-    typeEl.innerHTML = `<span class="challenge-type-label translate">🗣️ Translation · ${challenge.flag}</span>`;
+    typeEl.innerHTML = `<span class="challenge-type-label translate">🗣️ Translation · 翻訳 (${challenge.flag})</span>`;
   } else {
     typeEl.innerHTML = '';
   }
