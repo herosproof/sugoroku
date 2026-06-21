@@ -1435,8 +1435,8 @@ hr.dash {
           <li>
             <div class="step-num" style="background:linear-gradient(135deg,var(--gold),#d97706);min-width:2rem;font-size:0.58rem;border-radius:10px;">START</div>
             <div class="step-text">
-              <div class="s-en">Each player draws <strong>3–5 Encounter Cards</strong> and takes <strong>3 Crystal Shards</strong>.</div>
-              <div class="s-jp">各プレイヤーはであいカードを3〜5枚引き、クリスタルのかけらを3つもらう。</div>
+              <div class="s-en">Each player draws <strong>3 Encounter Cards.</div>
+              <div class="s-jp">各プレイヤーはであいカードを3枚引きます。</div>
             </div>
           </li>
           <li>
@@ -1551,8 +1551,8 @@ hr.dash {
       </div>
       <div class="rules-section-body">
         <div style="font-family:'Fredoka',sans-serif;font-size:0.78rem;font-weight:700;color:var(--text-dark);margin-bottom:10px;">
-          Each player starts with 3–5 Encounter Cards.<br>
-          <span style="font-family:'Zen Maru Gothic','Kosugi Maru',sans-serif;font-weight:400;color:var(--text-soft);">各プレイヤーはであいカードを3〜5枚持ってスタート。</span>
+          Each player starts with 3 Encounter Cards.<br>
+          <span style="font-family:'Zen Maru Gothic','Kosugi Maru',sans-serif;font-weight:400;color:var(--text-soft);">各プレイヤーはであいカードを3枚持ってスタート。</span>
         </div>
         <div class="enc-info-row">
           <div class="enc-dot" style="background:var(--purple);"></div>
@@ -1616,7 +1616,7 @@ hr.dash {
         </div>
         <div class="boss-check">
           <div class="boss-check-icon">🏆</div>
-          <div><div class="boss-check-en">Victory! Tap "Victory!" in the app → Gauge +20 + everyone gets 3 Crystal Shards!</div><div class="boss-check-jp">勝利！アプリで「Victory!」をタップ → ゲージ+20 + 全員にかけら3つ！</div></div>
+          <div><div class="boss-check-en">Victory! Tap "Victory!" in the app → Gauge +20!</div><div class="boss-check-jp">勝利！アプリで「Victory!」をタップ → ゲージ+20！</div></div>
         </div>
         <div style="margin-top:12px;">
           <div style="font-family:'Fredoka',sans-serif;font-size:0.65rem;font-weight:700;color:var(--text-soft);letter-spacing:0.08em;margin-bottom:6px;">BOSS CRYSTALS / ボスクリスタル</div>
@@ -1710,8 +1710,8 @@ hr.dash {
         </div>
         <div class="boss-challenge-reward">
           <div class="boss-challenge-reward-title">✨ Victory Reward · 勝利報酬</div>
-          <div class="boss-challenge-reward-text">Gauge +20 &nbsp;·&nbsp; Everyone gets 3 Crystal Shards 💎</div>
-          <div class="boss-challenge-reward-jp">ゲージ +20 &nbsp;·&nbsp; 全員にかけら 3つ 💎</div>
+          <div class="boss-challenge-reward-text">Gauge +20 💎</div>
+          <div class="boss-challenge-reward-jp">ゲージ +20 💎</div>
         </div>
       </div>
       <div class="boss-action-row">
@@ -1816,11 +1816,11 @@ const EASY_DECK_RAW = [
   { cat:"✊ Janken!", en:"Everyone janken!\n\nWinner draws 1 Encounter Card! 🃏",        jp:"みんなでじゃんけん！\n\n優勝した人はであいカードを1枚引く！", effect:"Special!", effectVal:0, type:"special" },
   { cat:"✊ Janken!", en:"Janken with anyone!\n\nLoser gives the winner 1 Crystal Shard!", jp:"誰かとじゃんけん！\n\n負けた人は勝った人にかけら1つわたす！",effect:"Special!", effectVal:0, type:"special" },
   // ── Lucky! (7) ──
-  { cat:"🍀 Lucky!", en:"Lucky!\n\nTake 3 Crystal Shards! 💎", jp:"ラッキー！\n\nかけらを3つもらおう！",   effect:"+3 shards",  effectVal:0, type:"lucky" },
-  { cat:"🍀 Lucky!", en:"Lucky!\n\nTake 2 Crystal Shards! 💎", jp:"ラッキー！\n\nかけらを2つもらおう！",   effect:"+2 shards",  effectVal:0, type:"lucky" },
-  { cat:"🍀 Lucky!", en:"Lucky!\n\nTake 2 Crystal Shards! 💎", jp:"ラッキー！\n\nかけらを2つもらおう！",   effect:"+2 shards",  effectVal:0, type:"lucky" },
   { cat:"🍀 Lucky!", en:"Lucky!\n\nTake 1 Crystal Shard! 💎",  jp:"ラッキー！\n\nかけらを1つもらおう！",   effect:"+1 shard",   effectVal:0, type:"lucky" },
   { cat:"🍀 Lucky!", en:"Lucky!\n\nTake 1 Crystal Shard! 💎",  jp:"ラッキー！\n\nかけらを1つもらおう！",   effect:"+1 shard",   effectVal:0, type:"lucky" },
+  { cat:"🍀 Lucky!", en:"Lucky!\n\nTake 1 Crystal Shard! 💎",  jp:"ラッキー！\n\nかけらを1つもらおう！",   effect:"+1 shard",   effectVal:0, type:"lucky" },
+  { cat:"🍀 Lucky!", en:"Lucky!\n\nDraw 1 Encounter Card! 🃏", jp:"ラッキー！\n\nであいカードを1枚引こう！",effect:"Draw card!", effectVal:0, type:"lucky" },
+  { cat:"🍀 Lucky!", en:"Lucky!\n\nDraw 1 Encounter Card! 🃏", jp:"ラッキー！\n\nであいカードを1枚引こう！",effect:"Draw card!", effectVal:0, type:"lucky" },
   { cat:"🍀 Lucky!", en:"Lucky!\n\nDraw 1 Encounter Card! 🃏", jp:"ラッキー！\n\nであいカードを1枚引こう！",effect:"Draw card!", effectVal:0, type:"lucky" },
   { cat:"🍀 Lucky!", en:"Lucky!\n\nDraw 1 Encounter Card! 🃏", jp:"ラッキー！\n\nであいカードを1枚引こう！",effect:"Draw card!", effectVal:0, type:"lucky" },
   // ── Swap! (2) ──
@@ -2377,8 +2377,7 @@ function defeatBoss(){
   const statusEl=document.getElementById('boss-'+activeBoss+'-status');
   if(statusEl) statusEl.textContent='✅ Defeated!';
   changeGauge(20,true);
-  addShardsToAll(3);
-  showToast('⚔️ Boss Defeated! +20 Gauge + 3 Shards each!','#4c1d95');
+  showToast('⚔️ Boss Defeated! +20 Gauge!','#4c1d95');
   closeBossOverlay();
   soundLevelUp();
 }
