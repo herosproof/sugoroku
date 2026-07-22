@@ -1338,6 +1338,10 @@ hr.dash {
   <div class="tab-content" id="content-boss">
     <div class="panel">
       <div class="panel-title">💀 Boss Battles <span class="jp">ボスバトル</span></div>
+      <div style="background:linear-gradient(135deg,#f3e6c8,#eeda9e);border:2px solid #c9a030;border-radius:12px;padding:8px 12px;margin-bottom:10px;font-family:'Fredoka',sans-serif;font-size:0.78rem;color:#5a4410;line-height:1.5;text-align:center;">
+        💎 <b>Beat the boss → EVERYONE takes 1 Crystal Shard!</b><br>
+        <span style="font-family:'Zen Maru Gothic','Kosugi Maru',sans-serif;font-weight:700;">ボスを倒したら → 全員（ぜんいん）クリスタルのかけらを1つもらう！</span>
+      </div>
 
       <!-- Difficulty selector -->
       <div class="boss-diff-wrap">
@@ -1620,6 +1624,10 @@ hr.dash {
           <div class="boss-check-icon">🏆</div>
           <div><div class="boss-check-en">Victory! Tap "Victory!" in the app → Gauge +20!</div><div class="boss-check-jp">勝利！アプリで「Victory!」をタップ → ゲージ+20！</div></div>
         </div>
+        <div class="boss-check">
+          <div class="boss-check-icon">💎</div>
+          <div><div class="boss-check-en"><b>Boss defeated → EVERYONE takes 1 Crystal Shard!</b></div><div class="boss-check-jp"><b>ボスを倒したら → 全員（ぜんいん）クリスタルのかけらを1つもらう！</b></div></div>
+        </div>
         <div style="margin-top:12px;">
           <div style="font-family:'Fredoka',sans-serif;font-size:0.65rem;font-weight:700;color:var(--text-soft);letter-spacing:0.08em;margin-bottom:6px;">BOSS CRYSTALS / ボスクリスタル</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
@@ -1712,8 +1720,8 @@ hr.dash {
         </div>
         <div class="boss-challenge-reward">
           <div class="boss-challenge-reward-title">✨ Victory Reward · 勝利報酬</div>
-          <div class="boss-challenge-reward-text">Gauge +20 💎</div>
-          <div class="boss-challenge-reward-jp">ゲージ +20 💎</div>
+          <div class="boss-challenge-reward-text">Gauge +20 · Everyone takes 1 Crystal Shard! 💎</div>
+          <div class="boss-challenge-reward-jp">ゲージ +20・全員（ぜんいん）クリスタルのかけらを1つもらう！💎</div>
         </div>
       </div>
       <div class="boss-action-row">
@@ -2407,7 +2415,7 @@ function resetAll(){
   document.getElementById('player-count').textContent='4';
   // Reset boss buttons
   ['castle','forest','mountain','sky'].forEach(k=>{
-    document.getElementById('boss-'+k)?.classList.remove('defeated');
+    var bel=document.getElementById('boss-'+k);if(bel)bel.classList.remove('defeated');
     const s=document.getElementById('boss-'+k+'-status');
     if(s) s.textContent='⚔️ Challenge!';
   });
